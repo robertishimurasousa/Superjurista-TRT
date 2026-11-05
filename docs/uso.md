@@ -2,6 +2,8 @@
 
 [Voltar ao índice](README.md)
 
+> Os fluxos judiciais deste guia são herdados do sistema federal e exigem instalação explícita com `--legado-federal`. O perfil `jt-1g-local` atualmente instala somente a [base da fase 1](fase-1-perfis.md), sem esses comandos.
+
 Execute comandos iniciados por `/` dentro do Claude Code. Comandos iniciados por `python` pertencem ao terminal. Os exemplos pressupõem um [projeto instalado](instalacao.md); `NUMERO-CNJ` representa o número completo do processo, não um caso real.
 
 ## Preparar um caso

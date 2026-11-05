@@ -1,0 +1,3 @@
+# Python >= 3.9. Testes principais: python3 -m unittest discover -s tests -v
+# Usado para conferir o manifesto contra o contrato JSON Schema.
+jsonschema==4.23.0

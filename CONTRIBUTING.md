@@ -32,4 +32,4 @@ Use exemplos sintéticos ou anonimizados. Não inclua sessões PJe, arquivos HAR
 - Separe verificação local de integração externa e de aceite de domínio.
 - Preserve os avisos de autoria e a licença dos componentes reutilizados.
 
-As áreas geradas de `scaffold/` têm uma política de sincronização herdada. Consulte [desenvolvimento e manutenção](docs/desenvolvimento.md) antes de alterá-las para evitar que ajustes sejam perdidos numa regeneração.
+O `scaffold/` versionado é a fonte deste derivado. As importações upstream são preparadas em área temporária para revisão, sem regeneração destrutiva. Consulte [desenvolvimento e manutenção](docs/desenvolvimento.md).

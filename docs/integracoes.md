@@ -2,7 +2,9 @@
 
 [Voltar ao índice](README.md)
 
-## Servidores MCP incluídos
+O perfil local da fase 1 não instala integrações. Os componentes abaixo pertencem ao legado, instalado explicitamente por `--legado-federal`.
+
+## Servidores MCP incluídos no legado
 
 MCP é o protocolo usado pelo Claude Code para chamar ferramentas externas. Os cinco servidores distribuídos são processos Python locais que consultam serviços remotos.
 

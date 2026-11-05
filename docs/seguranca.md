@@ -12,7 +12,7 @@ Use documentos cujo tratamento no ambiente escolhido esteja autorizado. Para dem
 
 Cookies, arquivos HAR, senhas, tokens e sementes TOTP podem permitir acesso a contas e processos. Mantenha esses dados fora do controle de versão, dos exemplos e dos registros compartilhados. Consulte apenas os arquivos estritamente necessários ao diagnóstico.
 
-Os `.gitignore` existentes não cobrem todos os possíveis arquivos sensíveis. O modelo do projeto ignora alguns dados, mas não protege automaticamente todos os documentos Markdown produzidos pelos agentes. Se versionar o projeto de trabalho, revise as exclusões, incluindo conforme o ambiente:
+O modelo atualizado na fase 1 ignora toda a pasta `data/`, incluindo minutas Markdown, além de padrões de sessões, HAR e `.env`. Instalações antigas não recebem essas regras automaticamente. Nenhum `.gitignore` cobre arquivos sensíveis armazenados com outros nomes ou fora das pastas previstas; revise as exclusões no ambiente utilizado:
 
 ```gitignore
 .venv/

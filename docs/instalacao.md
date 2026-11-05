@@ -2,7 +2,22 @@
 
 [Voltar ao índice](README.md)
 
-## Requisitos
+## Perfil trabalhista local — padrão
+
+A fase 1 instala somente a base do piloto, sem fluxos de sentença, agentes ou MCPs. Use Python 3.9+ e uma pasta separada. Na raiz do repositório:
+
+```bash
+python3 scripts/instalar_perfil.py --perfil jt-1g-local --destino ../superjurista-trt-trabalho --dry-run
+python3 scripts/instalar_perfil.py --perfil jt-1g-local --destino ../superjurista-trt-trabalho
+```
+
+No Claude Code, `/superjurista-dev:instalar-superjurista` executa essa instalação por perfil. Veja [arquivos instalados, conflitos e testes](fase-1-perfis.md). Não é necessário instalar dependências de OCR ou MCP para esta base.
+
+## Instalação federal legada — somente por opção explícita
+
+O restante deste guia descreve o legado herdado, em uma pasta separada. Ele não entrega o piloto trabalhista. Selecione `--legado-federal` conforme o comando abaixo.
+
+## Requisitos do legado
 
 | Componente | Quando é necessário |
 | --- | --- |
@@ -52,10 +67,10 @@ Esse carregamento vale para a sessão iniciada. O nome técnico do plugin é `su
 Dentro do Claude Code:
 
 ```text
-/superjurista-dev:instalar-superjurista
+/superjurista-dev:instalar-superjurista --legado-federal
 ```
 
-O [instalador](../commands/instalar-superjurista.md) define o tratamento dos arquivos existentes: oferece mesclagem, substituição ou cancelamento para os componentes; trata `CLAUDE.md` separadamente; preserva `README.md` e `.gitignore` se já existirem. A mesclagem preserva arquivos existentes e, portanto, pode manter componentes de versões anteriores.
+O [instalador legado](../spec/referencias/instalacao-legado.md) define o tratamento dos arquivos existentes: oferece mesclagem, substituição ou cancelamento para os componentes; trata `CLAUDE.md` separadamente; preserva `README.md` e `.gitignore` se já existirem. A mesclagem preserva arquivos existentes e, portanto, pode manter componentes de versões anteriores.
 
 Estrutura esperada:
 

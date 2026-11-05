@@ -4,15 +4,15 @@ version: '1.0'
 date_created: '2026-11-05'
 last_updated: '2026-11-05'
 owner: 'Mantenedores do SuperJurista TRT'
-status: 'Planejado'
+status: 'Em andamento'
 tags: ['justica-do-trabalho', 'primeiro-grau', 'pdf-local', 'adaptacao']
 ---
 
 # Introdução
 
-![Estado: Planejado](https://img.shields.io/badge/estado-planejado-blue)
+![Estado: Em andamento](https://img.shields.io/badge/estado-em_andamento-yellow)
 
-Plano baseado na revisão `22da97af489116eee6518b9c7eb44b3e026f555e` e no [diagnóstico técnico](../docs/diagnostico-justica-trabalho.md). O usuário escolheu **piloto de 1º grau com PDFs locais**. Nenhuma tarefa de implementação abaixo foi executada por este documento.
+Plano baseado na revisão `22da97af489116eee6518b9c7eb44b3e026f555e` e no [diagnóstico técnico](../docs/diagnostico-justica-trabalho.md). O usuário escolheu **piloto de 1º grau com PDFs locais**. A base da fase 1 está implementada e testada localmente; o piloto jurídico ainda não foi implementado. Veja as [evidências e limitações da fase 1](../docs/fase-1-perfis.md).
 
 Resultado pretendido: um perfil instalável `jt-1g-local`, capaz de receber documentos de um caso, preservar suas referências, estruturar pedidos e provas, consultar um conjunto local de fontes oficiais conferidas, produzir uma minuta e apresentar pendências para revisão humana. O sistema não assina, protocola ou publica decisões.
 
@@ -38,7 +38,7 @@ A implementação será incremental. Fases 1–6 compõem o piloto; fase 7 é ev
 
 ### Contratos propostos
 
-Os nomes a seguir são decisões de implementação para este plano, não arquivos já existentes.
+Os nomes a seguir são contratos de implementação. O perfil de distribuição existe desde a fase 1; os artefatos de casos permanecem planejados.
 
 | Artefato no projeto instalado | Conteúdo mínimo |
 | --- | --- |
@@ -63,11 +63,11 @@ Estados das etapas: `pendente`, `executando`, `valida`, `invalida`, `bloqueada`,
 
 | Tarefa | Descrição e critério de conclusão | Concluída | Data |
 | --- | --- | --- | --- |
-| TASK-001 | Em `docs/desenvolvimento.md`, registrar `scaffold/` versionado como fonte do derivado. Alterar `sync-scaffold.ps1` para importar fontes explicitamente configuradas para área temporária e gerar comparação; remover a exclusão direta de áreas de trabalho. Sem parâmetros de origem válidos, sair antes de qualquer mutação. Testar com diretórios temporários. | Não | — |
-| TASK-002 | Criar `scaffold/perfis/jt-1g-local.json` e `spec/schemas/perfil.schema.json`, com lista explícita de componentes. Implementar `scaffold/scripts/perfil.py:carregar_perfil()` e `validar_perfil()`. Rejeitar versão desconhecida, caminho fora do pacote e referência a arquivo inexistente. Depende de TASK-001. | Não | — |
-| TASK-003 | Criar `scripts/instalar_perfil.py` com `--perfil`, `--destino` e `--dry-run`; atualizar `commands/instalar-superjurista.md` para invocá-lo. Copiar apenas componentes do manifesto; no perfil local não registrar MCPs nem copiar comandos federais/PJe. Conflitos existentes devem ser apresentados antes de sobrescrever. Depende de TASK-002 e se completa com os componentes das fases seguintes. | Não | — |
-| TASK-004 | Atualizar `.gitignore` e `scaffold/project-gitignore` para excluir casos, sessões, HAR, `.env` e ambientes virtuais. Manter `tests/fixtures/` para conteúdo sintético; testar `git check-ignore` com Markdown de caso e arquivos de autenticação. | Não | — |
-| TASK-005 | Criar `requirements-dev.txt` e `scaffold/requirements-jt.txt` com dependências efetivamente usadas, Python mínimo e versões testadas. Criar `tests/test_instalacao_jt.py` para manifesto, cópia, preservação de arquivos e instalação sem servidores federais. Executar em destino temporário; nenhuma chamada a tribunal. Depende de TASK-003 e TASK-004. | Não | — |
+| TASK-001 | Em `docs/desenvolvimento.md`, registrar `scaffold/` versionado como fonte do derivado. Alterar `sync-scaffold.ps1` para importar fontes explicitamente configuradas para área temporária e gerar comparação; remover a exclusão direta de áreas de trabalho. Sem parâmetros de origem válidos, sair antes de qualquer mutação. Testar com diretórios temporários. | Sim | 2026-11-05 |
+| TASK-002 | Criar `scaffold/perfis/jt-1g-local.json` e `spec/schemas/perfil.schema.json`, com lista explícita de componentes. Implementar `scaffold/scripts/perfil.py:carregar_perfil()` e `validar_perfil()`. Rejeitar versão desconhecida, caminho fora do pacote e referência a arquivo inexistente. Depende de TASK-001. | Sim | 2026-11-05 |
+| TASK-003 | Criar `scripts/instalar_perfil.py` com `--perfil`, `--destino` e `--dry-run`; atualizar `commands/instalar-superjurista.md` para invocá-lo. Copiar apenas componentes do manifesto; no perfil local não registrar MCPs nem copiar comandos federais/PJe. Conflitos existentes devem ser apresentados antes de sobrescrever. Depende de TASK-002 e se completa com os componentes das fases seguintes. | Base entregue; expansão em TASK-026 | 2026-11-05 |
+| TASK-004 | Atualizar `.gitignore` e `scaffold/project-gitignore` para excluir casos, sessões, HAR, `.env` e ambientes virtuais. Manter `tests/fixtures/` para conteúdo sintético; testar `git check-ignore` com Markdown de caso e arquivos de autenticação. | Sim | 2026-11-05 |
+| TASK-005 | Criar `requirements-dev.txt` e `scaffold/requirements-jt.txt` com dependências efetivamente usadas, Python mínimo e versões testadas. Criar `tests/test_instalacao_jt.py` para manifesto, cópia, preservação de arquivos e instalação sem servidores federais. Executar em destino temporário; nenhuma chamada a tribunal. Depende de TASK-003 e TASK-004. | Sim | 2026-11-05 |
 
 ### Fase 2 — Entrada de PDFs e rastreabilidade
 
@@ -209,7 +209,7 @@ Tarefas com dependências de outro PR só são consideradas concluídas após su
 - **RISK-006**: O provedor de IA pode receber dados de autos locais. Mitigação: ambiente autorizado e corpus sintético durante desenvolvimento; PDF local não é sinônimo de inferência offline.
 - **ASSUMPTION-001**: Entrada por PDFs locais está confirmada pelo usuário. O acesso a fontes oficiais pode começar por importação manual conferida.
 - **ASSUMPTION-002**: A minuta é apoio ao responsável pelo julgamento; não há autorização nem escopo para proferir, assinar ou protocolar atos.
-- **ASSUMPTION-003**: A implementação poderá introduzir arquivos novos no scaffold após definir sua manutenção no derivado. Essa mudança de política ainda não foi executada.
+- **ASSUMPTION-003**: A implementação poderá introduzir arquivos novos no scaffold após definir sua manutenção no derivado. A política foi alterada na fase 1: o scaffold versionado passou a ser a fonte deste derivado, com importações upstream apenas para revisão.
 
 ## 8. Especificações relacionadas e fontes
 
@@ -221,4 +221,4 @@ Tarefas com dependências de outro PR só são consideradas concluídas após su
 - [Índice de precedentes qualificados — TST](https://www.tst.jus.br/indice-tematico-precedentes-qualificados-tst): página apresentou proteção de acesso; não tratada como API validada.
 - [PJe-Calc — TRT24](https://www.trt24.jus.br/pje-calc): finalidade da ferramenta e tabelas auxiliares; a integração automatizada permanece futura.
 
-Fontes consultadas em 05/11/2026. O acesso ao texto da CLT no Planalto foi bloqueado; utilizou-se a publicação atualizada da Câmara. Não houve validação autenticada de PJe, pesquisa automatizada TST/TRT, execução de Claude Code ou aceite jurídico nesta análise.
+Fontes consultadas em 05/11/2026. O acesso ao texto da CLT no Planalto foi bloqueado; utilizou-se a publicação atualizada da Câmara. Não houve validação autenticada de PJe, pesquisa automatizada TST/TRT, execução de Claude Code ou aceite jurídico. A validação técnica da fase 1 está registrada no guia correspondente.
