@@ -1,0 +1,24 @@
+{
+  "origem": "arquivo-oficial-local",
+  "tipo": "precedente",
+  "orgao": "TST",
+  "referencia": "PREENCHER com a referência oficial conferida",
+  "url_oficial": "https://www.tst.jus.br/",
+  "data_consulta": "2026-11-05",
+  "situacao": "incerta",
+  "modalidade": "acordao",
+  "temas": [
+    "jornada"
+  ],
+  "ambito": {
+    "nivel": "nacional",
+    "trt": null,
+    "categoria": null,
+    "territorio": null
+  },
+  "vigencia": {
+    "inicio": null,
+    "fim": null
+  },
+  "contexto_temporal": "PREENCHER o contexto temporal e os limites de aplicação."
+}

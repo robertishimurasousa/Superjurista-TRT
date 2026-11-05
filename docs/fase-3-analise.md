@@ -1,5 +1,7 @@
 # Fase 3 — modelo do caso e análise trabalhista
 
+> Registro da entrega de análise. A integração de fontes e referências foi acrescentada na [fase 4](fase-4-fontes.md).
+
 [Voltar ao índice](README.md) · [Plano](../plan/feature-justica-trabalho-1.md) · [Ingestão](fase-2-ingestao.md)
 
 Esta entrega acrescenta contratos, agentes e verificação para produzir um inventário do caso, uma triagem e uma matriz provisória por pedido. Os agentes geram os arquivos no Claude Code; o script verifica os critérios implementados. Não há comando automático de geração nem fluxo de sentença nesta fase.

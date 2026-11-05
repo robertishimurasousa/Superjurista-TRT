@@ -1,6 +1,6 @@
 # SuperJurista TRT — piloto com PDFs locais
 
-Perfil `jt-1g-local`, versão de contrato 1, estado **base em desenvolvimento**. As fases 2 e 3 entregam ingestão, rastreabilidade, classificação documental e análise provisória por pedido. Fontes oficiais ampliadas, sentença e homologação jurídica permanecem pendentes.
+Perfil `jt-1g-local`, versão de contrato 1, estado **base em desenvolvimento**. As fases 2 e 3 entregam ingestão, rastreabilidade, classificação documental e análise provisória por pedido. A fase 4 acrescenta fontes oficiais locais e citações rastreáveis. Sentença e homologação jurídica permanecem pendentes.
 
 ## Preparar e executar
 
@@ -51,6 +51,25 @@ python scripts/verificar_pedidos.py data/casos/CNJ-CONFIRMADO --etapa analise --
 
 A geração pelos agentes não é acionada por esses comandos: eles preparam contexto ou validam arquivos já produzidos. O inventário exige conferência humana contra a inicial/aditamentos. Registre ausência de dados, prova ou fonte como pendência. Sem regras jurídicas locais conferidas, mantenha a conclusão inconclusiva e a análise bloqueada.
 
-Consulte o contrato `regra-juridica.schema.json` e a skill `analise-trabalhista` antes de registrar fontes. Nesta fase, fonte local aceita texto UTF-8 em `fontes/`; importação ampliada e validação de referências serão entregues na fase 4. Código 0 não homologa análise jurídica e `apto_para_minuta` permanece falso.
+Consulte o contrato `regra-juridica.schema.json` e a skill `analise-trabalhista` antes de registrar fontes. A fase 4 importa PDF/HTML/TXT local e vincula o texto extraído às regras por hash. Execute também o verificador de referências antes de considerar o conjunto tecnicamente conferido. Código 0 não homologa análise jurídica e `apto_para_minuta` permanece falso.
 
 [Guia da fase 3](https://github.com/robertishimurasousa/Superjurista-TRT/blob/main/docs/fase-3-analise.md).
+
+
+## Fontes oficiais locais e referências
+
+Copie `.claude/perfis/fonte.exemplo.json`, preencha os metadados e importe o arquivo oficial, mantido fora da pasta do caso:
+
+```bash
+python scripts/importar_fontes_jt.py data/casos/CNJ-CONFIRMADO --input data/fontes-entrada/oficial.pdf --metadados data/fonte-metadados.json
+python scripts/importar_fontes_jt.py data/casos/CNJ-CONFIRMADO --fonte FON-ID --conferencia data/conferencia-fonte.json
+python scripts/merge_fontes_jt.py data/casos/CNJ-CONFIRMADO --fontes FON-ID
+python scripts/verificar_referencias_jt.py data/casos/CNJ-CONFIRMADO --contexto
+python scripts/verificar_referencias_jt.py data/casos/CNJ-CONFIRMADO --gate
+```
+
+A importação inicial registra pendência (código 1) até a conferência humana. `fonte.json` contém os três hashes a conferir. O corpus só é publicado com todas as revisões selecionadas aptas; versões antigas não são apagadas. O agente `pesquisador-fontes-trabalhista` organiza as fontes e propõe vínculos/citações com revisão pendente.
+
+Preencha a conferência e o registro de referências conforme os schemas instalados. A presença de uma URL oficial, a coincidência de trechos ou um hash não provam autenticidade nem pertinência. A varredura automática não substitui revisão de cobertura das citações. Nenhum script desta fase faz download ou consulta a tribunal.
+
+[Guia completo da fase 4](https://github.com/robertishimurasousa/Superjurista-TRT/blob/main/docs/fase-4-fontes.md).

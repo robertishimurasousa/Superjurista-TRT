@@ -1,0 +1,45 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "conferencia-fonte — piloto JT",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "responsavel": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "\\S"
+    },
+    "data": {
+      "type": "string",
+      "format": "date"
+    },
+    "valida_ate": {
+      "type": "string",
+      "format": "date"
+    },
+    "original_sha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "texto_sha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "metadados_sha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "declaracao_origem_oficial": {
+      "const": true
+    }
+  },
+  "required": [
+    "responsavel",
+    "data",
+    "valida_ate",
+    "original_sha256",
+    "texto_sha256",
+    "metadados_sha256",
+    "declaracao_origem_oficial"
+  ]
+}

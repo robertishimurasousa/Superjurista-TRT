@@ -11,7 +11,8 @@
     "trabalhista/extrator-caso",
     "trabalhista/relator",
     "trabalhista/triador",
-    "trabalhista/analista"
+    "trabalhista/analista",
+    "trabalhista/pesquisador-fontes"
   ],
   "mcps": [],
   "arquivos": [
@@ -122,6 +123,50 @@
     {
       "origem": "scaffold/skills/analise-trabalhista/references/matriz-normativa.md",
       "destino": ".claude/skills/analise-trabalhista/references/matriz-normativa.md"
+    },
+    {
+      "origem": "spec/schemas/fontes-juridicas.schema.json",
+      "destino": ".claude/schemas/fontes-juridicas.schema.json"
+    },
+    {
+      "origem": "spec/schemas/fonte-metadados.schema.json",
+      "destino": ".claude/schemas/fonte-metadados.schema.json"
+    },
+    {
+      "origem": "spec/schemas/conferencia-fonte.schema.json",
+      "destino": ".claude/schemas/conferencia-fonte.schema.json"
+    },
+    {
+      "origem": "spec/schemas/referencias-minuta.schema.json",
+      "destino": ".claude/schemas/referencias-minuta.schema.json"
+    },
+    {
+      "origem": "scaffold/scripts/normalizacao_fontes.py",
+      "destino": "scripts/normalizacao_fontes.py"
+    },
+    {
+      "origem": "scaffold/scripts/fontes_jt.py",
+      "destino": "scripts/fontes_jt.py"
+    },
+    {
+      "origem": "scaffold/scripts/importar_fontes_jt.py",
+      "destino": "scripts/importar_fontes_jt.py"
+    },
+    {
+      "origem": "scaffold/scripts/merge_fontes_jt.py",
+      "destino": "scripts/merge_fontes_jt.py"
+    },
+    {
+      "origem": "scaffold/scripts/verificar_referencias_jt.py",
+      "destino": "scripts/verificar_referencias_jt.py"
+    },
+    {
+      "origem": "scaffold/agents/trabalhista/pesquisador-fontes.md",
+      "destino": ".claude/agents/trabalhista/pesquisador-fontes.md"
+    },
+    {
+      "origem": "scaffold/perfis/jt-1g-local/fonte.exemplo.json",
+      "destino": ".claude/perfis/fonte.exemplo.json"
     }
   ],
   "diretorios": [

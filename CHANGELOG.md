@@ -2,6 +2,15 @@
 
 ## Alterações do SuperJurista TRT — não publicadas
 
+### Implementação — fase 4
+
+- Importação de PDF/HTML/TXT oficial local com originais, texto, metadados e IDs por revisão.
+- Conferência humana vinculada a três hashes, validade e declaração de origem; consolidação sem aprovação parcial.
+- Agente de pesquisa local e contratos de fontes, conferência e referências da matriz/minuta.
+- Vínculos entre regras e fontes; validação de citações diretas, paráfrases, provas e menções sem registro.
+- Normalização de chaves compartilhada com o merge legado, preservando seu contrato.
+- Testes sintéticos, instruções de operação e limites de autenticidade/pertinência documentados.
+
 ### Implementação — fase 3
 
 - Contratos de relatório, triagem, matriz de pedidos e registro preliminar de regras jurídicas.
