@@ -1,0 +1,62 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Classificação documental proposta, sujeita à conferência humana",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "segmentos"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": 1
+    },
+    "segmentos": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "documento_id": {
+            "type": "string",
+            "pattern": "^DOC-[a-f0-9]{64}$"
+          },
+          "pagina_inicio": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "pagina_fim": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "tipo": {
+            "enum": [
+              "peticao",
+              "defesa",
+              "replica",
+              "ata",
+              "jornada",
+              "contracheque",
+              "trct",
+              "fgts",
+              "laudo",
+              "instrumento-coletivo",
+              "desconhecido"
+            ]
+          },
+          "justificativa": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "documento_id",
+          "pagina_inicio",
+          "pagina_fim",
+          "tipo",
+          "justificativa"
+        ]
+      }
+    }
+  }
+}

@@ -12,7 +12,7 @@ tags: ['justica-do-trabalho', 'primeiro-grau', 'pdf-local', 'adaptacao']
 
 ![Estado: Em andamento](https://img.shields.io/badge/estado-em_andamento-yellow)
 
-Plano baseado na revisão `22da97af489116eee6518b9c7eb44b3e026f555e` e no [diagnóstico técnico](../docs/diagnostico-justica-trabalho.md). O usuário escolheu **piloto de 1º grau com PDFs locais**. A base da fase 1 está implementada e testada localmente; o piloto jurídico ainda não foi implementado. Veja as [evidências e limitações da fase 1](../docs/fase-1-perfis.md).
+Plano baseado na revisão `22da97af489116eee6518b9c7eb44b3e026f555e` e no [diagnóstico técnico](../docs/diagnostico-justica-trabalho.md). O usuário escolheu **piloto de 1º grau com PDFs locais**. As fases 1 e 2 estão implementadas e testadas localmente; o piloto jurídico ainda não foi implementado. Veja as [evidências da fase 1](../docs/fase-1-perfis.md) e as [evidências e limitações da fase 2](../docs/fase-2-ingestao.md).
 
 Resultado pretendido: um perfil instalável `jt-1g-local`, capaz de receber documentos de um caso, preservar suas referências, estruturar pedidos e provas, consultar um conjunto local de fontes oficiais conferidas, produzir uma minuta e apresentar pendências para revisão humana. O sistema não assina, protocola ou publica decisões.
 
@@ -38,7 +38,7 @@ A implementação será incremental. Fases 1–6 compõem o piloto; fase 7 é ev
 
 ### Contratos propostos
 
-Os nomes a seguir são contratos de implementação. O perfil de distribuição existe desde a fase 1; os artefatos de casos permanecem planejados.
+Os nomes a seguir são contratos de implementação. O perfil de distribuição existe desde a fase 1. Caso, documentos, textos e classificação estão implementados na fase 2; os artefatos jurídicos permanecem planejados.
 
 | Artefato no projeto instalado | Conteúdo mínimo |
 | --- | --- |
@@ -75,11 +75,11 @@ Estados das etapas: `pendente`, `executando`, `valida`, `invalida`, `bloqueada`,
 
 | Tarefa | Descrição e critério de conclusão | Concluída | Data |
 | --- | --- | --- | --- |
-| TASK-006 | Criar `scaffold/scripts/cnj.py:validar_cnj()` e schemas `spec/schemas/caso.schema.json` e `documentos.schema.json`. Validar módulo 97, segmento 5, região coerente e metadados confirmados; rejeitar segmento federal no perfil. Aceitar organização em pasta sem extrair a identidade apenas do nome. | Não | — |
-| TASK-007 | Criar `scaffold/scripts/ingerir_documentos.py` com `--input`, `--workspace` e `--caso`. Aceitar arquivo ou pasta, preservar cópia original, gerar IDs/hashes e detectar duplicatas, PDF corrompido/protegido e entrada vazia. Registrar falhas sem substituir documentos já ingeridos. Depende de TASK-006. | Não | — |
-| TASK-008 | Adaptar `scaffold/skills/converter-pdf/scripts/pdf_para_txt.py` com modo explícito de preservação para JT. Conservar texto bruto e página original; não remover linhas repetidas de tabelas/contracheques. OCR por página quando necessário; detectar mistura de páginas digitais e escaneadas e registrar páginas ilegíveis. Depende de TASK-007. | Não | — |
-| TASK-009 | Criar `scaffold/agents/trabalhista/extrator-caso.md` e `scaffold/scripts/verificar_documentos.py`. Classificar petição, defesa, réplica, atas, controles de jornada, contracheques, TRCT, FGTS, laudos e instrumentos coletivos; marcar desconhecidos. O gate confere que todas as páginas são contabilizadas e que referências apontam para IDs existentes. Depende de TASK-008. | Não | — |
-| TASK-010 | Criar `tests/test_ingestao_jt.py` e fixtures com PDF digital, escaneado, misto, repetição de linhas, duplicatas e documento ausente. Exigir preservação de linhas esperadas e rastreio de página; não exigir igualdade literal do OCR em ambientes diferentes. Depende de TASK-009. | Não | — |
+| TASK-006 | Criar `scaffold/scripts/cnj.py:validar_cnj()` e schemas `spec/schemas/caso.schema.json` e `documentos.schema.json`. Validar módulo 97, segmento 5, região coerente e metadados confirmados; rejeitar segmento federal no perfil. Aceitar organização em pasta sem extrair a identidade apenas do nome. | Sim | 2026-11-05 |
+| TASK-007 | Criar `scaffold/scripts/ingerir_documentos.py` com `--input`, `--workspace` e `--caso`. Aceitar arquivo ou pasta, preservar cópia original, gerar IDs/hashes e detectar duplicatas, PDF corrompido/protegido e entrada vazia. Registrar falhas sem substituir documentos já ingeridos. Depende de TASK-006. | Sim | 2026-11-05 |
+| TASK-008 | Adaptar `scaffold/skills/converter-pdf/scripts/pdf_para_txt.py` com modo explícito de preservação para JT. Conservar texto bruto e página original; não remover linhas repetidas de tabelas/contracheques. OCR por página quando necessário; detectar mistura de páginas digitais e escaneadas e registrar páginas ilegíveis. Depende de TASK-007. | Sim | 2026-11-05 |
+| TASK-009 | Criar `scaffold/agents/trabalhista/extrator-caso.md` e `scaffold/scripts/verificar_documentos.py`. Classificar petição, defesa, réplica, atas, controles de jornada, contracheques, TRCT, FGTS, laudos e instrumentos coletivos; marcar desconhecidos. O gate confere que todas as páginas são contabilizadas e que referências apontam para IDs existentes. Depende de TASK-008. | Sim | 2026-11-05 |
+| TASK-010 | Criar `tests/test_ingestao_jt.py` e fixtures com PDF digital, escaneado, misto, repetição de linhas, duplicatas e documento ausente. Exigir preservação de linhas esperadas e rastreio de página; não exigir igualdade literal do OCR em ambientes diferentes. Depende de TASK-009. | Sim | 2026-11-05 |
 
 ### Fase 3 — Modelo do caso e análise trabalhista
 

@@ -1,5 +1,7 @@
 # Fase 1 — distribuição por perfil
 
+> Registro da entrega inicial. A distribuição atual inclui também a [fase 2 de ingestão](fase-2-ingestao.md), com componentes e requisitos adicionais.
+
 [Voltar ao índice](README.md) · [Plano](../plan/feature-justica-trabalho-1.md)
 
 ## Estado da entrega

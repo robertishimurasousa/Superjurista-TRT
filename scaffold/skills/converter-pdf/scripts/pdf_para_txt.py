@@ -575,6 +575,87 @@ def processar_pdf(pdf_path: Path, output_dir: Path, usar_ocr: bool = True, verbo
     return resultado
 
 
+# Modo JT: a saída bruta nunca passa pelas rotinas legadas de limpeza.
+VERSAO_PRESERVACAO = "jt-paginas-1"
+
+
+def ocr_pagina_jt(pdf_path, numero):
+    """Renderiza uma página por vez, com limites e OCR em português."""
+    from pdf2image import convert_from_path
+    import pytesseract
+    if os.environ.get("TESSERACT_CMD"):
+        pytesseract.pytesseract.tesseract_cmd = os.environ["TESSERACT_CMD"]
+    imagens = convert_from_path(str(pdf_path), dpi=200, first_page=numero,
+                                last_page=numero, thread_count=1,
+                                poppler_path=POPPLER_PATH, timeout=60)
+    try:
+        return pytesseract.image_to_string(imagens[0], lang="por", timeout=60)
+    finally:
+        for imagem in imagens:
+            imagem.close()
+
+
+def extrair_preservando_jt(pdf_path):
+    """Retorna TODAS as páginas, inclusive falhas, sem deduplicar linhas."""
+    import unicodedata
+    from pypdf import PdfReader
+    import pdfplumber
+    resultado = {"estado": "extraido", "paginas_total": None, "paginas": [], "avisos": []}
+    try:
+        with open(pdf_path, "rb") as arquivo:
+            reader = PdfReader(arquivo)
+            if reader.is_encrypted:
+                return {**resultado, "estado": "protegido", "avisos": ["pdf-protegido"]}
+            total = len(reader.pages)
+            if not 1 <= total <= 5000:
+                return {**resultado, "estado": "corrompido", "avisos": ["quantidade-paginas-invalida"]}
+    except Exception:
+        return {**resultado, "estado": "corrompido", "avisos": ["pdf-nao-legivel"]}
+    resultado["paginas_total"] = total
+    try:
+        with pdfplumber.open(pdf_path) as pdf:
+            for i in range(total):
+                pagina = {"numero": i + 1, "metodo": "nenhum", "estado": "falha",
+                          "bruto": "", "normalizado": "", "avisos": []}
+                try:
+                    p = pdf.pages[i]
+                    if p.width <= 0 or p.height <= 0 or p.width * p.height * (200 / 72) ** 2 > 30000000:
+                        raise ValueError("Dimensão de página fora do limite")
+                    digital = p.extract_text() or ""
+                    pagina["bruto"] = digital
+                    # Mesmo uma imagem pequena pode conter uma tabela decisiva.
+                    tem_imagem = bool(p.images)
+                    if digital.strip() and not tem_imagem:
+                        pagina.update(metodo="digital", estado="extraida")
+                    else:
+                        pagina["metodo"] = "digital+ocr" if digital.strip() else "ocr"
+                        try:
+                            ocr = ocr_pagina_jt(pdf_path, i + 1)
+                            pagina["bruto"] = (digital + "\n\n[OCR DA MESMA PAGINA]\n" + ocr
+                                               if digital.strip() else ocr)
+                            pagina["estado"] = "extraida" if ocr.strip() else "vazia-ou-ilegivel"
+                            pagina["avisos"].append("ocr-requer-conferencia")
+                        except Exception:
+                            pagina["avisos"].append("ocr-indisponivel-ou-falhou")
+                    p.close()
+                except Exception:
+                    pagina["avisos"].append("extracao-pagina-falhou")
+                pagina["normalizado"] = unicodedata.normalize(
+                    "NFC", pagina["bruto"].replace("\r\n", "\n").replace("\r", "\n"))
+                resultado["paginas"].append(pagina)
+    except Exception:
+        resultado["avisos"].append("leitor-digital-falhou")
+    presentes = {p["numero"] for p in resultado["paginas"]}
+    for numero in range(1, total + 1):
+        if numero not in presentes:
+            resultado["paginas"].append({"numero": numero, "metodo": "nenhum", "estado": "falha",
+                                        "bruto": "", "normalizado": "", "avisos": ["pagina-nao-extraida"]})
+    resultado["paginas"].sort(key=lambda p: p["numero"])
+    if any(p["estado"] != "extraida" for p in resultado["paginas"]):
+        resultado["estado"] = "parcial"
+    return resultado
+
+
 def main():
     parser = argparse.ArgumentParser(
         description='Converte PDFs de processos judiciais para texto. PADRAO: OCR (Tesseract)'
@@ -606,7 +687,21 @@ def main():
         help='Mostra progresso detalhado (padrao: output minimo)'
     )
 
+    parser.add_argument('--preservar-jt', action='store_true',
+                        help='Extrair páginas sem limpeza; digital e OCR por página')
     args = parser.parse_args()
+    if args.preservar_jt:
+        import json
+        if args.digital or args.limite or not Path(args.input).is_file():
+            parser.error('--preservar-jt exige um PDF e não aceita --digital/--limite')
+        saida = Path(args.output)
+        if saida.exists():
+            parser.error('Escolha uma pasta de saída nova para preservar resultados anteriores')
+        resultado = extrair_preservando_jt(args.input)
+        saida.mkdir(parents=True)
+        (saida / 'paginas.json').write_text(json.dumps(resultado, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+        print(f"[FIM] {resultado['estado']} | {saida / 'paginas.json'}")
+        return 0 if resultado['estado'] == 'extraido' else 1
 
     input_path = Path(args.input)
     output_dir = Path(args.output)
@@ -679,4 +774,4 @@ def main():
 
 
 if __name__ == '__main__':
-    main()
+    sys.exit(main())

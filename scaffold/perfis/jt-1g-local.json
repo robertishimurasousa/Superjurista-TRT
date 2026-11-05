@@ -7,7 +7,9 @@
   "entrada": "pdf-local",
   "fontes": "locais-conferidas",
   "comandos": [],
-  "agentes": [],
+  "agentes": [
+    "trabalhista/extrator-caso"
+  ],
   "mcps": [],
   "arquivos": [
     {
@@ -37,6 +39,46 @@
     {
       "origem": "scaffold/requirements-jt.txt",
       "destino": "requirements.txt"
+    },
+    {
+      "origem": "scaffold/scripts/cnj.py",
+      "destino": "scripts/cnj.py"
+    },
+    {
+      "origem": "scaffold/scripts/documentos.py",
+      "destino": "scripts/documentos.py"
+    },
+    {
+      "origem": "scaffold/scripts/ingerir_documentos.py",
+      "destino": "scripts/ingerir_documentos.py"
+    },
+    {
+      "origem": "scaffold/scripts/verificar_documentos.py",
+      "destino": "scripts/verificar_documentos.py"
+    },
+    {
+      "origem": "spec/schemas/caso.schema.json",
+      "destino": ".claude/schemas/caso.schema.json"
+    },
+    {
+      "origem": "spec/schemas/documentos.schema.json",
+      "destino": ".claude/schemas/documentos.schema.json"
+    },
+    {
+      "origem": "spec/schemas/classificacao.schema.json",
+      "destino": ".claude/schemas/classificacao.schema.json"
+    },
+    {
+      "origem": "scaffold/skills/converter-pdf/scripts/pdf_para_txt.py",
+      "destino": ".claude/skills/converter-pdf/scripts/pdf_para_txt.py"
+    },
+    {
+      "origem": "scaffold/agents/trabalhista/extrator-caso.md",
+      "destino": ".claude/agents/trabalhista/extrator-caso.md"
+    },
+    {
+      "origem": "scaffold/perfis/jt-1g-local/caso.exemplo.json",
+      "destino": ".claude/perfis/caso.exemplo.json"
     }
   ],
   "diretorios": [

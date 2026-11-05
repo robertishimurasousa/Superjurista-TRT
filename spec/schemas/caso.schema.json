@@ -1,0 +1,109 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "caso — piloto JT local",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": 1
+    },
+    "numero_cnj": {
+      "type": "string",
+      "minLength": 1
+    },
+    "trt": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 24
+    },
+    "unidade": {
+      "type": "string",
+      "minLength": 1
+    },
+    "unidade_codigo": {
+      "type": "string",
+      "pattern": "^[0-9]{4}$"
+    },
+    "instancia": {
+      "const": 1
+    },
+    "rito": {
+      "enum": [
+        "ordinario",
+        "sumarissimo"
+      ]
+    },
+    "fase": {
+      "const": "conhecimento"
+    },
+    "data_referencia": {
+      "type": "string",
+      "format": "date"
+    },
+    "escopo_confirmado": {
+      "const": true
+    },
+    "documentos": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "arquivo": {
+            "type": "string",
+            "minLength": 1
+          },
+          "tipo": {
+            "enum": [
+              "peticao",
+              "defesa",
+              "replica",
+              "ata",
+              "jornada",
+              "contracheque",
+              "trct",
+              "fgts",
+              "laudo",
+              "instrumento-coletivo",
+              "desconhecido"
+            ]
+          },
+          "obrigatorio": {
+            "type": "boolean"
+          },
+          "id_pje": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        },
+        "required": [
+          "arquivo",
+          "tipo",
+          "obrigatorio"
+        ]
+      }
+    },
+    "pendencias": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "required": [
+    "schema_version",
+    "numero_cnj",
+    "trt",
+    "unidade",
+    "unidade_codigo",
+    "instancia",
+    "rito",
+    "fase",
+    "data_referencia",
+    "escopo_confirmado",
+    "documentos",
+    "pendencias"
+  ]
+}

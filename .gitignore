@@ -15,7 +15,7 @@ Thumbs.db
 
 # Casos e dados locais (inclui minutas Markdown e documentos extraídos)
 data/
-.venv/
+.venv*/
 venv/
 .env
 .env.*

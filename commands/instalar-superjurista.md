@@ -6,7 +6,7 @@ allowed-tools: Bash Read Write AskUserQuestion Glob
 
 # Instalar o SuperJurista por perfil
 
-O padrão deste derivado é `jt-1g-local`. Nesta fase ele instala somente a base: ainda não existem ingestão, agentes ou fluxo de sentença trabalhista.
+O padrão deste derivado é `jt-1g-local`. O perfil inclui ingestão de PDFs locais e classificação documental proposta; o fluxo de sentença trabalhista ainda não foi implementado.
 
 ## Procedimento
 

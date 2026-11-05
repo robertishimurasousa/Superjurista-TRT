@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "numero_cnj": "0000001-16.2026.5.12.0001",
+  "trt": 12,
+  "unidade": "Unidade fictícia para testes",
+  "unidade_codigo": "0001",
+  "instancia": 1,
+  "rito": "ordinario",
+  "fase": "conhecimento",
+  "data_referencia": "2026-11-05",
+  "escopo_confirmado": true,
+  "documentos": [
+    {
+      "arquivo": "digital.pdf",
+      "tipo": "jornada",
+      "obrigatorio": true
+    }
+  ],
+  "pendencias": []
+}
