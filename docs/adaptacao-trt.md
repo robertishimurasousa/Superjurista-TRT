@@ -40,3 +40,6 @@ Para cada validação, registre a revisão do repositório, ambiente, componente
 - **Aceite de domínio:** revisão do conteúdo e adequação ao uso pretendido.
 
 Uma verificação local bem-sucedida não comprova os demais estados.
+
+
+A fase 6 documenta a [operação e revisão do piloto](validacao/operacao-piloto-jt.md) e suas [evidências reais](validacao/piloto-jt-local.md). O corpus sintético e a CI validam o software; as 36 execuções com agentes e o aceite jurídico ainda precisam ser concluídos. Não use resultados de testes com regras fictícias como fontes ou minutas jurídicas.

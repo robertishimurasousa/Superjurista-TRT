@@ -97,6 +97,17 @@ def validar_etapa(raiz, etapa):
     from verificar_referencias_jt import verificar as referencias
     from verificar_sentenca_jt import verificar as sentenca, renderizar
     try:
+        if etapa == 'fontes' and not caminho_seguro(raiz, 'fontes-juridicas.json').exists():
+            from fontes_jt import conferir_fonte, carregar_fonte, caso_local
+            erros, pendencias = [], ['Consolidação das fontes pendente.']
+            fontes = [n for n in arquivos_arvore(raiz, 'fontes/importadas') if n.endswith('/fonte.json')]
+            if not fontes:
+                pendencias.append('Nenhuma fonte oficial local importada.')
+            for nome in fontes:
+                fonte = carregar_fonte(raiz, Path(nome).parent.name)
+                e, p = conferir_fonte(raiz, fonte, caso_local(raiz))
+                erros.extend(e); pendencias.extend(p)
+            return {'erros': erros, 'pendencias': pendencias}
         if any(not caminho_seguro(raiz, n).is_file() for n in SAIDAS[etapa]):
             return {'erros': ['Saída obrigatória ausente.'], 'pendencias': []}
         if etapa in ('ingestao', 'classificacao'):

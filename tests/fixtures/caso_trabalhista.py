@@ -17,25 +17,31 @@ TEXTO = ['CASO INTEIRAMENTE FICTICIO - SEM VALOR JURIDICO',
          'Instrumento coletivo ficticio de 2025-01-01 a 2025-12-31: comercio em Florianopolis.']
 
 
-def criar(pasta, rito='ordinario'):
-    entrada = pasta / 'entrada'
-    entrada.mkdir()
-    pdf = canvas.Canvas(str(entrada / 'autos.pdf'), invariant=1)
-    for i, linha in enumerate(TEXTO):
-        pdf.drawString(30, 800-i*25, linha)
-    pdf.save()
-    caso = json.loads((Path(__file__).parent / 'jt/caso.json').read_text())
-    caso['rito'] = rito
-    caso['documentos'] = [{'arquivo': 'autos.pdf', 'tipo': 'desconhecido', 'obrigatorio': True}]
-    salvar_json(pasta / 'caso.json', caso)
+def criar(pasta, rito='ordinario', preparar=None):
+    texto = TEXTO
+    if preparar:
+        texto = preparar(pasta)
+        entrada = pasta/'entrada'
+        caso = json.loads((pasta/'caso.json').read_text())
+    else:
+        entrada = pasta / 'entrada'
+        entrada.mkdir()
+        pdf = canvas.Canvas(str(entrada / 'autos.pdf'), invariant=1)
+        for i, linha in enumerate(TEXTO):
+            pdf.drawString(30, 800-i*25, linha)
+        pdf.save()
+        caso = json.loads((Path(__file__).parent / 'jt/caso.json').read_text())
+        caso['rito'] = rito
+        caso['documentos'] = [{'arquivo': 'autos.pdf', 'tipo': 'desconhecido', 'obrigatorio': True}]
+        salvar_json(pasta / 'caso.json', caso)
     workspace = pasta / 'workspace'
     ingerir(entrada, workspace, pasta / 'caso.json')
     doc = json.loads((workspace / 'documentos.json').read_text())['documentos'][0]['id']
-    referencia = {'documento_id': doc, 'pagina': 1, 'trecho': TEXTO[0]}
+    referencia = {'documento_id': doc, 'pagina': 1, 'trecho': texto[0]}
 
     def dado(valor, linha=0):
         return {'estado': 'informado', 'valor': valor,
-                'referencias': [{**referencia, 'trecho': TEXTO[linha]}], 'motivo': None}
+                'referencias': [{**referencia, 'trecho': texto[linha]}], 'motivo': None}
 
     ausente = {'estado': 'nao-informado', 'valor': None, 'referencias': [], 'motivo': 'Não consta do conjunto fictício.'}
     periodo = {'inicio': dado('2025-01-01', 3), 'fim': dado('2025-12-31', 3)}

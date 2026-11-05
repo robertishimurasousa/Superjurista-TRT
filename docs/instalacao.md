@@ -134,3 +134,6 @@ python .claude/skills/converter-pdf/scripts/pdf_para_txt.py --help
 ```
 
 Esses comandos verificam dependências e interfaces locais. A conexão de cada MCP, o download do PJe e a execução completa de um fluxo exigem verificações próprias. Comece com dados sintéticos ou anonimizados e consulte [uso](uso.md) e [adaptação para TRT](adaptacao-trt.md).
+
+
+A fase 6 documenta a [operação e revisão do piloto](validacao/operacao-piloto-jt.md) e suas [evidências reais](validacao/piloto-jt-local.md). O corpus sintético e a CI validam o software; as 36 execuções com agentes e o aceite jurídico ainda precisam ser concluídos. Não use resultados de testes com regras fictícias como fontes ou minutas jurídicas.

@@ -1,0 +1,45 @@
+name: Validação do piloto trabalhista
+on:
+  push:
+    branches: [main, 'codex/**']
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: validacao-jt-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  validacao:
+    name: Linux / Python ${{ matrix.python }}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    strategy:
+      fail-fast: false
+      matrix:
+        python: ['3.11', '3.12']
+    env:
+      TESTAR_OCR: '1'
+      TESSDATA_PREFIX: /usr/share/tesseract-ocr/5/tessdata
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6
+        with:
+          python-version: ${{ matrix.python }}
+      - name: Instalar OCR e bibliotecas de teste
+        run: |
+          sudo apt-get update
+          sudo apt-get install --no-install-recommends -y poppler-utils tesseract-ocr tesseract-ocr-por
+          python -m pip install -r requirements-dev.txt
+      - name: Conferir corpus, schemas, sintaxe, instalação, links e testes
+        run: python scripts/validar_repositorio.py --exigir-ocr --saida data/validacao/linux-${{ matrix.python }}.json
+      - name: Preservar somente relatório técnico sanitizado
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: validacao-linux-${{ matrix.python }}
+          path: data/validacao/linux-${{ matrix.python }}.json
+          if-no-files-found: error
+          retention-days: 14

@@ -1,0 +1,8 @@
+FROM python:3.12-slim
+RUN apt-get update && apt-get install --no-install-recommends -y git poppler-utils tesseract-ocr tesseract-ocr-por && rm -rf /var/lib/apt/lists/*
+WORKDIR /app
+COPY scaffold/requirements-jt.txt scaffold/requirements-jt.txt
+COPY requirements-dev.txt .
+RUN pip install --no-cache-dir -r requirements-dev.txt
+ENV TESTAR_OCR=1 TESSDATA_PREFIX=/usr/share/tesseract-ocr/5/tessdata
+CMD ["python", "scripts/validar_repositorio.py", "--exigir-ocr", "--saida", "/evidencias/linux.json"]

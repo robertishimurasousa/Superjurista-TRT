@@ -55,7 +55,7 @@ Com Claude Code disponível, confira também o manifesto:
 claude plugin validate .
 ```
 
-O comando de validação é descrito na [documentação oficial](https://code.claude.com/docs/en/plugins/create). Ele não executa os fluxos judiciais. A suíte das fases 1 a 5 pode ser executada com `python -m unittest discover -s tests -v`, após instalar `requirements-dev.txt`. O OCR real exige `TESTAR_OCR=1`, Tesseract/`por` e Poppler; sem essa variável, o teste de integração OCR é explicitamente ignorado. Veja as evidências das [fases 2](fase-2-ingestao.md), [3](fase-3-analise.md), [4](fase-4-fontes.md) e [5](fase-5-minuta.md). Ainda não há configuração de integração contínua.
+O comando de validação é descrito na [documentação oficial](https://code.claude.com/docs/en/plugins/create). Ele não executa os fluxos judiciais. A suíte das fases 1 a 6 pode ser executada com `python -m unittest discover -s tests -v`, após instalar `requirements-dev.txt`. O OCR real exige `TESTAR_OCR=1`, Tesseract/`por` e Poppler; sem essa variável, o teste de integração OCR é explicitamente ignorado. Veja as evidências das [fases 2](fase-2-ingestao.md), [3](fase-3-analise.md), [4](fase-4-fontes.md) e [5](fase-5-minuta.md). A CI em `.github/workflows/validacao.yml` executa Linux/Python 3.11 e 3.12. Para reproduzir as verificações e gerar evidências, use `TESTAR_OCR=1 python scripts/validar_repositorio.py --exigir-ocr --saida data/validacao/local.json`.
 
 ## O que validar por tipo de alteração
 
