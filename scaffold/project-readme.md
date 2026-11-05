@@ -1,6 +1,6 @@
 # SuperJurista — projeto federal legado
 
-Este é o modelo de README da instalação explícita `--legado-federal`; não é o perfil trabalhista local da fase 1.
+Este é o modelo de README da instalação explícita `--legado-federal`; não é o perfil trabalhista local. O piloto `jt-1g-local` usa instalação seletiva e o comando `pipeline-sentenca-trabalhista`. Consulte o [estado da validação](https://github.com/robertishimurasousa/Superjurista-TRT/blob/codex/fase-6-validacao-piloto/docs/validacao/piloto-jt-local.md): testes técnicos não equivalem a homologação jurídica.
 
 Este projeto recebe agentes, comandos, skills e integrações do [SuperJurista TRT](https://github.com/robertishimurasousa/Superjurista-TRT), derivado do SuperJurista de George Marmelstein. Ele oferece apoio à leitura de processos, pesquisa de jurisprudência, análise de provas e elaboração de minutas dentro do Claude Code.
 

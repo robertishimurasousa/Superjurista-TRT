@@ -1,6 +1,6 @@
 # CLAUDE.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+Este arquivo orienta o Claude Code na instalação federal legada. O perfil trabalhista local recebe instruções próprias de `scaffold/perfis/jt-1g-local/CLAUDE.md`. Não misture seus fluxos, fontes ou critérios. O piloto trabalhista exige validação técnica, execuções com agentes e aceite jurídico separados; testes sintéticos não autorizam declarar homologação.
 
 ## Propósito do Projeto
 

@@ -1,0 +1,727 @@
+{
+  "schema_version": 1,
+  "natureza": "validacao-deterministica",
+  "inicio": "2026-11-05T23:46:11.435779+00:00",
+  "pacote_sha256": "30c95327a5bcbf4f37c9ec8ac283721241d84b48e660892a19967e1165fe9514",
+  "manifesto_sha256": "5502ed0ef90aec263189f03d3586f832f381a8507dcc8ae5e8615165afaa4b56",
+  "validacao_sha256": "4b8ed89fb1975fb01e5fb8acd6f3dbe80dbcce94cbaf7a7b8ec23c8c09f6f198",
+  "ambiente": {
+    "python": "3.12.16",
+    "sistema": "Linux",
+    "arquitetura": "aarch64",
+    "bibliotecas": {
+      "pdfplumber": "0.11.10",
+      "pypdf": "6.21.4",
+      "pdf2image": "1.17.0",
+      "pytesseract": "0.3.13",
+      "Pillow": "13.0.0",
+      "jsonschema": "4.26.0",
+      "reportlab": "5.1.0"
+    },
+    "binarios": {
+      "tesseract": "tesseract 5.5.0",
+      "poppler": "pdftoppm version 25.03.0"
+    },
+    "por_sha256": "c4932b937207a9514b7514d518b931a99938c02a28a5a5a553f8599ed58b7deb"
+  },
+  "execucoes_com_agentes": 0,
+  "homologacao_juridica": "pendente",
+  "aceite_humano": "nao-registrado",
+  "estado": "passou",
+  "testes": 172,
+  "ignorados": 0,
+  "falhas": 0,
+  "erros": 0,
+  "resultados": [
+    {
+      "teste": "test_aceite_piloto.AceiteTests.test_aceite_nominal_nao_supre_ausencia_de_execucoes",
+      "estado": "passou"
+    },
+    {
+      "teste": "test_aceite_piloto.AceiteTests.test_alteracao_pacote_ou_manifesto_exige_reavaliacao",
+      "estado": "passou"
+    },
+    {
+      "teste": "test_aceite_piloto.AceiteTests.test_defeito_critico_aberto_impede_aceite",
+      "estado": "passou"
+    },
+    {
+      "teste": "test_aceite_piloto.AceiteTests.test_execucao_declarada_sem_evidencia_nao_conta",
+      "estado": "passou"
+    },
+    {
+      "teste": "test_aceite_piloto.AceiteTests.test_modelo_tem_36_execucoes_e_12_fichas_sem_aceite",
+      "estado": "passou"
+    },
+    {
+      "teste": "test_aceite_piloto.AceiteTests.test_repeticoes_duplicadas_ou_ausentes_recusadas",
+      "estado": "passou"
+    },
+    {
+      "teste": "test_aceite_piloto.AceiteTests.test_snapshot_confere_integridade_sem_comprovar_execucao_de_modelo",
+      "estado": "passou"
+    },
+    {
+      "teste": "test_fontes_jt.FontesTests.test_arquivo_dos_autos_nao_pode_virar_jurisprudencia",
+      "estado": "passou"
+    },
+    {
+      "teste": "test_fontes_jt.FontesTests.test_citacao_de_fonte_pdf_exige_pagina_fisica",
+      "estado": "passou"
+    },
+    {
+      "teste": "test_fontes_jt.FontesTests.test_citacao_direta_curta_com_aspas_e_sem_aspas",
+      "estado": "passou"
+    },
+    {
+      "teste": "test_fontes_jt.FontesTests.test_citacao_direta_nao_ignora_negacao_acento_caixa",
+      "estado": "passou"
+    },
+    {
+      "teste": "test_fontes_jt.FontesTests.test_citacao_na_matriz_com_ponteiro_json",
+      "estado": "passou"
+    },
+    {
+      "teste": "test_fontes_jt.FontesTests.test_citacao_sem_aspas_nao_registrada_detectada_por_conteudo",
+      "estado": "passou"
+    },
+    {
+      "teste": "test_fontes_jt.FontesTests.test_citacoes_sobrepostas_e_revisao_de_cobertura_pendente",
+      "estado": "passou"
+    },
+    {
+      "teste": "test_fontes_jt.FontesTests.test_cli_importacao_conferencia_e_merge_instalados",
+      "estado": "passou"
+    },
+    {
+      "teste": "test_fontes_jt.FontesTests.test_conferencia_exige_tres_hashes_e_declaracao",
+      "estado": "passou"
+    },
+    {
+      "teste": "test_fontes_jt.FontesTests.test_conferencia_vencida_detectada_em_corpus_previamente_publicado",
+      "estado": "passou"
+    },
+    {
+      "teste": "test_fontes_jt.FontesTests.test_corpus_conferido_e_regras_da_matriz",
+      "estado": "passou"
+    },
+    {
+      "teste": "test_fontes_jt.FontesTests.test_corpus_vazio_impede_aprovacao",
+      "estado": "passou"
+    },
+    {
+      "teste": "test_fontes_jt.FontesTests.test_dispensa_requer_revisao_e_nao_apaga_mencao_juridica",
+      "estado": "passou"
+    },
+    {
+      "teste": "test_fontes_jt.FontesTests.test_hash_da_minuta_e_cobertura_pendente",
+      "estado": "passou"
+    },
+    {
+      "teste": "test_fontes_jt.FontesTests.test_html_remove_scripts_preserva_texto_e_original",
+      "estado": "passou"
+    },
+    {
+      "teste": "test_fontes_jt.FontesTests.test_importacao_pendente_e_repeticao_idempotente",
+      "estado": "passou"
+    },
+    {
+      "teste": "test_fontes_jt.FontesTests.test_instalacao_cli_e_codigos",
+      "estado": "passou"
+    },
+    {
+      "teste": "test_fontes_jt.FontesTests.test_jurisprudencia_nos_autos_e_relato_de_alegacao",
+      "estado": "passou"
+    },
+    {
+      "teste": "test_fontes_jt.FontesTests.test_legislacao_mencionada_sem_registro",
+      "estado": "passou"
+    },
+    {
+      "teste": "test_fontes_jt.FontesTests.test_lock_links_e_falha_sem_publicacao_parcial",
+      "estado": "passou"
+    },
+    {
+      "teste": "test_fontes_jt.FontesTests.test_merge_deduplica_ids_e_preserva_consolidado_em_falha",
+      "estado": "passou"
+    },
+    {
+      "teste": "test_fontes_jt.FontesTests.test_merge_legado_standalone_mantem_saida_e_deduplicacao",
+      "estado": "passou"
+    },
+    {
+      "teste": "test_fontes_jt.FontesTests.test_normalizacao_compartilhada_preserva_contrato_legado",
+      "estado": "passou"
+    },
+    {
+      "teste": "test_fontes_jt.FontesTests.test_origem_tst_trt_e_dominio_enganoso",
+      "estado": "passou"
+    },
+    {
+      "teste": "test_fontes_jt.FontesTests.test_original_texto_metadados_e_corpus_adulterados",
+      "estado": "passou"
+    },
+    {
+      "teste": "test_fontes_jt.FontesTests.test_parafrase_exige_revisao_de_pertinencia",
+      "estado": "passou"
+    },
+    {
+      "teste": "test_fontes_jt.FontesTests.test_pdf_preserva_pagina_e_bloqueia_protegido",
+      "estado": "passou"
+    },
+    {
+      "teste": "test_fontes_jt.FontesTests.test_ponteiro_posicao_e_pagina_inexistentes",
+      "estado": "passou"
+    },
+    {
+      "teste": "test_fontes_jt.FontesTests.test_regra_sem_vinculo_ou_com_fonte_errada",
+      "estado": "passou"
+    },
+    {
+      "teste": "test_fontes_jt.FontesTests.test_renovacao_da_conferencia_invalida_corpus_antigo",
+      "estado": "passou"
+    },
+    {
+      "teste": "test_fontes_jt.FontesTests.test_stf_e_norma_coletiva_tipados",
+      "estado": "passou"
+    },
+    {
+      "teste": "test_fontes_jt.FontesTests.test_tema_afetado_suspenso_e_status_incerto_nao_sao_tese_firmada",
+      "estado": "passou"
+    },
+    {
+      "teste": "test_fontes_jt.FontesTests.test_trt_diferente_do_caso_bloqueia_publicacao",
+      "estado": "passou"
+    },
+    {
+      "teste": "test_fontes_jt.FontesTests.test_versoes_com_metadados_diferentes_exigem_selecao",
+      "estado": "passou"
+    },
+    {
+      "teste": "test_ingestao_jt.Ingestao.test_adulteracao_texto_original_e_metadados_detectada",
+      "estado": "passou"
+    },
+    {
+      "teste": "test_ingestao_jt.Ingestao.test_caminho_no_indice_nao_pode_escapar_da_pasta",
+      "estado": "passou"
+    },
+    {
+      "teste": "test_ingestao_jt.Ingestao.test_classificacao_cobre_paginas_e_rejeita_referencia_invalida",
+      "estado": "passou"
+    },
+    {
+      "teste": "test_ingestao_jt.Ingestao.test_cli_modo_preservacao_e_codigos_de_pendencia",
+      "estado": "passou"
+    },
+    {
+      "teste": "test_ingestao_jt.Ingestao.test_cnj_valido_e_digitos_segmento_regiao_invalidos",
+      "estado": "passou"
+    },
+    {
+      "teste": "test_ingestao_jt.Ingestao.test_digital_preserva_original_linhas_e_referencias",
+      "estado": "passou"
+    },
+    {
+      "teste": "test_ingestao_jt.Ingestao.test_documento_ausente_e_acrescimo_posterior",
+      "estado": "passou"
+    },
+    {
+      "teste": "test_ingestao_jt.Ingestao.test_duplicata_com_metadados_conflitantes_aborta_lote",
+      "estado": "passou"
+    },
+    {
+      "teste": "test_ingestao_jt.Ingestao.test_entrada_vazia_nao_cria_workspace",
+      "estado": "passou"
+    },
+    {
+      "teste": "test_ingestao_jt.Ingestao.test_falha_de_publicacao_preserva_indice_e_originais",
+      "estado": "passou"
+    },
+    {
+      "teste": "test_ingestao_jt.Ingestao.test_imagem_pequena_com_texto_digital_tambem_exige_ocr",
+      "estado": "passou"
+    },
+    {
+      "teste": "test_ingestao_jt.Ingestao.test_instalacao_e_cli_fora_do_repositorio",
+      "estado": "passou"
+    },
+    {
+      "teste": "test_ingestao_jt.Ingestao.test_lock_impede_execucao_concorrente",
+      "estado": "passou"
+    },
+    {
+      "teste": "test_ingestao_jt.Ingestao.test_metadados_incoerentes_e_nao_confirmados",
+      "estado": "passou"
+    },
+    {
+      "teste": "test_ingestao_jt.Ingestao.test_ocr_falha_registra_pagina_sem_omitir",
+      "estado": "passou"
+    },
+    {
+      "teste": "test_ingestao_jt.Ingestao.test_ocr_real_escaneado_e_misto",
+      "estado": "passou"
+    },
+    {
+      "teste": "test_ingestao_jt.Ingestao.test_pagina_vazia_registrada",
+      "estado": "passou"
+    },
+    {
+      "teste": "test_ingestao_jt.Ingestao.test_pasta_de_saida_nao_pode_ser_entrada",
+      "estado": "passou"
+    },
+    {
+      "teste": "test_ingestao_jt.Ingestao.test_pdf_sem_paginas_registra_bloqueio_e_permite_acrescimo",
+      "estado": "passou"
+    },
+    {
+      "teste": "test_ingestao_jt.Ingestao.test_protegido_e_corrompido_preservados_com_pendencias",
+      "estado": "passou"
+    },
+    {
+      "teste": "test_ingestao_jt.Ingestao.test_referencia_pagina_omitida_e_id_inexistente",
+      "estado": "passou"
+    },
+    {
+      "teste": "test_ingestao_jt.Ingestao.test_repeticao_idempotente_e_duplicata_por_hash",
+      "estado": "passou"
+    },
+    {
+      "teste": "test_ingestao_jt.Ingestao.test_substituicao_da_entrada_recusada_sem_alteracao",
+      "estado": "passou"
+    },
+    {
+      "teste": "test_ingestao_jt.Ingestao.test_symlink_e_traversal_recusados",
+      "estado": "passou"
+    },
+    {
+      "teste": "test_instalacao_jt.ImportacaoTests.test_cli_exige_origens_explicitas",
+      "estado": "passou"
+    },
+    {
+      "teste": "test_instalacao_jt.ImportacaoTests.test_importacao_filtrada_sem_mutacao_no_scaffold",
+      "estado": "passou"
+    },
+    {
+      "teste": "test_instalacao_jt.ImportacaoTests.test_link_na_origem_nao_e_copiado",
+      "estado": "passou"
+    },
+    {
+      "teste": "test_instalacao_jt.ImportacaoTests.test_mcp_ausente_nao_cria_area_temporaria",
+      "estado": "passou"
+    },
+    {
+      "teste": "test_instalacao_jt.ImportacaoTests.test_origem_invalida_nao_cria_area_temporaria",
+      "estado": "passou"
+    },
+    {
+      "teste": "test_instalacao_jt.InstalacaoTests.test_arquivo_bloqueando_diretorio",
+      "estado": "passou"
+    },
+    {
+      "teste": "test_instalacao_jt.InstalacaoTests.test_cli_sem_dependencias_ou_argumentos_validos",
+      "estado": "passou"
+    },
+    {
+      "teste": "test_instalacao_jt.InstalacaoTests.test_conflito_preserva_tudo_e_impede_copia_parcial",
+      "estado": "passou"
+    },
+    {
+      "teste": "test_instalacao_jt.InstalacaoTests.test_customizacao_em_instalacao_existente",
+      "estado": "passou"
+    },
+    {
+      "teste": "test_instalacao_jt.InstalacaoTests.test_destino_com_parentes_nao_contorna_isolamento",
+      "estado": "passou"
+    },
+    {
+      "teste": "test_instalacao_jt.InstalacaoTests.test_destino_no_repositorio_rejeitado",
+      "estado": "passou"
+    },
+    {
+      "teste": "test_instalacao_jt.InstalacaoTests.test_diretorio_no_lugar_de_arquivo_impede_toda_instalacao",
+      "estado": "passou"
+    },
+    {
+      "teste": "test_instalacao_jt.InstalacaoTests.test_dry_run_nao_cria_destino",
+      "estado": "passou"
+    },
+    {
+      "teste": "test_instalacao_jt.InstalacaoTests.test_falha_de_escrita_reverte_arquivos_novos",
+      "estado": "passou"
+    },
+    {
+      "teste": "test_instalacao_jt.InstalacaoTests.test_gitignore_em_repositorio_e_projeto",
+      "estado": "passou"
+    },
+    {
+      "teste": "test_instalacao_jt.InstalacaoTests.test_instala_exatamente_manifesto_sem_mcps",
+      "estado": "passou"
+    },
+    {
+      "teste": "test_instalacao_jt.InstalacaoTests.test_link_na_raiz_do_destino",
+      "estado": "passou"
+    },
+    {
+      "teste": "test_instalacao_jt.InstalacaoTests.test_link_no_destino_nao_escreve_fora",
+      "estado": "passou"
+    },
+    {
+      "teste": "test_instalacao_jt.InstalacaoTests.test_manifesto_invalido_nao_cria_destino",
+      "estado": "passou"
+    },
+    {
+      "teste": "test_instalacao_jt.InstalacaoTests.test_mcp_e_legado_preexistentes_sao_preservados_com_aviso",
+      "estado": "passou"
+    },
+    {
+      "teste": "test_instalacao_jt.InstalacaoTests.test_nome_conflitante_por_caixa",
+      "estado": "passou"
+    },
+    {
+      "teste": "test_instalacao_jt.InstalacaoTests.test_reinstalacao_idempotente",
+      "estado": "passou"
+    },
+    {
+      "teste": "test_instalacao_jt.PerfilTests.test_agente_nao_declarado",
+      "estado": "passou"
+    },
+    {
+      "teste": "test_instalacao_jt.PerfilTests.test_arquivo_como_ancestral_de_arquivo",
+      "estado": "passou"
+    },
+    {
+      "teste": "test_instalacao_jt.PerfilTests.test_caminhos_invalidos",
+      "estado": "passou"
+    },
+    {
+      "teste": "test_instalacao_jt.PerfilTests.test_campo_desconhecido",
+      "estado": "passou"
+    },
+    {
+      "teste": "test_instalacao_jt.PerfilTests.test_comando_sem_arquivo",
+      "estado": "passou"
+    },
+    {
+      "teste": "test_instalacao_jt.PerfilTests.test_destino_duplicado_inclusive_caixa",
+      "estado": "passou"
+    },
+    {
+      "teste": "test_instalacao_jt.PerfilTests.test_manifesto_e_schema",
+      "estado": "passou"
+    },
+    {
+      "teste": "test_instalacao_jt.PerfilTests.test_mcps_e_arquivo_mcp_proibidos",
+      "estado": "passou"
+    },
+    {
+      "teste": "test_instalacao_jt.PerfilTests.test_origem_ausente",
+      "estado": "passou"
+    },
+    {
+      "teste": "test_instalacao_jt.PerfilTests.test_origem_simbolica",
+      "estado": "passou"
+    },
+    {
+      "teste": "test_instalacao_jt.PerfilTests.test_versao_identidade_e_tipos_invalidos",
+      "estado": "passou"
+    },
+    {
+      "teste": "test_minuta_jt.MinutaTests.test_analise_independe_de_minuta_anterior",
+      "estado": "passou"
+    },
+    {
+      "teste": "test_minuta_jt.MinutaTests.test_artefato_symlink_recusado",
+      "estado": "passou"
+    },
+    {
+      "teste": "test_minuta_jt.MinutaTests.test_assinaturas_insumos_pacote_fontes_e_pdf",
+      "estado": "passou"
+    },
+    {
+      "teste": "test_minuta_jt.MinutaTests.test_candidata_alterada_sem_redacao_bloqueia",
+      "estado": "passou"
+    },
+    {
+      "teste": "test_minuta_jt.MinutaTests.test_classificacao_invalida_nao_bloqueia_reparo_da_propria_etapa",
+      "estado": "passou"
+    },
+    {
+      "teste": "test_minuta_jt.MinutaTests.test_duas_operacoes_mesma_sessao_nao_correm_juntas",
+      "estado": "passou"
+    },
+    {
+      "teste": "test_minuta_jt.MinutaTests.test_etapa_interrompida_consumiu_tentativa",
+      "estado": "passou"
+    },
+    {
+      "teste": "test_minuta_jt.MinutaTests.test_falha_ultimo_rename_preserva_publicacao_anterior",
+      "estado": "passou"
+    },
+    {
+      "teste": "test_minuta_jt.MinutaTests.test_falta_revisao_ou_citacao_nao_publica",
+      "estado": "passou"
+    },
+    {
+      "teste": "test_minuta_jt.MinutaTests.test_fonte_alterada_invalida_publicacao",
+      "estado": "passou"
+    },
+    {
+      "teste": "test_minuta_jt.MinutaTests.test_instalacao_isolada_executa_montagem_e_gate",
+      "estado": "passou"
+    },
+    {
+      "teste": "test_minuta_jt.MinutaTests.test_insumos_alterados_durante_etapa_recusam_conclusao",
+      "estado": "passou"
+    },
+    {
+      "teste": "test_minuta_jt.MinutaTests.test_inventario_reutiliza_e_invalida_descendentes",
+      "estado": "passou"
+    },
+    {
+      "teste": "test_minuta_jt.MinutaTests.test_limite_duas_tentativas_persiste_entre_sessoes",
+      "estado": "passou"
+    },
+    {
+      "teste": "test_minuta_jt.MinutaTests.test_mudanca_durante_publicacao_nao_substitui_minuta",
+      "estado": "passou"
+    },
+    {
+      "teste": "test_minuta_jt.MinutaTests.test_na_motivado_e_regra_correta",
+      "estado": "passou"
+    },
+    {
+      "teste": "test_minuta_jt.MinutaTests.test_ordinario_publicacao_sem_aceite_humano",
+      "estado": "passou"
+    },
+    {
+      "teste": "test_minuta_jt.MinutaTests.test_pdf_externo_muda_assinatura_de_ingestao",
+      "estado": "passou"
+    },
+    {
+      "teste": "test_minuta_jt.MinutaTests.test_publicacao_recebida_nao_e_aprovacao",
+      "estado": "passou"
+    },
+    {
+      "teste": "test_minuta_jt.MinutaTests.test_recuperacao_explicita_registrada",
+      "estado": "passou"
+    },
+    {
+      "teste": "test_minuta_jt.MinutaTests.test_redacao_incompleta_divergente_ou_pendente_bloqueia",
+      "estado": "passou"
+    },
+    {
+      "teste": "test_minuta_jt.MinutaTests.test_revisao_pendente_e_na_invalido",
+      "estado": "passou"
+    },
+    {
+      "teste": "test_minuta_jt.MinutaTests.test_sessao_exclusiva_outro_processo",
+      "estado": "passou"
+    },
+    {
+      "teste": "test_minuta_jt.MinutaTests.test_sumarissimo_preserva_relatorio_interno",
+      "estado": "passou"
+    },
+    {
+      "teste": "test_pedidos_jt.PedidosTests.test_arquivo_de_regra_fora_da_pasta_e_link_simbolico",
+      "estado": "passou"
+    },
+    {
+      "teste": "test_pedidos_jt.PedidosTests.test_artefatos_ausentes_e_schema_desconhecido",
+      "estado": "passou"
+    },
+    {
+      "teste": "test_pedidos_jt.PedidosTests.test_campos_obrigatorios_por_materia",
+      "estado": "passou"
+    },
+    {
+      "teste": "test_pedidos_jt.PedidosTests.test_caso_com_duas_empresas_e_analise_provisoria",
+      "estado": "passou"
+    },
+    {
+      "teste": "test_pedidos_jt.PedidosTests.test_cobertura_incompleta_repetida_e_pedido_inexistente",
+      "estado": "passou"
+    },
+    {
+      "teste": "test_pedidos_jt.PedidosTests.test_conteudo_de_regra_alterado_e_url_enganosa",
+      "estado": "passou"
+    },
+    {
+      "teste": "test_pedidos_jt.PedidosTests.test_contexto_cli_e_instalacao_independente",
+      "estado": "passou"
+    },
+    {
+      "teste": "test_pedidos_jt.PedidosTests.test_dado_informado_sem_referencia_e_ausencia_com_valor_rejeitados",
+      "estado": "passou"
+    },
+    {
+      "teste": "test_pedidos_jt.PedidosTests.test_documento_pagina_e_trecho_inexistentes",
+      "estado": "passou"
+    },
+    {
+      "teste": "test_pedidos_jt.PedidosTests.test_ente_publico_e_materia_fora_recorte",
+      "estado": "passou"
+    },
+    {
+      "teste": "test_pedidos_jt.PedidosTests.test_escopo_incerto_bloqueia_triagem_e_analise",
+      "estado": "passou"
+    },
+    {
+      "teste": "test_pedidos_jt.PedidosTests.test_fato_ausente_nao_pode_ser_corroborado",
+      "estado": "passou"
+    },
+    {
+      "teste": "test_pedidos_jt.PedidosTests.test_hashes_impedem_reuso_apos_alteracao",
+      "estado": "passou"
+    },
+    {
+      "teste": "test_pedidos_jt.PedidosTests.test_ids_repetidos_e_duplicata_material",
+      "estado": "passou"
+    },
+    {
+      "teste": "test_pedidos_jt.PedidosTests.test_instrumento_coletivo_ausente_gera_bloqueio",
+      "estado": "passou"
+    },
+    {
+      "teste": "test_pedidos_jt.PedidosTests.test_inventario_exige_conferencia_humana",
+      "estado": "passou"
+    },
+    {
+      "teste": "test_pedidos_jt.PedidosTests.test_matriz_bloqueada_nao_pode_concluir_merito",
+      "estado": "passou"
+    },
+    {
+      "teste": "test_pedidos_jt.PedidosTests.test_matriz_bloqueada_sem_registro_de_regras_preserva_lacunas",
+      "estado": "passou"
+    },
+    {
+      "teste": "test_pedidos_jt.PedidosTests.test_nao_completa_defesa_ausente",
+      "estado": "passou"
+    },
+    {
+      "teste": "test_pedidos_jt.PedidosTests.test_norma_coletiva_por_categoria_territorio_e_periodo",
+      "estado": "passou"
+    },
+    {
+      "teste": "test_pedidos_jt.PedidosTests.test_omissao_de_defesa_da_segunda_empresa",
+      "estado": "passou"
+    },
+    {
+      "teste": "test_pedidos_jt.PedidosTests.test_onus_dinamico_sem_decisao_e_questao_processual_omitida",
+      "estado": "passou"
+    },
+    {
+      "teste": "test_pedidos_jt.PedidosTests.test_parte_inexistente_polo_e_contrato_incompativeis",
+      "estado": "passou"
+    },
+    {
+      "teste": "test_pedidos_jt.PedidosTests.test_pedido_acessorio_exige_principal_e_cobertura",
+      "estado": "passou"
+    },
+    {
+      "teste": "test_pedidos_jt.PedidosTests.test_pedido_omitido_da_triagem_ou_matriz",
+      "estado": "passou"
+    },
+    {
+      "teste": "test_pedidos_jt.PedidosTests.test_periodo_invertido_e_data_impossivel",
+      "estado": "passou"
+    },
+    {
+      "teste": "test_pedidos_jt.PedidosTests.test_periodo_sem_relacao_com_contrato",
+      "estado": "passou"
+    },
+    {
+      "teste": "test_pedidos_jt.PedidosTests.test_prova_decisiva_ausente_e_prova_sem_referencia",
+      "estado": "passou"
+    },
+    {
+      "teste": "test_pedidos_jt.PedidosTests.test_regra_ausente_suspensa_e_fora_da_vigencia",
+      "estado": "passou"
+    },
+    {
+      "teste": "test_pedidos_jt.PedidosTests.test_regra_nao_conferida_impede_hipotese_de_merito",
+      "estado": "passou"
+    },
+    {
+      "teste": "test_pedidos_jt.PedidosTests.test_regras_de_outro_tema_nao_suprem_onus_e_custas",
+      "estado": "passou"
+    },
+    {
+      "teste": "test_pipeline_jt.CorpusTests.test_corpus_documento_decisivo_ausente",
+      "estado": "passou"
+    },
+    {
+      "teste": "test_pipeline_jt.CorpusTests.test_corpus_fonte_nao_conferida",
+      "estado": "passou"
+    },
+    {
+      "teste": "test_pipeline_jt.CorpusTests.test_corpus_fora_do_escopo",
+      "estado": "passou"
+    },
+    {
+      "teste": "test_pipeline_jt.CorpusTests.test_corpus_jornada_tabela_repetida",
+      "estado": "passou"
+    },
+    {
+      "teste": "test_pipeline_jt.CorpusTests.test_corpus_multiplos_reus",
+      "estado": "passou"
+    },
+    {
+      "teste": "test_pipeline_jt.CorpusTests.test_corpus_norma_coletiva_ausente",
+      "estado": "passou"
+    },
+    {
+      "teste": "test_pipeline_jt.CorpusTests.test_corpus_ordinario_simples",
+      "estado": "passou"
+    },
+    {
+      "teste": "test_pipeline_jt.CorpusTests.test_corpus_pdf_misto",
+      "estado": "passou"
+    },
+    {
+      "teste": "test_pipeline_jt.CorpusTests.test_corpus_prova_oral_sem_transcricao",
+      "estado": "passou"
+    },
+    {
+      "teste": "test_pipeline_jt.CorpusTests.test_corpus_sumarissimo",
+      "estado": "passou"
+    },
+    {
+      "teste": "test_pipeline_jt.CorpusTests.test_corpus_verbas_rescisorias",
+      "estado": "passou"
+    },
+    {
+      "teste": "test_pipeline_jt.CorpusTests.test_corpus_vinculo_controvertido",
+      "estado": "passou"
+    },
+    {
+      "teste": "test_pipeline_jt.CorpusTests.test_entradas_para_agentes_nao_contem_oraculos_ou_conferencias",
+      "estado": "passou"
+    },
+    {
+      "teste": "test_pipeline_jt.IntegracaoInstaladaTests.test_fonte_alterada_preserva_anteriores_invalida_dependentes",
+      "estado": "passou"
+    },
+    {
+      "teste": "test_pipeline_jt.IntegracaoInstaladaTests.test_interrupcao_antes_ultimo_rename_recusa_publicacao_parcial",
+      "estado": "passou"
+    },
+    {
+      "teste": "test_pipeline_jt.IntegracaoInstaladaTests.test_pdf_alterado_invalida_todo_fluxo",
+      "estado": "passou"
+    },
+    {
+      "teste": "test_pipeline_jt.IntegracaoInstaladaTests.test_processos_e_casos_nao_compartilham_sessao",
+      "estado": "passou"
+    },
+    {
+      "teste": "test_pipeline_jt.IntegracaoInstaladaTests.test_prompt_e_perfil_alterados_invalidam_descendentes",
+      "estado": "passou"
+    },
+    {
+      "teste": "test_pipeline_jt.IntegracaoInstaladaTests.test_retomada_sem_mudancas_preserva_bytes_e_reutiliza",
+      "estado": "passou"
+    }
+  ],
+  "fim": "2026-11-05T23:47:03.057995+00:00",
+  "duracao_segundos": 51.621
+}

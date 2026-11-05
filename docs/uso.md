@@ -104,3 +104,6 @@ Estas ferramentas pertencem ao plugin e usam o prefixo `superjurista-dev:`:
 | `/superjurista-dev:criar-team` | Criar uma equipe de agentes |
 
 As quatro skills da raiz são `criar-sistema`, `criar-skill`, `criar-mcp-precedente` e `criar-pje-download`. Consulte os respectivos arquivos em [skills](../skills/) para argumentos e dependências. A criação de uma integração não comprova que ela funciona no serviço externo: essa validação precisa ser registrada separadamente.
+
+
+A fase 6 documenta a [operação e revisão do piloto](validacao/operacao-piloto-jt.md) e suas [evidências reais](validacao/piloto-jt-local.md). O corpus sintético e a CI validam o software; as 36 execuções com agentes e o aceite jurídico ainda precisam ser concluídos. Não use resultados de testes com regras fictícias como fontes ou minutas jurídicas.

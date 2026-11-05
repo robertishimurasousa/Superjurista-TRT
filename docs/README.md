@@ -16,6 +16,7 @@ Documentação em português brasileiro para usuários e mantenedores deste repo
 - [Fase 2: ingestão de PDFs](fase-2-ingestao.md): preparação, comandos, contratos e testes de rastreabilidade.
 - [Fase 3: modelo e análise](fase-3-analise.md): inventário de pedidos, triagem, matriz provisória e bloqueios.
 - [Fase 4: fontes e citações](fase-4-fontes.md): importação local, conferência, consolidação e rastreabilidade.
+- [Fase 6: evidências do piloto](validacao/piloto-jt-local.md) e [operação/revisão](validacao/operacao-piloto-jt.md): corpus de 12 cenários, CI e aceite separado.
 - [Fase 5: minuta, revisão e retomada](fase-5-minuta.md): comando integrado, publicação local validada, sessões e recuperação.
 
 - [Diagnóstico de adaptação à Justiça do Trabalho](diagnostico-justica-trabalho.md): evidências no código e bloqueios do fluxo atual.

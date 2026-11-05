@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "natureza": "sintetico-sem-dados-reais",
+  "politica": "Alterar somente após revisão de conteúdo e origem; hashes não substituem revisão humana.",
+  "arquivos": {
+    "caso_com_fontes.py": "3530c3ee4144314a14def3dd24d386e599b69d2d46de8380b1a027f9f6ebd68c",
+    "caso_trabalhista.py": "2ba1f1668f66209a0f29c3ae7ed6629ca7f9f2a8d05adbe0750e816f6b06328f",
+    "corpus_piloto.py": "69561407e9e64cbe8a7e15965c54b410857707c48c64aefcd8ec25f91b5f44c1",
+    "gerar_pdfs.py": "8d2faf25a1c729b71bf84893859e1a549e5dd5661553058ca1d27ec2d34ceda9",
+    "jt/caso.json": "44f73d39ca7949d26baf4190af186fa5767e00a08969b74c3fb18872d304c8e5",
+    "jt/corrompido.pdf": "f8097f2edffb25cfe662fb34f62b0a6075ed9267edd9c9b420f98fe726d69436",
+    "jt/digital.pdf": "82be318e200467cc781fca2a05fa1677b5a841012ec57ab0bcf13601436f7327",
+    "jt/escaneado.pdf": "1e04aff7cc547d49bf1f4aa2fe026c346b1419501be58a35e69c31db7fb7ce22",
+    "jt/hibrido.pdf": "df3dc21a50d5ec4e11b448c18315e918f28a24e2b54c750505d99e2dbc643bb8",
+    "jt/manifesto.json": "5502ed0ef90aec263189f03d3586f832f381a8507dcc8ae5e8615165afaa4b56",
+    "jt/misto.pdf": "9fb9fac61d02e022f9b4599d60014612ca4d319c86fa5741d6e79a8914dbccce",
+    "jt/protegido.pdf": "785b0615c441b9e48b5007b698dd4dd4188d4bc5b23628fa4e7e2935503cf595",
+    "jt/vazio.pdf": "b3e44df802e407df3d586bb3d4b3a7db17bc868565f04a061077f7d8de3e44bd"
+  }
+}

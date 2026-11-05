@@ -84,3 +84,8 @@ No Claude Code, execute `/pipeline-sentenca-trabalhista /caminho/pdfs --caso /ca
 `estado_execucao.py` mantém assinaturas, invalidação dos descendentes e até duas tentativas por etapa/insumos. A sessão exclusiva exige token; bloqueio residual deve ser diagnosticado antes de recuperação explícita. Conferências humanas continuam obrigatórias, e aceite final permanece não registrado.
 
 [Guia operacional da fase 5](https://github.com/robertishimurasousa/Superjurista-TRT/blob/codex/fase-5-minuta-revisao-retomada/docs/fase-5-minuta.md).
+
+
+## Validação do piloto
+
+A fase 6 mantém corpus sintético, integração e CI separados das 36 execuções com agentes e da revisão jurídica. O piloto permanece sem aceite até completar essas duas últimas etapas. Fontes/conferências fictícias dos testes não podem ser usadas como base jurídica. Consulte o [roteiro de operação e aceite](https://github.com/robertishimurasousa/Superjurista-TRT/blob/codex/fase-6-validacao-piloto/docs/validacao/operacao-piloto-jt.md).

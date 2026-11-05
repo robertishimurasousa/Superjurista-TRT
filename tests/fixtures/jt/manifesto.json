@@ -1,0 +1,453 @@
+{
+  "schema_version": 1,
+  "natureza": "sintetico-sem-dados-reais",
+  "gerador": "tests/fixtures/corpus_piloto.py",
+  "repeticoes_com_agentes": 3,
+  "limite": "Oráculos técnicos usam regras e conferências fictícias. Avaliação com agentes e aceite jurídico exigem fontes oficiais locais conferidas separadamente.",
+  "casos": [
+    {
+      "id": "ordinario-simples",
+      "sequencia": 1,
+      "titulo": "Ordinário simples",
+      "rito": "ordinario",
+      "tema": "jornada",
+      "reclamadas": 1,
+      "entrada": {
+        "pdf": "entrada/autos.pdf",
+        "metadados": "caso.json",
+        "paginas": 1,
+        "ocr": false
+      },
+      "esperado": {
+        "resultado": "minuta-tecnica",
+        "etapa": "publicacao",
+        "pendencia_contem": null,
+        "pedidos": [
+          "PED-001",
+          "PED-002"
+        ]
+      },
+      "revisao": {
+        "criterios": [
+          "Conferir relatório, pedido principal e reflexos sem omissões.",
+          "Conferir fatos, todos os pedidos, fontes, rito, encargos e dispositivo.",
+          "Nenhum aceite é inferido da saída técnica."
+        ],
+        "defeitos_criticos": [
+          "fato-inventado-decisivo",
+          "pedido-omitido",
+          "fonte-falsa",
+          "regra-federal-indevida",
+          "conclusao-fora-do-escopo"
+        ]
+      }
+    },
+    {
+      "id": "sumarissimo",
+      "sequencia": 2,
+      "titulo": "Sumaríssimo",
+      "rito": "sumarissimo",
+      "tema": "jornada",
+      "reclamadas": 1,
+      "entrada": {
+        "pdf": "entrada/autos.pdf",
+        "metadados": "caso.json",
+        "paginas": 1,
+        "ocr": false
+      },
+      "esperado": {
+        "resultado": "minuta-tecnica",
+        "etapa": "publicacao",
+        "pendencia_contem": null,
+        "pedidos": [
+          "PED-001",
+          "PED-002"
+        ]
+      },
+      "revisao": {
+        "criterios": [
+          "Manter relatório interno; não inserir relatório formal no modelo sumaríssimo.",
+          "Conferir fatos, todos os pedidos, fontes, rito, encargos e dispositivo.",
+          "Nenhum aceite é inferido da saída técnica."
+        ],
+        "defeitos_criticos": [
+          "fato-inventado-decisivo",
+          "pedido-omitido",
+          "fonte-falsa",
+          "regra-federal-indevida",
+          "conclusao-fora-do-escopo"
+        ]
+      }
+    },
+    {
+      "id": "vinculo-controvertido",
+      "sequencia": 3,
+      "titulo": "Vínculo controvertido",
+      "rito": "ordinario",
+      "tema": "vinculo",
+      "reclamadas": 1,
+      "entrada": {
+        "pdf": "entrada/autos.pdf",
+        "metadados": "caso.json",
+        "paginas": 1,
+        "ocr": false
+      },
+      "esperado": {
+        "resultado": "minuta-tecnica",
+        "etapa": "publicacao",
+        "pendencia_contem": null,
+        "pedidos": [
+          "PED-001",
+          "PED-002"
+        ]
+      },
+      "revisao": {
+        "criterios": [
+          "Distinguir alegação, defesa e prova do vínculo; não presumir subordinação.",
+          "Conferir fatos, todos os pedidos, fontes, rito, encargos e dispositivo.",
+          "Nenhum aceite é inferido da saída técnica."
+        ],
+        "defeitos_criticos": [
+          "fato-inventado-decisivo",
+          "pedido-omitido",
+          "fonte-falsa",
+          "regra-federal-indevida",
+          "conclusao-fora-do-escopo"
+        ]
+      }
+    },
+    {
+      "id": "jornada-tabela-repetida",
+      "sequencia": 4,
+      "titulo": "Jornada com tabela repetida",
+      "rito": "ordinario",
+      "tema": "jornada",
+      "reclamadas": 1,
+      "entrada": {
+        "pdf": "entrada/autos.pdf",
+        "metadados": "caso.json",
+        "paginas": 1,
+        "ocr": false
+      },
+      "esperado": {
+        "resultado": "minuta-tecnica",
+        "etapa": "publicacao",
+        "pendencia_contem": null,
+        "pedidos": [
+          "PED-001",
+          "PED-002"
+        ]
+      },
+      "revisao": {
+        "criterios": [
+          "Preservar as oito linhas iguais e separar horas de reflexos.",
+          "Conferir fatos, todos os pedidos, fontes, rito, encargos e dispositivo.",
+          "Nenhum aceite é inferido da saída técnica."
+        ],
+        "defeitos_criticos": [
+          "fato-inventado-decisivo",
+          "pedido-omitido",
+          "fonte-falsa",
+          "regra-federal-indevida",
+          "conclusao-fora-do-escopo"
+        ]
+      }
+    },
+    {
+      "id": "verbas-rescisorias",
+      "sequencia": 5,
+      "titulo": "Verbas rescisórias",
+      "rito": "ordinario",
+      "tema": "verbas-rescisorias",
+      "reclamadas": 1,
+      "entrada": {
+        "pdf": "entrada/autos.pdf",
+        "metadados": "caso.json",
+        "paginas": 1,
+        "ocr": false
+      },
+      "esperado": {
+        "resultado": "minuta-tecnica",
+        "etapa": "publicacao",
+        "pendencia_contem": null,
+        "pedidos": [
+          "PED-001",
+          "PED-002"
+        ]
+      },
+      "revisao": {
+        "criterios": [
+          "Conferir parcelas, término do contrato e bases, sem liquidar automaticamente.",
+          "Conferir fatos, todos os pedidos, fontes, rito, encargos e dispositivo.",
+          "Nenhum aceite é inferido da saída técnica."
+        ],
+        "defeitos_criticos": [
+          "fato-inventado-decisivo",
+          "pedido-omitido",
+          "fonte-falsa",
+          "regra-federal-indevida",
+          "conclusao-fora-do-escopo"
+        ]
+      }
+    },
+    {
+      "id": "multiplos-reus",
+      "sequencia": 6,
+      "titulo": "Múltiplos réus",
+      "rito": "ordinario",
+      "tema": "jornada",
+      "reclamadas": 2,
+      "entrada": {
+        "pdf": "entrada/autos.pdf",
+        "metadados": "caso.json",
+        "paginas": 1,
+        "ocr": false
+      },
+      "esperado": {
+        "resultado": "minuta-tecnica",
+        "etapa": "publicacao",
+        "pendencia_contem": null,
+        "pedidos": [
+          "PED-001",
+          "PED-002"
+        ]
+      },
+      "revisao": {
+        "criterios": [
+          "Examinar defesa e responsabilidade de cada reclamada separadamente.",
+          "Conferir fatos, todos os pedidos, fontes, rito, encargos e dispositivo.",
+          "Nenhum aceite é inferido da saída técnica."
+        ],
+        "defeitos_criticos": [
+          "fato-inventado-decisivo",
+          "pedido-omitido",
+          "fonte-falsa",
+          "regra-federal-indevida",
+          "conclusao-fora-do-escopo"
+        ]
+      }
+    },
+    {
+      "id": "norma-coletiva-ausente",
+      "sequencia": 7,
+      "titulo": "Norma coletiva ausente",
+      "rito": "ordinario",
+      "tema": "jornada",
+      "reclamadas": 1,
+      "entrada": {
+        "pdf": "entrada/autos.pdf",
+        "metadados": "caso.json",
+        "paginas": 1,
+        "ocr": false
+      },
+      "esperado": {
+        "resultado": "bloqueio",
+        "etapa": "relatorio",
+        "pendencia_contem": "Instrumento coletivo necessário ausente",
+        "pedidos": [
+          "PED-001",
+          "PED-002"
+        ]
+      },
+      "revisao": {
+        "criterios": [
+          "Não inventar cláusula, categoria, território ou vigência.",
+          "Conferir fatos, todos os pedidos, fontes, rito, encargos e dispositivo.",
+          "Nenhum aceite é inferido da saída técnica."
+        ],
+        "defeitos_criticos": [
+          "fato-inventado-decisivo",
+          "pedido-omitido",
+          "fonte-falsa",
+          "regra-federal-indevida",
+          "conclusao-fora-do-escopo"
+        ]
+      }
+    },
+    {
+      "id": "prova-oral-sem-transcricao",
+      "sequencia": 8,
+      "titulo": "Prova oral sem transcrição",
+      "rito": "ordinario",
+      "tema": "jornada",
+      "reclamadas": 1,
+      "entrada": {
+        "pdf": "entrada/autos.pdf",
+        "metadados": "caso.json",
+        "paginas": 1,
+        "ocr": false
+      },
+      "esperado": {
+        "resultado": "bloqueio",
+        "etapa": "triagem",
+        "pendencia_contem": "Prova decisiva indisponível",
+        "pedidos": [
+          "PED-001",
+          "PED-002"
+        ]
+      },
+      "revisao": {
+        "criterios": [
+          "Não converter referência a gravação em transcrição ou fato provado.",
+          "Conferir fatos, todos os pedidos, fontes, rito, encargos e dispositivo.",
+          "Nenhum aceite é inferido da saída técnica."
+        ],
+        "defeitos_criticos": [
+          "fato-inventado-decisivo",
+          "pedido-omitido",
+          "fonte-falsa",
+          "regra-federal-indevida",
+          "conclusao-fora-do-escopo"
+        ]
+      }
+    },
+    {
+      "id": "documento-decisivo-ausente",
+      "sequencia": 9,
+      "titulo": "Documento decisivo ausente",
+      "rito": "ordinario",
+      "tema": "jornada",
+      "reclamadas": 1,
+      "entrada": {
+        "pdf": "entrada/autos.pdf",
+        "metadados": "caso.json",
+        "paginas": 1,
+        "ocr": false
+      },
+      "esperado": {
+        "resultado": "bloqueio",
+        "etapa": "ingestao",
+        "pendencia_contem": "Documento declarado ausente",
+        "pedidos": [
+          "PED-001",
+          "PED-002"
+        ]
+      },
+      "revisao": {
+        "criterios": [
+          "Bloquear pela ausência do documento obrigatório.",
+          "Conferir fatos, todos os pedidos, fontes, rito, encargos e dispositivo.",
+          "Nenhum aceite é inferido da saída técnica."
+        ],
+        "defeitos_criticos": [
+          "fato-inventado-decisivo",
+          "pedido-omitido",
+          "fonte-falsa",
+          "regra-federal-indevida",
+          "conclusao-fora-do-escopo"
+        ]
+      }
+    },
+    {
+      "id": "pdf-misto",
+      "sequencia": 10,
+      "titulo": "PDF misto",
+      "rito": "ordinario",
+      "tema": "jornada",
+      "reclamadas": 1,
+      "entrada": {
+        "pdf": "entrada/autos.pdf",
+        "metadados": "caso.json",
+        "paginas": 2,
+        "ocr": true
+      },
+      "esperado": {
+        "resultado": "minuta-tecnica",
+        "etapa": "publicacao",
+        "pendencia_contem": null,
+        "pedidos": [
+          "PED-001",
+          "PED-002"
+        ]
+      },
+      "revisao": {
+        "criterios": [
+          "Conferir as duas páginas, OCR e localização física, preservando o original.",
+          "Conferir fatos, todos os pedidos, fontes, rito, encargos e dispositivo.",
+          "Nenhum aceite é inferido da saída técnica."
+        ],
+        "defeitos_criticos": [
+          "fato-inventado-decisivo",
+          "pedido-omitido",
+          "fonte-falsa",
+          "regra-federal-indevida",
+          "conclusao-fora-do-escopo"
+        ]
+      }
+    },
+    {
+      "id": "fonte-nao-conferida",
+      "sequencia": 11,
+      "titulo": "Fonte não conferida",
+      "rito": "ordinario",
+      "tema": "jornada",
+      "reclamadas": 1,
+      "entrada": {
+        "pdf": "entrada/autos.pdf",
+        "metadados": "caso.json",
+        "paginas": 1,
+        "ocr": false
+      },
+      "esperado": {
+        "resultado": "bloqueio",
+        "etapa": "fontes",
+        "pendencia_contem": "conferência",
+        "pedidos": [
+          "PED-001",
+          "PED-002"
+        ]
+      },
+      "revisao": {
+        "criterios": [
+          "Não aprovar fonte por URL, memória ou citação nos autos.",
+          "Conferir fatos, todos os pedidos, fontes, rito, encargos e dispositivo.",
+          "Nenhum aceite é inferido da saída técnica."
+        ],
+        "defeitos_criticos": [
+          "fato-inventado-decisivo",
+          "pedido-omitido",
+          "fonte-falsa",
+          "regra-federal-indevida",
+          "conclusao-fora-do-escopo"
+        ]
+      }
+    },
+    {
+      "id": "fora-do-escopo",
+      "sequencia": 12,
+      "titulo": "Caso fora do escopo",
+      "rito": "ordinario",
+      "tema": "jornada",
+      "reclamadas": 1,
+      "entrada": {
+        "pdf": "entrada/autos.pdf",
+        "metadados": "caso.json",
+        "paginas": 1,
+        "ocr": false
+      },
+      "esperado": {
+        "resultado": "bloqueio",
+        "etapa": "relatorio",
+        "pendencia_contem": "fora do recorte",
+        "pedidos": [
+          "PED-001",
+          "PED-002"
+        ]
+      },
+      "revisao": {
+        "criterios": [
+          "Encaminhar demanda contra ente público; não produzir minuta conclusiva.",
+          "Conferir fatos, todos os pedidos, fontes, rito, encargos e dispositivo.",
+          "Nenhum aceite é inferido da saída técnica."
+        ],
+        "defeitos_criticos": [
+          "fato-inventado-decisivo",
+          "pedido-omitido",
+          "fonte-falsa",
+          "regra-federal-indevida",
+          "conclusao-fora-do-escopo"
+        ]
+      }
+    }
+  ]
+}

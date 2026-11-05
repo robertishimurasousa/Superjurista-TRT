@@ -27,8 +27,10 @@ def revisao():
             'justificativa': 'Teste sintético de estrutura e vínculos; não é avaliação jurídica.'}
 
 
-def criar_com_fontes(pasta, rito='ordinario'):
-    workspace, rel, tri, regras, matriz = criar(pasta, rito=rito)
+def criar_com_fontes(pasta, rito='ordinario', preparar=None, ajustar=None):
+    workspace, rel, tri, regras, matriz = criar(pasta, rito=rito, preparar=preparar)
+    if ajustar:
+        ajustar(workspace, rel, tri, regras, matriz)
     ids, vinculos = [], []
     for i, regra in enumerate(regras['regras']):
         entrada = pasta/f'fonte-{i}.txt'

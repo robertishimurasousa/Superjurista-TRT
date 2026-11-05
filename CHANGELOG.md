@@ -2,6 +2,15 @@
 
 ## Alterações do SuperJurista TRT — não publicadas
 
+### Implementação — fase 6 (validação jurídica pendente)
+
+- Corpus de 12 cenários sintéticos, dois pedidos por caso e entradas separadas dos oráculos técnicos.
+- Integração instalada, invalidação por PDF/prompt/perfil/fonte, isolamento de sessões e recuperação de publicação.
+- CI Linux/Python 3.11 e 3.12, validação com OCR, inventário de fixtures e relatórios técnicos sanitizados.
+- Preparação de 36 registros de execução e 12 fichas humanas; verificador somente leitura de evidências/aceite.
+- Consolidação de fontes ainda não publicada aparece como pendência, preservando o motivo de fonte não conferida.
+- Responsável jurídico indicado pelo usuário; execuções com Claude Code e aceite permanecem pendentes.
+
 ### Implementação — fase 5
 
 - Comando trabalhista integrado, mantendo a arquitetura de orquestrador, agentes, artefatos e verificadores.
