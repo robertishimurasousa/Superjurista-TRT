@@ -9,7 +9,7 @@ FIXOS = {'id': 'jt-1g-local', 'versao': 1, 'segmento': 5, 'instancia': 1,
          'entrada': 'pdf-local', 'fontes': 'locais-conferidas'}
 RAIZ_DESTINOS = {'README.md', 'CLAUDE.md', '.gitignore', 'requirements.txt'}
 PREFIXOS_DESTINO = ('scripts/', '.claude/perfis/', '.claude/commands/',
-                    '.claude/agents/', '.claude/skills/', '.claude/schemas/')
+                    '.claude/agents/', '.claude/skills/', '.claude/schemas/', '.claude/templates/')
 
 
 def caminho_relativo(valor):

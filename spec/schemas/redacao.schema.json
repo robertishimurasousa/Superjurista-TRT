@@ -1,0 +1,206 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Proposta de minuta trabalhista",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "numero_cnj",
+    "rito",
+    "pedidos_sha256",
+    "matriz_sha256",
+    "fontes_sha256",
+    "referencias_analise_sha256",
+    "relatorio",
+    "fundamentos",
+    "questoes_processuais",
+    "dispositivo",
+    "parametros",
+    "pendencias",
+    "dispositivo_processual"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": 1
+    },
+    "numero_cnj": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "\\S"
+    },
+    "rito": {
+      "enum": [
+        "ordinario",
+        "sumarissimo"
+      ]
+    },
+    "pedidos_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "matriz_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "fontes_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "referencias_analise_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "relatorio": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "fundamentos": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "pedido_id",
+          "texto"
+        ],
+        "properties": {
+          "pedido_id": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "\\S"
+          },
+          "texto": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "\\S"
+          }
+        }
+      }
+    },
+    "questoes_processuais": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "tema",
+          "texto"
+        ],
+        "properties": {
+          "tema": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "\\S"
+          },
+          "texto": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "\\S"
+          }
+        }
+      }
+    },
+    "dispositivo": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "pedido_id",
+          "resultado",
+          "texto"
+        ],
+        "properties": {
+          "pedido_id": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "\\S"
+          },
+          "resultado": {
+            "enum": [
+              "deferimento",
+              "indeferimento",
+              "parcial"
+            ]
+          },
+          "texto": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "\\S"
+          }
+        }
+      }
+    },
+    "parametros": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "pedido_id",
+          "nome",
+          "valor",
+          "regra_ids"
+        ],
+        "properties": {
+          "pedido_id": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "\\S"
+          },
+          "nome": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "\\S"
+          },
+          "valor": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "\\S"
+          },
+          "regra_ids": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1,
+              "pattern": "\\S"
+            }
+          }
+        }
+      }
+    },
+    "pendencias": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "pattern": "\\S"
+      }
+    },
+    "dispositivo_processual": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "tema",
+          "texto"
+        ],
+        "properties": {
+          "tema": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "\\S"
+          },
+          "texto": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "\\S"
+          }
+        }
+      }
+    }
+  }
+}

@@ -6,7 +6,7 @@ allowed-tools: Bash Read Write AskUserQuestion Glob
 
 # Instalar o SuperJurista por perfil
 
-O padrão deste derivado é `jt-1g-local`. O perfil inclui ingestão de PDFs locais, classificação documental, análise provisória por pedido e fontes/citações rastreáveis; o fluxo de sentença trabalhista ainda não foi implementado.
+O padrão deste derivado é `jt-1g-local`. O perfil inclui ingestão de PDFs locais, classificação documental, análise provisória por pedido e fontes/citações rastreáveis e o comando de minuta, revisão e retomada `/pipeline-sentenca-trabalhista`. A homologação jurídica permanece pendente.
 
 ## Procedimento
 
@@ -25,4 +25,4 @@ python "${CLAUDE_PLUGIN_ROOT}/scripts/instalar_perfil.py" --perfil jt-1g-local -
 
 Somente se `$ARGUMENTS` for exatamente `--legado-federal`, leia `${CLAUDE_PLUGIN_ROOT}/spec/referencias/instalacao-legado.md` e siga o instalador original. Não execute o legado em pasta que contenha `.claude/perfis/jt-1g-local.json`; indique uma pasta separada.
 
-O identificador do plugin continua `superjurista-dev`. Use português e deixe explícito que esta base ainda não produz minutas trabalhistas.
+O identificador do plugin continua `superjurista-dev`. Use português e diferencie minuta técnica, conferências humanas e homologação jurídica. O fluxo de sessão requer macOS/Linux.

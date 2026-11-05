@@ -1,6 +1,6 @@
 # SuperJurista TRT — piloto com PDFs locais
 
-Perfil `jt-1g-local`, versão de contrato 1, estado **base em desenvolvimento**. As fases 2 e 3 entregam ingestão, rastreabilidade, classificação documental e análise provisória por pedido. A fase 4 acrescenta fontes oficiais locais e citações rastreáveis. Sentença e homologação jurídica permanecem pendentes.
+Perfil `jt-1g-local`, versão de contrato 1, estado **base em desenvolvimento**. As fases 2 e 3 entregam ingestão, rastreabilidade, classificação documental e análise provisória por pedido. A fase 4 acrescenta fontes oficiais locais e citações rastreáveis. A fase 5 entrega minuta, revisão e retomada. Homologação jurídica e aceite do piloto permanecem pendentes.
 
 ## Preparar e executar
 
@@ -73,3 +73,14 @@ A importação inicial registra pendência (código 1) até a conferência human
 Preencha a conferência e o registro de referências conforme os schemas instalados. A presença de uma URL oficial, a coincidência de trechos ou um hash não provam autenticidade nem pertinência. A varredura automática não substitui revisão de cobertura das citações. Nenhum script desta fase faz download ou consulta a tribunal.
 
 [Guia completo da fase 4](https://github.com/robertishimurasousa/Superjurista-TRT/blob/main/docs/fase-4-fontes.md).
+
+
+## Minuta, revisão e retomada
+
+No Claude Code, execute `/pipeline-sentenca-trabalhista /caminho/pdfs --caso /caminho/caso.json`. O fluxo usa somente agentes deste perfil, com artefatos em disco e gates por etapa; requer macOS/Linux para o controle de sessão.
+
+`redacao.json` é montado em `minuta-candidata.md`. As referências da candidata e `revisao.json` precisam passar antes de `merge_sentenca_jt.py` substituir `minuta.md`. Execute `verificar_sentenca_jt.py PASTA --gate` para conferir a publicação. Ordinário inclui relatório; sumaríssimo mantém o relatório analítico em `pedidos.json`. Não há liquidação automática ou assinatura judicial.
+
+`estado_execucao.py` mantém assinaturas, invalidação dos descendentes e até duas tentativas por etapa/insumos. A sessão exclusiva exige token; bloqueio residual deve ser diagnosticado antes de recuperação explícita. Conferências humanas continuam obrigatórias, e aceite final permanece não registrado.
+
+[Guia operacional da fase 5](https://github.com/robertishimurasousa/Superjurista-TRT/blob/codex/fase-5-minuta-revisao-retomada/docs/fase-5-minuta.md).

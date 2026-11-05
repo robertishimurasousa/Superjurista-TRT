@@ -1,0 +1,110 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Revisão técnica da minuta, sem aceite humano",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "numero_cnj",
+    "redacao_sha256",
+    "minuta_sha256",
+    "referencias_sha256",
+    "matriz_sha256",
+    "resultado",
+    "verificacoes",
+    "pendencias",
+    "aceite_humano"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": 1
+    },
+    "numero_cnj": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "\\S"
+    },
+    "redacao_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "minuta_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "referencias_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "matriz_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "resultado": {
+      "enum": [
+        "sem-pendencias",
+        "com-pendencias"
+      ]
+    },
+    "verificacoes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "item",
+          "estado",
+          "justificativa",
+          "pedido_ids",
+          "regra_ids"
+        ],
+        "properties": {
+          "item": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "\\S"
+          },
+          "estado": {
+            "enum": [
+              "conferido",
+              "pendente",
+              "nao-aplicavel"
+            ]
+          },
+          "justificativa": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "\\S"
+          },
+          "pedido_ids": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1,
+              "pattern": "\\S"
+            }
+          },
+          "regra_ids": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1,
+              "pattern": "\\S"
+            }
+          }
+        }
+      }
+    },
+    "pendencias": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "pattern": "\\S"
+      }
+    },
+    "aceite_humano": {
+      "const": "nao-registrado"
+    }
+  }
+}

@@ -6,13 +6,17 @@
   "instancia": 1,
   "entrada": "pdf-local",
   "fontes": "locais-conferidas",
-  "comandos": [],
+  "comandos": [
+    "pipeline-sentenca-trabalhista"
+  ],
   "agentes": [
     "trabalhista/extrator-caso",
     "trabalhista/relator",
     "trabalhista/triador",
     "trabalhista/analista",
-    "trabalhista/pesquisador-fontes"
+    "trabalhista/pesquisador-fontes",
+    "trabalhista/fundamentador",
+    "trabalhista/revisor"
   ],
   "mcps": [],
   "arquivos": [
@@ -167,6 +171,50 @@
     {
       "origem": "scaffold/perfis/jt-1g-local/fonte.exemplo.json",
       "destino": ".claude/perfis/fonte.exemplo.json"
+    },
+    {
+      "origem": "scaffold/commands/pipeline-sentenca-trabalhista.md",
+      "destino": ".claude/commands/pipeline-sentenca-trabalhista.md"
+    },
+    {
+      "origem": "scaffold/agents/trabalhista/fundamentador.md",
+      "destino": ".claude/agents/trabalhista/fundamentador.md"
+    },
+    {
+      "origem": "scaffold/agents/trabalhista/revisor.md",
+      "destino": ".claude/agents/trabalhista/revisor.md"
+    },
+    {
+      "origem": "spec/schemas/redacao.schema.json",
+      "destino": ".claude/schemas/redacao.schema.json"
+    },
+    {
+      "origem": "spec/schemas/revisao.schema.json",
+      "destino": ".claude/schemas/revisao.schema.json"
+    },
+    {
+      "origem": "scaffold/scripts/verificar_pipeline.py",
+      "destino": "scripts/verificar_pipeline.py"
+    },
+    {
+      "origem": "scaffold/scripts/estado_execucao.py",
+      "destino": "scripts/estado_execucao.py"
+    },
+    {
+      "origem": "scaffold/scripts/verificar_sentenca_jt.py",
+      "destino": "scripts/verificar_sentenca_jt.py"
+    },
+    {
+      "origem": "scaffold/scripts/merge_sentenca_jt.py",
+      "destino": "scripts/merge_sentenca_jt.py"
+    },
+    {
+      "origem": "scaffold/templates/jt/ordinario.md",
+      "destino": ".claude/templates/jt/ordinario.md"
+    },
+    {
+      "origem": "scaffold/templates/jt/sumarissimo.md",
+      "destino": ".claude/templates/jt/sumarissimo.md"
     }
   ],
   "diretorios": [

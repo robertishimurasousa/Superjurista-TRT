@@ -23,24 +23,7 @@ from normalizacao_fontes import normalizar_chave
 import merge_fontes
 
 
-def meta(tipo='precedente', orgao='TST', referencia='Referência inteiramente fictícia'):
-    return {'origem': 'arquivo-oficial-local', 'tipo': tipo, 'orgao': orgao, 'referencia': referencia,
-            'url_oficial': 'https://www.tst.jus.br/', 'data_consulta': date.today().isoformat(),
-            'situacao': 'vigente', 'modalidade': 'tese-firmada' if tipo == 'precedente' else 'legislacao',
-            'temas': ['jornada'], 'ambito': {'nivel': 'nacional', 'trt': None, 'categoria': None, 'territorio': None},
-            'vigencia': {'inicio': '2025-01-01', 'fim': None}, 'contexto_temporal': 'SOMENTE TESTE, SEM VALOR JURIDICO.'}
-
-
-def conferencia(fonte):
-    return {'responsavel': 'Pessoa fictícia de teste', 'data': date.today().isoformat(),
-            'valida_ate': (date.today()+timedelta(days=30)).isoformat(),
-            'original_sha256': fonte['sha256'], 'texto_sha256': fonte['texto_sha256'],
-            'metadados_sha256': fonte['metadados_sha256'], 'declaracao_origem_oficial': True}
-
-
-def revisao():
-    return {'estado': 'conferida', 'responsavel': 'Revisor fictício', 'data': date.today().isoformat(),
-            'justificativa': 'Teste sintético de estrutura e vínculos; não é avaliação jurídica.'}
+from caso_com_fontes import meta, conferencia, revisao, criar_com_fontes
 
 
 class FontesTests(unittest.TestCase):
@@ -49,25 +32,7 @@ class FontesTests(unittest.TestCase):
         cls.base = tempfile.TemporaryDirectory()
         cls.addClassCleanup(cls.base.cleanup)
         pasta = Path(cls.base.name).resolve()
-        workspace, rel, tri, regras, matriz = criar(pasta)
-        cls.ids, vinculos = [], []
-        for i, regra in enumerate(regras['regras']):
-            entrada = pasta/f'fonte-{i}.txt'
-            entrada.write_text(regra['texto'], encoding='utf-8')
-            metadata = meta('legislacao', regra['orgao'], regra['referencia']+str(i))
-            metadata['temas'] = [regra['tema']]
-            ident = importar(workspace, entrada, metadata)['id']
-            fonte = carregar_fonte(workspace, ident)
-            confirmar(workspace, ident, conferencia(fonte))
-            cls.ids.append(ident)
-            regra.update(arquivo=fonte['texto'], sha256=fonte['texto_sha256'], url_oficial=metadata['url_oficial'])
-            vinculos.append({'regra_id': regra['id'], 'fonte_id': ident, 'revisao_pertinencia': revisao()})
-        gravar(workspace, rel, tri, regras, matriz)
-        consolidar(workspace, cls.ids)
-        cls.modelo = workspace
-        cls.registro = {'schema_version': 1, **contexto(workspace), 'vinculos_regras': vinculos,
-                        'referencias': [], 'revisao_cobertura': {'matriz': revisao(), 'minuta': None}}
-        salvar_json(workspace/'referencias-minuta.json', cls.registro)
+        cls.modelo, cls.ids, cls.registro = criar_com_fontes(pasta)
 
     def setUp(self):
         self.tmp = tempfile.TemporaryDirectory()

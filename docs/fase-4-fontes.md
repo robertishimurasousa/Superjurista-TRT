@@ -2,6 +2,8 @@
 
 [Voltar ao índice](README.md) · [Plano](../plan/feature-justica-trabalho-1.md) · [Análise](fase-3-analise.md)
 
+> Registro da entrega da fase 4. A [fase 5](fase-5-minuta.md) acrescenta os alvos `analise` e `candidata`, a montagem e a revisão; o alvo padrão deste guia permanece compatível.
+
 A fase 4 importa arquivos oficiais locais, registra sua conferência e vincula regras/citações ao conteúdo preservado. Os scripts não fazem buscas, downloads, autenticação ou chamadas à IA. O pesquisador organiza o acervo local e registra consultas externas necessárias como pendências.
 
 ## Arquivos e contratos

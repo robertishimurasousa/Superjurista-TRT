@@ -2,6 +2,15 @@
 
 ## Alterações do SuperJurista TRT — não publicadas
 
+### Implementação — fase 5
+
+- Comando trabalhista integrado, mantendo a arquitetura de orquestrador, agentes, artefatos e verificadores.
+- Fundamentador, revisor e modelos de minuta ordinária/sumaríssima com cobertura por pedido e questões processuais.
+- Candidata separada, referências por alvo, gates de revisão e publicação local por renomeio atômico.
+- Assinaturas dos insumos/pacote/fontes, invalidação de descendentes, duas tentativas e sessão exclusiva com recuperação explícita.
+- Instalação seletiva ampliada e testes sintéticos de montagem, bloqueios, retomada, concorrência e falha de publicação.
+- Validação com Claude Code e homologação de domínio permanecem na fase 6.
+
 ### Implementação — fase 4
 
 - Importação de PDF/HTML/TXT oficial local com originais, texto, metadados e IDs por revisão.

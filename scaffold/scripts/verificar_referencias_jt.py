@@ -55,21 +55,34 @@ def conferir_revisao(revisao, local, erros, pendencias):
         erros.append(f'Revisão no futuro: {local}')
 
 
-def contexto(workspace):
+def arquivos_alvo(modo):
+    if modo not in ('padrao', 'analise', 'candidata'):
+        raise ValueError('Modo de referências inválido.')
+    return {'padrao': ('referencias-minuta.json', 'minuta.md'),
+            'analise': ('referencias-analise.json', None),
+            'candidata': ('referencias-candidata.json', 'minuta-candidata.md')}[modo]
+
+
+def contexto(workspace, modo='padrao'):
+    _, minuta = arquivos_alvo(modo)
     raiz = sem_links(workspace)
     resultado = {'numero_cnj': ler_json(raiz, 'caso.json')['numero_cnj']}
     for chave, arquivo in [('fontes', 'fontes-juridicas.json'), ('documentos', 'documentos.json'),
                            ('pedidos', 'pedidos.json'), ('matriz', 'matriz-pedidos.json'),
-                           ('regras', 'regras-juridicas.json'), ('minuta', 'minuta.md')]:
+                           ('regras', 'regras-juridicas.json'), ('minuta', minuta)]:
+        if arquivo is None:
+            resultado[chave+'_sha256'] = None
+            continue
         caminho = caminho_seguro(raiz, arquivo)
         resultado[chave+'_sha256'] = hash_arquivo(caminho) if caminho.is_file() else None
     return resultado
 
 
-def verificar(workspace):
+def verificar(workspace, modo='padrao'):
+    arquivo_registro, arquivo_minuta = arquivos_alvo(modo)
     raiz = sem_links(workspace)
     erros, pendencias = [], []
-    obrigatorios = ['fontes-juridicas.json', 'referencias-minuta.json', 'regras-juridicas.json', 'matriz-pedidos.json']
+    obrigatorios = ['fontes-juridicas.json', arquivo_registro, 'regras-juridicas.json', 'matriz-pedidos.json']
     for nome in obrigatorios:
         if not caminho_seguro(raiz, nome).is_file():
             erros.append(f'Artefato ausente: {nome}')
@@ -84,9 +97,9 @@ def verificar(workspace):
     erros.extend(e); pendencias.extend(p)
     if erros:
         return resultado(erros, pendencias)
-    registro = ler_json(raiz, 'referencias-minuta.json')
+    registro = ler_json(raiz, arquivo_registro)
     validar_schema(registro, 'referencias-minuta.schema.json')
-    atual = contexto(raiz)
+    atual = contexto(raiz, modo)
     for campo, valor in atual.items():
         if registro[campo] != valor:
             erros.append(f'Referências desatualizadas: {campo}')
@@ -120,8 +133,10 @@ def verificar(workspace):
     if vinculadas != usadas:
         erros.append('Vínculos não correspondem exatamente às regras usadas na matriz.')
     alvos = alvos_matriz(matriz)
-    minuta = caminho_seguro(raiz, 'minuta.md')
-    if minuta.exists():
+    minuta = caminho_seguro(raiz, arquivo_minuta) if arquivo_minuta else None
+    if modo == 'candidata' and not minuta.is_file():
+        erros.append('Minuta candidata ausente.')
+    if minuta is not None and minuta.exists():
         alvos[('minuta', '')] = minuta.read_text(encoding='utf-8')
         if registro['revisao_cobertura']['minuta'] is None:
             pendencias.append('Minuta sem revisão de cobertura das citações.')
@@ -214,9 +229,10 @@ def main():
     modo = parser.add_mutually_exclusive_group()
     modo.add_argument('--gate', action='store_true')
     modo.add_argument('--contexto', action='store_true', help='Exibir hashes atuais; não aprova etapas')
+    parser.add_argument('--alvo', choices=['padrao', 'analise', 'candidata'], default='padrao')
     args = parser.parse_args()
     try:
-        saida = contexto(args.workspace) if args.contexto else verificar(args.workspace)
+        saida = contexto(args.workspace, args.alvo) if args.contexto else verificar(args.workspace, args.alvo)
         print(json.dumps(saida, ensure_ascii=False, indent=2))
         return 0 if args.contexto else 1 if saida['erros'] or (args.gate and saida['pendencias']) else 0
     except (ValueError, OSError, ImportError):
