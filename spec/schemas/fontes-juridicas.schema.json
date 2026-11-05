@@ -1,0 +1,359 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "fontes-juridicas — piloto JT",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": 1
+    },
+    "numero_cnj": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "\\S"
+    },
+    "fontes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^FON-[a-f0-9]{64}$"
+          },
+          "metadados": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "origem": {
+                "const": "arquivo-oficial-local"
+              },
+              "tipo": {
+                "enum": [
+                  "legislacao",
+                  "precedente",
+                  "norma-coletiva"
+                ]
+              },
+              "orgao": {
+                "type": "string",
+                "minLength": 1,
+                "pattern": "\\S"
+              },
+              "referencia": {
+                "type": "string",
+                "minLength": 1,
+                "pattern": "\\S"
+              },
+              "url_oficial": {
+                "type": "string",
+                "format": "uri"
+              },
+              "data_consulta": {
+                "type": "string",
+                "format": "date"
+              },
+              "situacao": {
+                "enum": [
+                  "vigente",
+                  "incerta",
+                  "revogada",
+                  "superada",
+                  "suspensa",
+                  "vencida"
+                ]
+              },
+              "modalidade": {
+                "enum": [
+                  "legislacao",
+                  "acordao",
+                  "sumula",
+                  "oj",
+                  "tese-firmada",
+                  "tema-afetado",
+                  "tema-suspenso",
+                  "instrumento-coletivo"
+                ]
+              },
+              "temas": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1,
+                  "pattern": "\\S"
+                },
+                "minItems": 1,
+                "uniqueItems": true
+              },
+              "ambito": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "nivel": {
+                    "enum": [
+                      "nacional",
+                      "regional",
+                      "coletivo"
+                    ]
+                  },
+                  "trt": {
+                    "anyOf": [
+                      {
+                        "type": "integer",
+                        "minimum": 1,
+                        "maximum": 24
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  },
+                  "categoria": {
+                    "anyOf": [
+                      {
+                        "type": "string",
+                        "minLength": 1,
+                        "pattern": "\\S"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  },
+                  "territorio": {
+                    "anyOf": [
+                      {
+                        "type": "string",
+                        "minLength": 1,
+                        "pattern": "\\S"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  }
+                },
+                "required": [
+                  "nivel",
+                  "trt",
+                  "categoria",
+                  "territorio"
+                ]
+              },
+              "vigencia": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "inicio": {
+                    "anyOf": [
+                      {
+                        "type": "string",
+                        "format": "date"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  },
+                  "fim": {
+                    "anyOf": [
+                      {
+                        "type": "string",
+                        "format": "date"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  }
+                },
+                "required": [
+                  "inicio",
+                  "fim"
+                ]
+              },
+              "contexto_temporal": {
+                "type": "string",
+                "minLength": 1,
+                "pattern": "\\S"
+              }
+            },
+            "required": [
+              "origem",
+              "tipo",
+              "orgao",
+              "referencia",
+              "url_oficial",
+              "data_consulta",
+              "situacao",
+              "modalidade",
+              "temas",
+              "ambito",
+              "vigencia",
+              "contexto_temporal"
+            ]
+          },
+          "metadados_sha256": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$"
+          },
+          "formato": {
+            "enum": [
+              "pdf",
+              "html",
+              "txt"
+            ]
+          },
+          "original": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "\\S"
+          },
+          "sha256": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$"
+          },
+          "estado": {
+            "enum": [
+              "extraido",
+              "parcial",
+              "corrompido",
+              "protegido"
+            ]
+          },
+          "texto": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "\\S"
+          },
+          "texto_sha256": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$"
+          },
+          "paginas_total": {
+            "anyOf": [
+              {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 5000
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "paginas": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "numero": {
+                  "type": "integer",
+                  "minimum": 1,
+                  "maximum": 5000
+                },
+                "estado": {
+                  "enum": [
+                    "extraida",
+                    "falha",
+                    "vazia-ou-ilegivel"
+                  ]
+                },
+                "texto": {
+                  "type": "string",
+                  "minLength": 1,
+                  "pattern": "\\S"
+                },
+                "sha256": {
+                  "type": "string",
+                  "pattern": "^[a-f0-9]{64}$"
+                }
+              },
+              "required": [
+                "numero",
+                "estado",
+                "texto",
+                "sha256"
+              ]
+            },
+            "minItems": 0,
+            "uniqueItems": true
+          },
+          "conferencia": {
+            "anyOf": [
+              {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "responsavel": {
+                    "type": "string",
+                    "minLength": 1,
+                    "pattern": "\\S"
+                  },
+                  "data": {
+                    "type": "string",
+                    "format": "date"
+                  },
+                  "valida_ate": {
+                    "type": "string",
+                    "format": "date"
+                  },
+                  "original_sha256": {
+                    "type": "string",
+                    "pattern": "^[a-f0-9]{64}$"
+                  },
+                  "texto_sha256": {
+                    "type": "string",
+                    "pattern": "^[a-f0-9]{64}$"
+                  },
+                  "metadados_sha256": {
+                    "type": "string",
+                    "pattern": "^[a-f0-9]{64}$"
+                  },
+                  "declaracao_origem_oficial": {
+                    "const": true
+                  }
+                },
+                "required": [
+                  "responsavel",
+                  "data",
+                  "valida_ate",
+                  "original_sha256",
+                  "texto_sha256",
+                  "metadados_sha256",
+                  "declaracao_origem_oficial"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "required": [
+          "id",
+          "metadados",
+          "metadados_sha256",
+          "formato",
+          "original",
+          "sha256",
+          "estado",
+          "texto",
+          "texto_sha256",
+          "paginas_total",
+          "paginas",
+          "conferencia"
+        ]
+      },
+      "minItems": 0,
+      "uniqueItems": true
+    }
+  },
+  "required": [
+    "schema_version",
+    "numero_cnj",
+    "fontes"
+  ]
+}

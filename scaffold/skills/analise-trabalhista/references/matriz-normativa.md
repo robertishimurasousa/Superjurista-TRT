@@ -18,7 +18,7 @@ A [CLT disponibilizada pela Câmara dos Deputados](https://www2.camara.leg.br/le
 
 ## Registro por regra
 
-O contrato `regra-juridica.schema.json` define um registro `regras-juridicas.json` com ID, tema, tipo, referência, órgão, URL oficial, arquivo local, hash, trecho, vigência, situação, contexto temporal e conferência humana (estado, data e responsável). Na fase 3, o conteúdo local deve ser texto UTF-8 em `fontes/`; a importação e validação ampliada de fontes pertence à fase 4.
+O contrato `regra-juridica.schema.json` define um registro `regras-juridicas.json` com ID, tema, tipo, referência, órgão, URL oficial, arquivo local, hash, trecho, vigência, situação, contexto temporal e conferência humana (estado, data e responsável). A fase 4 importa PDF/HTML/TXT e preserva o texto UTF-8 em `fontes/importadas/`. Cada regra usada deve apontar para esse texto e seu hash, com vínculo à fonte em `referencias-minuta.json`. O contrato não transforma o roteiro em regras juridicamente homologadas.
 
 Não marque `conferida` por iniciativa do agente. O responsável precisa confrontar o documento oficial, sua situação e o contexto temporal do caso. URL de domínio oficial e hash conferido comprovam apenas formato/localização e integridade local; não comprovam autenticidade, vigência ou pertinência da tese.
 

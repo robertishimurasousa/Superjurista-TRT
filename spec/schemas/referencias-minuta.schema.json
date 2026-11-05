@@ -1,0 +1,535 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "referencias-minuta — piloto JT",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": 1
+    },
+    "numero_cnj": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "\\S"
+    },
+    "fontes_sha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "documentos_sha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "pedidos_sha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "matriz_sha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "regras_sha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "minuta_sha256": {
+      "anyOf": [
+        {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "vinculos_regras": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "regra_id": {
+            "type": "string",
+            "pattern": "^REG-[0-9]{3,}$"
+          },
+          "fonte_id": {
+            "type": "string",
+            "pattern": "^FON-[a-f0-9]{64}$"
+          },
+          "revisao_pertinencia": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "estado": {
+                "enum": [
+                  "pendente",
+                  "conferida"
+                ]
+              },
+              "responsavel": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "minLength": 1,
+                    "pattern": "\\S"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "data": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "format": "date"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "justificativa": {
+                "type": "string",
+                "minLength": 1,
+                "pattern": "\\S"
+              }
+            },
+            "required": [
+              "estado",
+              "responsavel",
+              "data",
+              "justificativa"
+            ],
+            "allOf": [
+              {
+                "if": {
+                  "properties": {
+                    "estado": {
+                      "const": "conferida"
+                    }
+                  }
+                },
+                "then": {
+                  "properties": {
+                    "responsavel": {
+                      "type": "string",
+                      "minLength": 1,
+                      "pattern": "\\S"
+                    },
+                    "data": {
+                      "type": "string",
+                      "format": "date"
+                    }
+                  }
+                },
+                "else": {
+                  "properties": {
+                    "responsavel": {
+                      "type": "null"
+                    },
+                    "data": {
+                      "type": "null"
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        "required": [
+          "regra_id",
+          "fonte_id",
+          "revisao_pertinencia"
+        ]
+      },
+      "minItems": 0,
+      "uniqueItems": true
+    },
+    "referencias": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^CIT-[0-9]{3,}$"
+          },
+          "alvo": {
+            "enum": [
+              "matriz",
+              "minuta"
+            ]
+          },
+          "ponteiro": {
+            "type": "string"
+          },
+          "inicio": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "fim": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "trecho": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "\\S"
+          },
+          "tipo_uso": {
+            "enum": [
+              "direta",
+              "parafrase",
+              "mencao",
+              "nao-citacao",
+              "relato-alegacao"
+            ]
+          },
+          "natureza": {
+            "enum": [
+              "fonte",
+              "prova",
+              "nenhuma"
+            ]
+          },
+          "fonte_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "pattern": "^FON-[a-f0-9]{64}$"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "documento_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "pattern": "^DOC-[a-f0-9]{64}$"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "pagina": {
+            "anyOf": [
+              {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 5000
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "trecho_origem": {
+            "anyOf": [
+              {
+                "type": "string",
+                "minLength": 1,
+                "pattern": "\\S"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "revisao_pertinencia": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "estado": {
+                "enum": [
+                  "pendente",
+                  "conferida"
+                ]
+              },
+              "responsavel": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "minLength": 1,
+                    "pattern": "\\S"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "data": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "format": "date"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "justificativa": {
+                "type": "string",
+                "minLength": 1,
+                "pattern": "\\S"
+              }
+            },
+            "required": [
+              "estado",
+              "responsavel",
+              "data",
+              "justificativa"
+            ],
+            "allOf": [
+              {
+                "if": {
+                  "properties": {
+                    "estado": {
+                      "const": "conferida"
+                    }
+                  }
+                },
+                "then": {
+                  "properties": {
+                    "responsavel": {
+                      "type": "string",
+                      "minLength": 1,
+                      "pattern": "\\S"
+                    },
+                    "data": {
+                      "type": "string",
+                      "format": "date"
+                    }
+                  }
+                },
+                "else": {
+                  "properties": {
+                    "responsavel": {
+                      "type": "null"
+                    },
+                    "data": {
+                      "type": "null"
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        "required": [
+          "id",
+          "alvo",
+          "ponteiro",
+          "inicio",
+          "fim",
+          "trecho",
+          "tipo_uso",
+          "natureza",
+          "fonte_id",
+          "documento_id",
+          "pagina",
+          "trecho_origem",
+          "revisao_pertinencia"
+        ]
+      },
+      "minItems": 0,
+      "uniqueItems": true
+    },
+    "revisao_cobertura": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "matriz": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "estado": {
+              "enum": [
+                "pendente",
+                "conferida"
+              ]
+            },
+            "responsavel": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "minLength": 1,
+                  "pattern": "\\S"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "data": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "format": "date"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "justificativa": {
+              "type": "string",
+              "minLength": 1,
+              "pattern": "\\S"
+            }
+          },
+          "required": [
+            "estado",
+            "responsavel",
+            "data",
+            "justificativa"
+          ],
+          "allOf": [
+            {
+              "if": {
+                "properties": {
+                  "estado": {
+                    "const": "conferida"
+                  }
+                }
+              },
+              "then": {
+                "properties": {
+                  "responsavel": {
+                    "type": "string",
+                    "minLength": 1,
+                    "pattern": "\\S"
+                  },
+                  "data": {
+                    "type": "string",
+                    "format": "date"
+                  }
+                }
+              },
+              "else": {
+                "properties": {
+                  "responsavel": {
+                    "type": "null"
+                  },
+                  "data": {
+                    "type": "null"
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "minuta": {
+          "anyOf": [
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "estado": {
+                  "enum": [
+                    "pendente",
+                    "conferida"
+                  ]
+                },
+                "responsavel": {
+                  "anyOf": [
+                    {
+                      "type": "string",
+                      "minLength": 1,
+                      "pattern": "\\S"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                "data": {
+                  "anyOf": [
+                    {
+                      "type": "string",
+                      "format": "date"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                "justificativa": {
+                  "type": "string",
+                  "minLength": 1,
+                  "pattern": "\\S"
+                }
+              },
+              "required": [
+                "estado",
+                "responsavel",
+                "data",
+                "justificativa"
+              ],
+              "allOf": [
+                {
+                  "if": {
+                    "properties": {
+                      "estado": {
+                        "const": "conferida"
+                      }
+                    }
+                  },
+                  "then": {
+                    "properties": {
+                      "responsavel": {
+                        "type": "string",
+                        "minLength": 1,
+                        "pattern": "\\S"
+                      },
+                      "data": {
+                        "type": "string",
+                        "format": "date"
+                      }
+                    }
+                  },
+                  "else": {
+                    "properties": {
+                      "responsavel": {
+                        "type": "null"
+                      },
+                      "data": {
+                        "type": "null"
+                      }
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "matriz",
+        "minuta"
+      ]
+    }
+  },
+  "required": [
+    "schema_version",
+    "numero_cnj",
+    "fontes_sha256",
+    "documentos_sha256",
+    "pedidos_sha256",
+    "matriz_sha256",
+    "regras_sha256",
+    "minuta_sha256",
+    "vinculos_regras",
+    "referencias",
+    "revisao_cobertura"
+  ]
+}

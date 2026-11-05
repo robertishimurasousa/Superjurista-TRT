@@ -1,0 +1,174 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "fonte-metadados — piloto JT",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "origem": {
+      "const": "arquivo-oficial-local"
+    },
+    "tipo": {
+      "enum": [
+        "legislacao",
+        "precedente",
+        "norma-coletiva"
+      ]
+    },
+    "orgao": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "\\S"
+    },
+    "referencia": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "\\S"
+    },
+    "url_oficial": {
+      "type": "string",
+      "format": "uri"
+    },
+    "data_consulta": {
+      "type": "string",
+      "format": "date"
+    },
+    "situacao": {
+      "enum": [
+        "vigente",
+        "incerta",
+        "revogada",
+        "superada",
+        "suspensa",
+        "vencida"
+      ]
+    },
+    "modalidade": {
+      "enum": [
+        "legislacao",
+        "acordao",
+        "sumula",
+        "oj",
+        "tese-firmada",
+        "tema-afetado",
+        "tema-suspenso",
+        "instrumento-coletivo"
+      ]
+    },
+    "temas": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "pattern": "\\S"
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "ambito": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "nivel": {
+          "enum": [
+            "nacional",
+            "regional",
+            "coletivo"
+          ]
+        },
+        "trt": {
+          "anyOf": [
+            {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 24
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "categoria": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1,
+              "pattern": "\\S"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "territorio": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1,
+              "pattern": "\\S"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "nivel",
+        "trt",
+        "categoria",
+        "territorio"
+      ]
+    },
+    "vigencia": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "inicio": {
+          "anyOf": [
+            {
+              "type": "string",
+              "format": "date"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "fim": {
+          "anyOf": [
+            {
+              "type": "string",
+              "format": "date"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "inicio",
+        "fim"
+      ]
+    },
+    "contexto_temporal": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "\\S"
+    }
+  },
+  "required": [
+    "origem",
+    "tipo",
+    "orgao",
+    "referencia",
+    "url_oficial",
+    "data_consulta",
+    "situacao",
+    "modalidade",
+    "temas",
+    "ambito",
+    "vigencia",
+    "contexto_temporal"
+  ]
+}

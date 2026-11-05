@@ -33,4 +33,4 @@ Use os schemas instalados para `pedidos.json`, `triagem.json`, `matriz-pedidos.j
 
 Registre questões processuais e matérias examináveis de ofício separadas do inventário de pedidos. Não invente pedidos para preencher a matriz. Preserve todos os acessórios declarados e a vinculação ao principal. Bloqueios de triagem continuam na matriz com conclusão inconclusiva.
 
-A validade técnica pode ser verificada por script; pertinência da prova, completude semântica da extração e correção jurídica exigem revisão humana. As fontes oficiais e as referências de futura minuta serão tratadas na fase 4. Não produza sentença nesta fase.
+A validade técnica pode ser verificada por script; pertinência da prova, completude semântica da extração e correção jurídica exigem revisão humana. As fontes oficiais locais e as referências de futura minuta são verificadas pelos scripts da fase 4. Vincule cada regra usada ao corpus conferido e execute o gate de referências. Não produza sentença nesta fase.

@@ -51,11 +51,14 @@ CAMPOS_VALIDOS = {"tese", "ementa", "acordao", "sumula"}
 OBRIGATORIOS = ("origem_mcp", "tribunal", "tipo", "referencia", "campo", "trecho_verbatim")
 
 
-def _norm(s):
-    s = unicodedata.normalize("NFD", s)
-    s = "".join(c for c in s if unicodedata.category(c) != "Mn").casefold()
-    return re.sub(r"\s+", " ", s).strip()
-
+try:
+    from normalizacao_fontes import normalizar_chave as _norm
+except ImportError:
+    # Compatibilidade com cópias antigas deste utilitário standalone.
+    def _norm(s):
+        s = unicodedata.normalize("NFD", s)
+        s = "".join(c for c in s if unicodedata.category(c) != "Mn").casefold()
+        return re.sub(r"\s+", " ", s).strip()
 
 def _opcional(v):
     return v if v else None
