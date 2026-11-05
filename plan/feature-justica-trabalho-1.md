@@ -12,7 +12,7 @@ tags: ['justica-do-trabalho', 'primeiro-grau', 'pdf-local', 'adaptacao']
 
 ![Estado: Em andamento](https://img.shields.io/badge/estado-em_andamento-yellow)
 
-Plano baseado na revisão `22da97af489116eee6518b9c7eb44b3e026f555e` e no [diagnóstico técnico](../docs/diagnostico-justica-trabalho.md). O usuário escolheu **piloto de 1º grau com PDFs locais**. As fases 1 e 2 estão implementadas e testadas localmente; o piloto jurídico ainda não foi implementado. Veja as [evidências da fase 1](../docs/fase-1-perfis.md) e as [evidências e limitações da fase 2](../docs/fase-2-ingestao.md).
+Plano baseado na revisão `22da97af489116eee6518b9c7eb44b3e026f555e` e no [diagnóstico técnico](../docs/diagnostico-justica-trabalho.md). O usuário escolheu **piloto de 1º grau com PDFs locais**. As fases 1 e 2 e os contratos, agentes e verificador da fase 3 estão implementados. A suíte técnica passou localmente; execução dos agentes no Claude Code, fontes oficiais, minuta e homologação do piloto permanecem pendentes. Veja as [evidências da fase 1](../docs/fase-1-perfis.md) e as evidências e limitações das [fases 2](../docs/fase-2-ingestao.md) e [3](../docs/fase-3-analise.md).
 
 Resultado pretendido: um perfil instalável `jt-1g-local`, capaz de receber documentos de um caso, preservar suas referências, estruturar pedidos e provas, consultar um conjunto local de fontes oficiais conferidas, produzir uma minuta e apresentar pendências para revisão humana. O sistema não assina, protocola ou publica decisões.
 
@@ -38,7 +38,7 @@ A implementação será incremental. Fases 1–6 compõem o piloto; fase 7 é ev
 
 ### Contratos propostos
 
-Os nomes a seguir são contratos de implementação. O perfil de distribuição existe desde a fase 1. Caso, documentos, textos e classificação estão implementados na fase 2; os artefatos jurídicos permanecem planejados.
+Os nomes a seguir são contratos de implementação. O perfil de distribuição existe desde a fase 1. Caso, documentos, textos e classificação estão implementados na fase 2. Relatório, triagem, matriz provisória e contrato preliminar de regras estão implementados na fase 3; fontes oficiais e minuta permanecem planejadas.
 
 | Artefato no projeto instalado | Conteúdo mínimo |
 | --- | --- |
@@ -46,6 +46,9 @@ Os nomes a seguir são contratos de implementação. O perfil de distribuição 
 | `data/casos/<cnj>/caso.json` | `schema_version`, `numero_cnj`, `trt`, `unidade`, `rito`, `fase`, `data_referencia`, `escopo_confirmado`, `documentos`, `pendencias` |
 | `data/casos/<cnj>/documentos.json` | Documento estável, caminho relativo, SHA-256, ordem, tipo, páginas, ID PJe quando fornecido e estado da extração |
 | `data/casos/<cnj>/texto/` | Texto bruto e normalizado por documento/página; mapa para o original |
+| `data/casos/<cnj>/pedidos.json` | Partes, contratos, pedidos, defesas, atos de audiência, referências, cobertura e conferência do inventário |
+| `data/casos/<cnj>/triagem.json` | Escopo, provas/fontes necessárias, impedimentos e estado por pedido |
+| `data/casos/<cnj>/regras-juridicas.json` | Registro preliminar de regras, conteúdo local e conferência humana; integração ampliada na fase 4 |
 | `data/casos/<cnj>/matriz-pedidos.json` | IDs estáveis, pedidos principais/acessórios, defesa, fatos, provas, ônus, parâmetros, conclusão e justificativa |
 | `data/casos/<cnj>/fontes-juridicas.json` | Fontes tipadas `legislacao`, `precedente` ou `norma-coletiva`; conteúdo conferido, metadados e âmbito de aplicação |
 | `data/casos/<cnj>/referencias-minuta.json` | ID da afirmação, seção/trecho da minuta, IDs de provas/fontes, tipo de uso e revisão de pertinência |
@@ -87,11 +90,11 @@ Estados das etapas: `pendente`, `executando`, `valida`, `invalida`, `bloqueada`,
 
 | Tarefa | Descrição e critério de conclusão | Concluída | Data |
 | --- | --- | --- | --- |
-| TASK-011 | Criar `spec/schemas/pedidos.schema.json` e `scaffold/agents/trabalhista/relator.md`. Extrair partes, contratos/períodos, pedidos e acessórios, defesas, documentos e atos de audiência. Cada dado deve ter referência ou estado `nao-informado`; proibir completar datas/valores ausentes. | Não | — |
-| TASK-012 | Criar `scaffold/agents/trabalhista/triador.md`. Verificar rito/fase/escopo, classificar questões por prova e fonte necessária, e registrar `bloqueada` para competência/rito incertos, prova decisiva indisponível ou matérias fora do recorte. Não exigir BNP/JULIA e não tratar silêncio dos autos como fato incontroverso. Depende de TASK-011. | Não | — |
-| TASK-013 | Criar `scaffold/agents/trabalhista/analista.md` e `scaffold/skills/analise-trabalhista/SKILL.md`, com referências de vínculo, jornada e verbas. Produzir matriz de pedidos com alegações contrapostas, ônus, provas, normas coletivas aplicáveis por período/categoria/território e conclusão motivada. Rever as lentes probatórias reutilizadas; não converter probabilidades heurísticas em fatos provados. Depende de TASK-012. | Não | — |
-| TASK-014 | Criar `scaffold/skills/analise-trabalhista/references/matriz-normativa.md` e `spec/schemas/regra-juridica.schema.json`. Registrar tema, texto/precedente oficial, vigência, situação, data de conferência e responsável. Cobrir processo, honorários, custas, gratuidade e parâmetros de atualização sem fallback federal. Regras ainda não conferidas bloqueiam a conclusão que delas dependa. Depende de TASK-013 e das fontes da fase 4. | Não | — |
-| TASK-015 | Criar `scaffold/scripts/verificar_pedidos.py` e `tests/test_pedidos_jt.py`. Conferir unicidade, pedidos omitidos/duplicados, referência inexistente, inconsistência entre partes/períodos e dados obrigatórios por questão. Testar também reclamação com múltiplos empregadores e instrumento coletivo ausente. Depende de TASK-011 e TASK-013. | Não | — |
+| TASK-011 | Criar `spec/schemas/pedidos.schema.json` e `scaffold/agents/trabalhista/relator.md`. Extrair partes, contratos/períodos, pedidos e acessórios, defesas, documentos e atos de audiência. Cada dado deve ter referência ou estado `nao-informado`; proibir completar datas/valores ausentes. | Sim | 2026-11-05 |
+| TASK-012 | Criar `scaffold/agents/trabalhista/triador.md`. Verificar rito/fase/escopo, classificar questões por prova e fonte necessária, e registrar `bloqueada` para competência/rito incertos, prova decisiva indisponível ou matérias fora do recorte. Não exigir BNP/JULIA e não tratar silêncio dos autos como fato incontroverso. Depende de TASK-011. | Sim | 2026-11-05 |
+| TASK-013 | Criar `scaffold/agents/trabalhista/analista.md` e `scaffold/skills/analise-trabalhista/SKILL.md`, com referências de vínculo, jornada e verbas. Produzir matriz de pedidos com alegações contrapostas, ônus, provas, normas coletivas aplicáveis por período/categoria/território e conclusão motivada. Rever as lentes probatórias reutilizadas; não converter probabilidades heurísticas em fatos provados. Depende de TASK-012. | Sim | 2026-11-05 |
+| TASK-014 | Criar `scaffold/skills/analise-trabalhista/references/matriz-normativa.md` e `spec/schemas/regra-juridica.schema.json`. Registrar tema, texto/precedente oficial, vigência, situação, data de conferência e responsável. Cobrir processo, honorários, custas, gratuidade e parâmetros de atualização sem fallback federal. Regras ainda não conferidas bloqueiam a conclusão que delas dependa. Depende de TASK-013 e das fontes da fase 4. | Contrato e roteiro entregues; conferência e fontes dependem da fase 4 | 2026-11-05 |
+| TASK-015 | Criar `scaffold/scripts/verificar_pedidos.py` e `tests/test_pedidos_jt.py`. Conferir unicidade, pedidos omitidos/duplicados, referência inexistente, inconsistência entre partes/períodos e dados obrigatórios por questão. Testar também reclamação com múltiplos empregadores e instrumento coletivo ausente. Depende de TASK-011 e TASK-013. | Sim | 2026-11-05 |
 
 ### Fase 4 — Fontes oficiais locais e citações rastreáveis
 

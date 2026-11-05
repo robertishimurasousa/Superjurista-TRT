@@ -1,6 +1,6 @@
 # SuperJurista TRT — piloto com PDFs locais
 
-Perfil `jt-1g-local`, versão de contrato 1, estado **base em desenvolvimento**. A fase 2 entrega ingestão, rastreabilidade e classificação documental proposta. Análise jurídica e sentença permanecem pendentes.
+Perfil `jt-1g-local`, versão de contrato 1, estado **base em desenvolvimento**. As fases 2 e 3 entregam ingestão, rastreabilidade, classificação documental e análise provisória por pedido. Fontes oficiais ampliadas, sentença e homologação jurídica permanecem pendentes.
 
 ## Preparar e executar
 
@@ -36,3 +36,21 @@ Não são instalados MCPs, autenticação PJe ou comandos federais. Uma pasta pr
 O OCR pode errar palavras e números. Metadados confirmados não podem ser substituídos em uma ingestão posterior; para correção ou reprocessamento após falha, preserve o caso anterior e use outra pasta. A classificação pode precisar de atualização após acrescentar PDFs.
 
 [Guia completo da fase 2](https://github.com/robertishimurasousa/Superjurista-TRT/blob/main/docs/fase-2-ingestao.md) · [Plano](https://github.com/robertishimurasousa/Superjurista-TRT/blob/main/plan/feature-justica-trabalho-1.md)
+
+
+## Modelo do caso e análise provisória
+
+No Claude Code, use os agentes `relator-trabalhista`, `triador-trabalhista` e `analista-trabalhista`, fornecendo a pasta, os contratos instalados e os caminhos de saída. Eles produzem, respectivamente, `pedidos.json`, `triagem.json` e `matriz-pedidos.json`. Antes de cada etapa, obtenha os hashes reais:
+
+```bash
+python scripts/verificar_pedidos.py data/casos/CNJ-CONFIRMADO --contexto
+python scripts/verificar_pedidos.py data/casos/CNJ-CONFIRMADO --etapa relatorio --gate
+python scripts/verificar_pedidos.py data/casos/CNJ-CONFIRMADO --etapa triagem --gate
+python scripts/verificar_pedidos.py data/casos/CNJ-CONFIRMADO --etapa analise --gate
+```
+
+A geração pelos agentes não é acionada por esses comandos: eles preparam contexto ou validam arquivos já produzidos. O inventário exige conferência humana contra a inicial/aditamentos. Registre ausência de dados, prova ou fonte como pendência. Sem regras jurídicas locais conferidas, mantenha a conclusão inconclusiva e a análise bloqueada.
+
+Consulte o contrato `regra-juridica.schema.json` e a skill `analise-trabalhista` antes de registrar fontes. Nesta fase, fonte local aceita texto UTF-8 em `fontes/`; importação ampliada e validação de referências serão entregues na fase 4. Código 0 não homologa análise jurídica e `apto_para_minuta` permanece falso.
+
+[Guia da fase 3](https://github.com/robertishimurasousa/Superjurista-TRT/blob/main/docs/fase-3-analise.md).

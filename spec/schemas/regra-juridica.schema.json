@@ -1,0 +1,234 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "regra-juridica — análise trabalhista provisória",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": 1
+    },
+    "regras": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^REG-[0-9]{3,}$"
+          },
+          "tema": {
+            "enum": [
+              "vinculo",
+              "jornada",
+              "verbas-salariais",
+              "verbas-rescisorias",
+              "onus",
+              "norma-coletiva",
+              "processo",
+              "honorarios",
+              "custas",
+              "gratuidade",
+              "atualizacao"
+            ]
+          },
+          "tipo": {
+            "enum": [
+              "legislacao",
+              "precedente",
+              "norma-coletiva"
+            ]
+          },
+          "referencia": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "\\S"
+          },
+          "orgao": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "\\S"
+          },
+          "url_oficial": {
+            "type": "string",
+            "format": "uri"
+          },
+          "arquivo": {
+            "anyOf": [
+              {
+                "type": "string",
+                "minLength": 1,
+                "pattern": "\\S"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "sha256": {
+            "anyOf": [
+              {
+                "type": "string",
+                "pattern": "^[a-f0-9]{64}$"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "texto": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "\\S"
+          },
+          "vigencia": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "inicio": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "format": "date"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "fim": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "format": "date"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              }
+            },
+            "required": [
+              "inicio",
+              "fim"
+            ]
+          },
+          "situacao": {
+            "enum": [
+              "nao-conferida",
+              "vigente",
+              "superada",
+              "revogada",
+              "suspensa",
+              "incerta"
+            ]
+          },
+          "conferencia": {
+            "$ref": "#/$defs/conferencia"
+          },
+          "contexto_temporal": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "\\S"
+          }
+        },
+        "required": [
+          "id",
+          "tema",
+          "tipo",
+          "referencia",
+          "orgao",
+          "url_oficial",
+          "arquivo",
+          "sha256",
+          "texto",
+          "vigencia",
+          "situacao",
+          "conferencia",
+          "contexto_temporal"
+        ]
+      },
+      "minItems": 0
+    }
+  },
+  "required": [
+    "schema_version",
+    "regras"
+  ],
+  "$defs": {
+    "conferencia": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "estado": {
+          "enum": [
+            "pendente",
+            "conferida"
+          ]
+        },
+        "responsavel": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1,
+              "pattern": "\\S"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "data": {
+          "anyOf": [
+            {
+              "type": "string",
+              "format": "date"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "estado",
+        "responsavel",
+        "data"
+      ],
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "estado": {
+                "const": "conferida"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "responsavel": {
+                "type": "string",
+                "minLength": 1,
+                "pattern": "\\S"
+              },
+              "data": {
+                "type": "string",
+                "format": "date"
+              }
+            }
+          },
+          "else": {
+            "properties": {
+              "responsavel": {
+                "type": "null"
+              },
+              "data": {
+                "type": "null"
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

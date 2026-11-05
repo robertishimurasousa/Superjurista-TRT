@@ -2,6 +2,14 @@
 
 ## Alterações do SuperJurista TRT — não publicadas
 
+### Implementação — fase 3
+
+- Contratos de relatório, triagem, matriz de pedidos e registro preliminar de regras jurídicas.
+- Agentes trabalhistas para relato, triagem e análise provisória, com dados referenciados ou explicitamente não informados.
+- Verificador por etapa: cobertura de pedidos/páginas, múltiplas reclamadas, períodos, trechos, bloqueios e hashes de insumos.
+- Skill e roteiro normativo sem teses homologadas, parâmetros de cálculo ou fallback federal.
+- Testes sintéticos e guia de operação; validação ampliada das fontes continua dependente da fase 4.
+
 ### Implementação — fase 2
 
 - Ingestão de PDF ou pasta com validação CNJ, metadados confirmados, originais por hash e deduplicação.

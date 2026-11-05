@@ -1,0 +1,479 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "matriz-pedidos — análise trabalhista provisória",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": 1
+    },
+    "numero_cnj": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "\\S"
+    },
+    "pedidos_sha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "triagem_sha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "regras_sha256": {
+      "anyOf": [
+        {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "analises": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "pedido_id": {
+            "type": "string",
+            "pattern": "^PED-[0-9]{3,}$"
+          },
+          "estado": {
+            "enum": [
+              "analisada",
+              "bloqueada"
+            ]
+          },
+          "fatos": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "descricao": {
+                  "$ref": "#/$defs/dado"
+                },
+                "situacao": {
+                  "enum": [
+                    "alegado",
+                    "controvertido",
+                    "corroborado",
+                    "inconclusivo"
+                  ]
+                }
+              },
+              "required": [
+                "descricao",
+                "situacao"
+              ]
+            },
+            "minItems": 1
+          },
+          "defesas": {
+            "type": "array",
+            "items": {
+              "$ref": "#/$defs/defesa"
+            },
+            "minItems": 0
+          },
+          "provas": {
+            "type": "array",
+            "items": {
+              "$ref": "#/$defs/referencia"
+            },
+            "minItems": 0
+          },
+          "onus": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "atribuicao": {
+                "enum": [
+                  "reclamante",
+                  "reclamadas",
+                  "distribuicao-dinamica",
+                  "nao-definido"
+                ]
+              },
+              "justificativa": {
+                "type": "string",
+                "minLength": 1,
+                "pattern": "\\S"
+              },
+              "regra_ids": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "pattern": "^REG-[0-9]{3,}$"
+                },
+                "minItems": 0,
+                "uniqueItems": true
+              },
+              "decisao_referencias": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/$defs/referencia"
+                },
+                "minItems": 0
+              }
+            },
+            "required": [
+              "atribuicao",
+              "justificativa",
+              "regra_ids",
+              "decisao_referencias"
+            ]
+          },
+          "regra_ids": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^REG-[0-9]{3,}$"
+            },
+            "minItems": 0,
+            "uniqueItems": true
+          },
+          "parametros": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "nome": {
+                  "type": "string",
+                  "minLength": 1,
+                  "pattern": "\\S"
+                },
+                "valor": {
+                  "$ref": "#/$defs/dado"
+                },
+                "regra_ids": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "pattern": "^REG-[0-9]{3,}$"
+                  },
+                  "minItems": 0,
+                  "uniqueItems": true
+                }
+              },
+              "required": [
+                "nome",
+                "valor",
+                "regra_ids"
+              ]
+            },
+            "minItems": 0
+          },
+          "norma_coletiva": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "estado": {
+                "enum": [
+                  "nao-necessaria",
+                  "pendente",
+                  "conferida"
+                ]
+              },
+              "justificativa": {
+                "type": "string",
+                "minLength": 1,
+                "pattern": "\\S"
+              },
+              "documento_id": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "pattern": "^DOC-[a-f0-9]{64}$"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              }
+            },
+            "required": [
+              "estado",
+              "justificativa",
+              "documento_id"
+            ]
+          },
+          "conclusao": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "resultado": {
+                "enum": [
+                  "inconclusiva",
+                  "hipotese-deferimento",
+                  "hipotese-indeferimento",
+                  "hipotese-parcial"
+                ]
+              },
+              "fundamentacao": {
+                "type": "string",
+                "minLength": 1,
+                "pattern": "\\S"
+              },
+              "regra_ids": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "pattern": "^REG-[0-9]{3,}$"
+                },
+                "minItems": 0,
+                "uniqueItems": true
+              },
+              "referencias": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/$defs/referencia"
+                },
+                "minItems": 0
+              }
+            },
+            "required": [
+              "resultado",
+              "fundamentacao",
+              "regra_ids",
+              "referencias"
+            ]
+          },
+          "pendencias": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1,
+              "pattern": "\\S"
+            },
+            "minItems": 0
+          }
+        },
+        "required": [
+          "pedido_id",
+          "estado",
+          "fatos",
+          "defesas",
+          "provas",
+          "onus",
+          "regra_ids",
+          "parametros",
+          "norma_coletiva",
+          "conclusao",
+          "pendencias"
+        ]
+      },
+      "minItems": 0
+    },
+    "questoes_processuais": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "tema": {
+            "enum": [
+              "processo",
+              "honorarios",
+              "custas",
+              "gratuidade",
+              "atualizacao"
+            ]
+          },
+          "estado": {
+            "enum": [
+              "pendente",
+              "analisada"
+            ]
+          },
+          "analise": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "\\S"
+          },
+          "regra_ids": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^REG-[0-9]{3,}$"
+            },
+            "minItems": 0,
+            "uniqueItems": true
+          },
+          "referencias": {
+            "type": "array",
+            "items": {
+              "$ref": "#/$defs/referencia"
+            },
+            "minItems": 0
+          }
+        },
+        "required": [
+          "tema",
+          "estado",
+          "analise",
+          "regra_ids",
+          "referencias"
+        ]
+      },
+      "minItems": 0
+    },
+    "pendencias": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "pattern": "\\S"
+      },
+      "minItems": 0
+    }
+  },
+  "required": [
+    "schema_version",
+    "numero_cnj",
+    "pedidos_sha256",
+    "triagem_sha256",
+    "regras_sha256",
+    "analises",
+    "questoes_processuais",
+    "pendencias"
+  ],
+  "$defs": {
+    "referencia": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "documento_id": {
+          "type": "string",
+          "pattern": "^DOC-[a-f0-9]{64}$"
+        },
+        "pagina": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 5000
+        },
+        "trecho": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S"
+        }
+      },
+      "required": [
+        "documento_id",
+        "pagina",
+        "trecho"
+      ]
+    },
+    "dado": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "estado": {
+          "enum": [
+            "informado",
+            "nao-informado"
+          ]
+        },
+        "valor": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1,
+              "pattern": "\\S"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "referencias": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/referencia"
+          },
+          "minItems": 0
+        },
+        "motivo": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1,
+              "pattern": "\\S"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "estado",
+        "valor",
+        "referencias",
+        "motivo"
+      ],
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "estado": {
+                "const": "informado"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "valor": {
+                "type": "string",
+                "minLength": 1,
+                "pattern": "\\S"
+              },
+              "referencias": {
+                "minItems": 1
+              },
+              "motivo": {
+                "type": "null"
+              }
+            }
+          },
+          "else": {
+            "properties": {
+              "valor": {
+                "type": "null"
+              },
+              "referencias": {
+                "maxItems": 0
+              },
+              "motivo": {
+                "type": "string",
+                "minLength": 1,
+                "pattern": "\\S"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "defesa": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "reclamada_id": {
+          "type": "string",
+          "pattern": "^PAR-[0-9]{3,}$"
+        },
+        "alegacao": {
+          "$ref": "#/$defs/dado"
+        }
+      },
+      "required": [
+        "reclamada_id",
+        "alegacao"
+      ]
+    }
+  }
+}

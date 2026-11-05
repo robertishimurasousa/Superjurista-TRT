@@ -8,7 +8,10 @@
   "fontes": "locais-conferidas",
   "comandos": [],
   "agentes": [
-    "trabalhista/extrator-caso"
+    "trabalhista/extrator-caso",
+    "trabalhista/relator",
+    "trabalhista/triador",
+    "trabalhista/analista"
   ],
   "mcps": [],
   "arquivos": [
@@ -79,6 +82,46 @@
     {
       "origem": "scaffold/perfis/jt-1g-local/caso.exemplo.json",
       "destino": ".claude/perfis/caso.exemplo.json"
+    },
+    {
+      "origem": "spec/schemas/pedidos.schema.json",
+      "destino": ".claude/schemas/pedidos.schema.json"
+    },
+    {
+      "origem": "spec/schemas/triagem.schema.json",
+      "destino": ".claude/schemas/triagem.schema.json"
+    },
+    {
+      "origem": "spec/schemas/matriz-pedidos.schema.json",
+      "destino": ".claude/schemas/matriz-pedidos.schema.json"
+    },
+    {
+      "origem": "spec/schemas/regra-juridica.schema.json",
+      "destino": ".claude/schemas/regra-juridica.schema.json"
+    },
+    {
+      "origem": "scaffold/scripts/verificar_pedidos.py",
+      "destino": "scripts/verificar_pedidos.py"
+    },
+    {
+      "origem": "scaffold/agents/trabalhista/relator.md",
+      "destino": ".claude/agents/trabalhista/relator.md"
+    },
+    {
+      "origem": "scaffold/agents/trabalhista/triador.md",
+      "destino": ".claude/agents/trabalhista/triador.md"
+    },
+    {
+      "origem": "scaffold/agents/trabalhista/analista.md",
+      "destino": ".claude/agents/trabalhista/analista.md"
+    },
+    {
+      "origem": "scaffold/skills/analise-trabalhista/SKILL.md",
+      "destino": ".claude/skills/analise-trabalhista/SKILL.md"
+    },
+    {
+      "origem": "scaffold/skills/analise-trabalhista/references/matriz-normativa.md",
+      "destino": ".claude/skills/analise-trabalhista/references/matriz-normativa.md"
     }
   ],
   "diretorios": [

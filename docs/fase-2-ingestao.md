@@ -1,5 +1,7 @@
 # Fase 2 — ingestão de PDFs locais
 
+> Registro da entrega de ingestão. O modelo do caso e a análise provisória foram acrescentados na [fase 3](fase-3-analise.md).
+
 [Voltar ao índice](README.md) · [Plano](../plan/feature-justica-trabalho-1.md)
 
 O perfil `jt-1g-local` recebe um PDF ou uma pasta de PDFs, preserva os originais e extrai texto por página. Não consulta tribunais, PJe ou serviços de IA durante a ingestão Python. A classificação pelo agente é uma etapa separada, executada no provedor configurado no Claude Code.
