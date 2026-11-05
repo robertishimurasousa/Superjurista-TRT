@@ -1,5 +1,9 @@
 # Framework Super Jurista
 
+> Este diretório preserva as especificações e referências herdadas do SuperJurista.
+> Para instalar e usar este derivado, consulte a [documentação do SuperJurista TRT](../docs/README.md).
+> As diferenças de contexto estão no [guia de adaptação para TRT](../docs/adaptacao-trt.md).
+
 > **Atualização v3.0 (04/07/2026) — leia antes das seções de validação abaixo.**
 > A filosofia deste framework (orquestrador cego, injeção de contexto, contratos, menor
 > privilégio) permanece. Mudou o **encanamento** dos pipelines: (1) o subagente GRAVA o

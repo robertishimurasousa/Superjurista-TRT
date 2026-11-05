@@ -1,19 +1,20 @@
 {
   "name": "superjurista-dev",
   "version": "1.3.0",
-  "description": "Meta-ferramentas para criar sistemas agenticos judiciais: agentes, orquestradores, skills, teams e scaffold completo do SuperJurista",
+  "description": "SuperJurista TRT: ferramentas para análise de processos, pesquisa de jurisprudência e elaboração de minutas com Claude Code, com foco na adaptação à Justiça do Trabalho.",
   "author": {
     "name": "George Marmelstein",
     "email": "george@superjurista.com"
   },
-  "repository": "https://github.com/georgemarmelstein/superjurista-dev",
+  "repository": "https://github.com/robertishimurasousa/Superjurista-TRT",
   "license": "MIT",
   "keywords": [
     "judicial",
-    "legal",
-    "agents",
-    "pipelines",
+    "justica-do-trabalho",
+    "agentes",
+    "fluxos-judiciais",
     "jurisprudencia",
-    "superjurista"
+    "superjurista",
+    "trt"
   ]
 }

@@ -1,4 +1,16 @@
-# Changelog
+# Histórico de alterações
+
+## Alterações do SuperJurista TRT — não publicadas
+
+### Documentação
+
+- README em português com identidade do repositório, instalação local e inventário dos componentes.
+- Guias de instalação, uso, arquitetura, integrações, adaptação para TRT, dados, manutenção e diagnóstico.
+- Orientações de contribuição e créditos do projeto original.
+- README do projeto instalado atualizado com requisitos e limites das integrações.
+- Descrição e endereço do repositório atualizados no manifesto, preservando o identificador técnico e a autoria original.
+
+## Histórico herdado do superjurista-dev
 
 ## 1.3.0 (2026-07-11)
 
