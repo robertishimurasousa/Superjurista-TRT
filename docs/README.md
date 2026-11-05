@@ -16,6 +16,7 @@ Documentação em português brasileiro para usuários e mantenedores deste repo
 - [Fase 2: ingestão de PDFs](fase-2-ingestao.md): preparação, comandos, contratos e testes de rastreabilidade.
 - [Fase 3: modelo e análise](fase-3-analise.md): inventário de pedidos, triagem, matriz provisória e bloqueios.
 - [Fase 4: fontes e citações](fase-4-fontes.md): importação local, conferência, consolidação e rastreabilidade.
+- [Fase 5: minuta, revisão e retomada](fase-5-minuta.md): comando integrado, publicação local validada, sessões e recuperação.
 
 - [Diagnóstico de adaptação à Justiça do Trabalho](diagnostico-justica-trabalho.md): evidências no código e bloqueios do fluxo atual.
 - [Plano do piloto de 1º grau com PDFs locais](../plan/feature-justica-trabalho-1.md): tarefas, dependências e critérios de aceite.

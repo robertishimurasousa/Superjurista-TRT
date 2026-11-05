@@ -13,7 +13,7 @@ Este repositório deriva do [superjurista-dev, de George Marmelstein](https://gi
 
 ## Estado do piloto trabalhista
 
-O perfil `jt-1g-local` já oferece instalação seletiva e ingestão de PDFs locais: originais preservados, hashes, texto por página, OCR em português e verificação de referências. A fase 3 acrescenta contratos e agentes para relato, triagem e análise provisória por pedido, com verificação de cobertura, referências e bloqueios. A fase 4 acrescenta importação de fontes locais, conferência por hashes, consolidação e rastreabilidade de citações. **Sentença e homologação jurídica permanecem pendentes.** Consulte os guias das [fases 1](docs/fase-1-perfis.md), [2](docs/fase-2-ingestao.md), [3](docs/fase-3-analise.md) e [4](docs/fase-4-fontes.md), além do [plano](plan/feature-justica-trabalho-1.md).
+O perfil `jt-1g-local` já oferece instalação seletiva e ingestão de PDFs locais: originais preservados, hashes, texto por página, OCR em português e verificação de referências. A fase 3 acrescenta contratos e agentes para relato, triagem e análise provisória por pedido, com verificação de cobertura, referências e bloqueios. A fase 4 acrescenta importação de fontes locais, conferência por hashes, consolidação e rastreabilidade de citações. A fase 5 acrescenta minuta por pedido, revisão técnica, montagem validada e retomada por hashes, mantendo comando → agentes → artefatos → verificadores. **Homologação jurídica e validação do piloto permanecem pendentes.** Consulte os guias das [fases 1](docs/fase-1-perfis.md), [2](docs/fase-2-ingestao.md), [3](docs/fase-3-analise.md), [4](docs/fase-4-fontes.md) e [5](docs/fase-5-minuta.md), além do [plano](plan/feature-justica-trabalho-1.md).
 
 ## Componentes herdados disponíveis no repositório
 

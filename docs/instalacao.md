@@ -4,7 +4,7 @@
 
 ## Perfil trabalhista local — padrão
 
-O perfil instala a base, os scripts de ingestão/verificação e os agentes de classificação, relato, triagem, análise provisória e pesquisa de fontes locais. Fontes e citações são operadas conforme o [guia da fase 4](fase-4-fontes.md). Use Python 3.11+ para a ingestão e uma pasta separada. Ainda não há fluxo de sentença ou MCPs no perfil. Na raiz do repositório:
+O perfil instala a base, os scripts de ingestão/verificação e os agentes de classificação, relato, triagem, análise provisória e pesquisa de fontes locais. Fontes e citações são operadas conforme o [guia da fase 4](fase-4-fontes.md). Use Python 3.11+ para a ingestão e uma pasta separada. A [fase 5](fase-5-minuta.md) acrescenta o comando `/pipeline-sentenca-trabalhista`, fundamentador, revisor e controle de sessão/retomada para macOS/Linux. O perfil não instala MCPs. Na raiz do repositório:
 
 ```bash
 python3 scripts/instalar_perfil.py --perfil jt-1g-local --destino ../superjurista-trt-trabalho --dry-run

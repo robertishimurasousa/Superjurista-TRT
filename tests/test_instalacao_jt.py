@@ -133,7 +133,7 @@ class InstalacaoTests(unittest.TestCase):
         self.assertEqual(arquivos, {item['destino'] for item in perfil['arquivos']})
         self.assertTrue((self.destino / 'data/casos').is_dir())
         self.assertFalse((self.destino / '.mcp.json').exists())
-        self.assertFalse((self.destino / '.claude/commands').exists())
+        self.assertEqual([p.name for p in (self.destino / '.claude/commands').iterdir()], ['pipeline-sentenca-trabalhista.md'])
         self.assertIn('ainda não disponíveis', saida)
         instalado = json.loads((self.destino / '.claude/perfis/jt-1g-local.json').read_text())
         self.assertEqual(instalado, perfil)

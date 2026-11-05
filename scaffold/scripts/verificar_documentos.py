@@ -9,7 +9,7 @@ from documentos import (caminho_seguro, hash_arquivo, sem_links,
                         validar_caso, validar_schema)
 
 
-def verificar(workspace):
+def verificar(workspace, incluir_classificacao=True):
     raiz = sem_links(workspace)
     caso_path = caminho_seguro(raiz, 'caso.json')
     caso = validar_caso(json.loads(caso_path.read_text(encoding='utf-8')))
@@ -101,7 +101,7 @@ def verificar(workspace):
     if historico_aliases != entradas or len(origens) != len(docs) or set(origens) != set(docs):
         erros.append('Histórico não registra a origem de todas as entradas e documentos.')
     classificacao = caminho_seguro(raiz, 'classificacao.json')
-    if classificacao.exists():
+    if incluir_classificacao and classificacao.exists():
         segmentos = json.loads(classificacao.read_text(encoding='utf-8'))
         validar_schema(segmentos, 'classificacao.schema.json')
         cobertas = set()

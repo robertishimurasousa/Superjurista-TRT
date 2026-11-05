@@ -17,7 +17,7 @@ TEXTO = ['CASO INTEIRAMENTE FICTICIO - SEM VALOR JURIDICO',
          'Instrumento coletivo ficticio de 2025-01-01 a 2025-12-31: comercio em Florianopolis.']
 
 
-def criar(pasta):
+def criar(pasta, rito='ordinario'):
     entrada = pasta / 'entrada'
     entrada.mkdir()
     pdf = canvas.Canvas(str(entrada / 'autos.pdf'), invariant=1)
@@ -25,6 +25,7 @@ def criar(pasta):
         pdf.drawString(30, 800-i*25, linha)
     pdf.save()
     caso = json.loads((Path(__file__).parent / 'jt/caso.json').read_text())
+    caso['rito'] = rito
     caso['documentos'] = [{'arquivo': 'autos.pdf', 'tipo': 'desconhecido', 'obrigatorio': True}]
     salvar_json(pasta / 'caso.json', caso)
     workspace = pasta / 'workspace'
