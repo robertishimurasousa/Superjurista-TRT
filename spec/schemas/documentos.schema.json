@@ -1,0 +1,241 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "documentos — piloto JT local",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": 1
+    },
+    "numero_cnj": {
+      "type": "string",
+      "minLength": 1
+    },
+    "caso_sha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "documentos": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^DOC-[a-f0-9]{64}$"
+          },
+          "sha256": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$"
+          },
+          "original": {
+            "type": "string",
+            "minLength": 1
+          },
+          "entradas": {
+            "type": "array",
+            "minItems": 1,
+            "uniqueItems": true,
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "ordem": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "estado": {
+            "enum": [
+              "extraido",
+              "parcial",
+              "corrompido",
+              "protegido"
+            ]
+          },
+          "tipo": {
+            "enum": [
+              "peticao",
+              "defesa",
+              "replica",
+              "ata",
+              "jornada",
+              "contracheque",
+              "trct",
+              "fgts",
+              "laudo",
+              "instrumento-coletivo",
+              "desconhecido"
+            ]
+          },
+          "classificacao": {
+            "enum": [
+              "declarada",
+              "sugerida",
+              "desconhecida"
+            ]
+          },
+          "id_pje": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "paginas_total": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "minimum": 0,
+            "maximum": 5000
+          },
+          "paginas": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "numero": {
+                  "type": "integer",
+                  "minimum": 1
+                },
+                "metodo": {
+                  "enum": [
+                    "digital",
+                    "ocr",
+                    "digital+ocr",
+                    "nenhum"
+                  ]
+                },
+                "estado": {
+                  "enum": [
+                    "extraida",
+                    "falha",
+                    "vazia-ou-ilegivel"
+                  ]
+                },
+                "texto_bruto": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "texto_normalizado": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "sha256_bruto": {
+                  "type": "string",
+                  "pattern": "^[a-f0-9]{64}$"
+                },
+                "sha256_normalizado": {
+                  "type": "string",
+                  "pattern": "^[a-f0-9]{64}$"
+                },
+                "avisos": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              },
+              "required": [
+                "numero",
+                "metodo",
+                "estado",
+                "texto_bruto",
+                "texto_normalizado",
+                "sha256_bruto",
+                "sha256_normalizado",
+                "avisos"
+              ]
+            }
+          },
+          "avisos": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "id",
+          "sha256",
+          "original",
+          "entradas",
+          "ordem",
+          "estado",
+          "tipo",
+          "classificacao",
+          "id_pje",
+          "paginas_total",
+          "paginas",
+          "avisos"
+        ]
+      }
+    },
+    "historico": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "data": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "conversor": {
+            "type": "string",
+            "minLength": 1
+          },
+          "dependencias": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            }
+          },
+          "entradas": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "arquivo": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "documento_id": {
+                  "type": "string",
+                  "pattern": "^DOC-[a-f0-9]{64}$"
+                },
+                "resultado": {
+                  "enum": [
+                    "ingerido",
+                    "duplicado"
+                  ]
+                }
+              },
+              "required": [
+                "arquivo",
+                "documento_id",
+                "resultado"
+              ]
+            }
+          }
+        },
+        "required": [
+          "data",
+          "conversor",
+          "dependencias",
+          "entradas"
+        ]
+      }
+    }
+  },
+  "required": [
+    "schema_version",
+    "numero_cnj",
+    "caso_sha256",
+    "documentos",
+    "historico"
+  ]
+}

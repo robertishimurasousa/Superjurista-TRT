@@ -12,7 +12,8 @@ Documentação em português brasileiro para usuários e mantenedores deste repo
 
 ## Referências para manutenção
 
-- [Fase 1: perfis e importação](fase-1-perfis.md): infraestrutura implementada e limites atuais.
+- [Fase 1: perfis e importação](fase-1-perfis.md): infraestrutura e histórico da primeira entrega.
+- [Fase 2: ingestão de PDFs](fase-2-ingestao.md): preparação, comandos, contratos e testes de rastreabilidade.
 
 - [Diagnóstico de adaptação à Justiça do Trabalho](diagnostico-justica-trabalho.md): evidências no código e bloqueios do fluxo atual.
 - [Plano do piloto de 1º grau com PDFs locais](../plan/feature-justica-trabalho-1.md): tarefas, dependências e critérios de aceite.

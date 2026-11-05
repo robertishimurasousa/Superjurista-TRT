@@ -2,6 +2,14 @@
 
 ## Alterações do SuperJurista TRT — não publicadas
 
+### Implementação — fase 2
+
+- Ingestão de PDF ou pasta com validação CNJ, metadados confirmados, originais por hash e deduplicação.
+- Texto bruto e normalizado por página; OCR em português para páginas escaneadas ou com imagens, preservando linhas repetidas.
+- Registro de arquivos protegidos/corrompidos, páginas ilegíveis, histórico de extração e documentos declarados ausentes.
+- Schemas e verificador de integridade/referências; agente de classificação documental sujeito à revisão humana.
+- Corpus sintético, testes de ingestão e guia de operação. Análise jurídica e sentença permanecem para fases posteriores.
+
 ### Implementação — fase 1
 
 - Perfil `jt-1g-local` com manifesto, JSON Schema e validação de componentes/caminhos.

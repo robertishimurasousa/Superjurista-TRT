@@ -123,7 +123,7 @@ def instalar(raiz, perfil_id, destino, dry_run=False):
                 pass  # Preserva conteúdo criado externamente durante a execução.
         raise
     print(f'[OK] Perfil {perfil_id} instalado em {destino}')
-    print('[FIM] Base em desenvolvimento: ingestão, agentes e sentença ainda não disponíveis.')
+    print('[FIM] Base em desenvolvimento: ingestão local disponível; análise jurídica e sentença ainda não disponíveis.')
     return 0
 
 

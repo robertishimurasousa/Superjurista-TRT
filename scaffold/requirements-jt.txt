@@ -1,2 +1,7 @@
-# Fase 1: Python >= 3.9; somente biblioteca padrão, sem pacotes de execução.
-# PDF/OCR e fontes externas serão acrescentados conforme as próximas fases.
+# Python >= 3.11. OCR também exige Poppler e Tesseract com idioma por.
+pdfplumber==0.11.10
+pypdf==6.21.4
+pdf2image==1.17.0
+pytesseract==0.3.13
+Pillow==13.0.0
+jsonschema==4.26.0
