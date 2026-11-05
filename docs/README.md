@@ -12,6 +12,8 @@ Documentação em português brasileiro para usuários e mantenedores deste repo
 
 ## Referências para manutenção
 
+- [Diagnóstico de adaptação à Justiça do Trabalho](diagnostico-justica-trabalho.md): evidências no código e bloqueios do fluxo atual.
+- [Plano do piloto de 1º grau com PDFs locais](../plan/feature-justica-trabalho-1.md): tarefas, dependências e critérios de aceite.
 - [Arquitetura](arquitetura.md): camadas, contratos, verificadores e versões.
 - [Desenvolvimento](desenvolvimento.md): alterações, verificações locais e sincronização.
 - [Solução de problemas](solucao-de-problemas.md): sintomas e diagnósticos.
