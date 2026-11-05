@@ -4,7 +4,7 @@
 
 O nome SuperJurista TRT identifica o propósito deste derivado. Os arquivos presentes ainda incluem fluxos e integrações da base SuperJurista voltados à Justiça Federal. A documentação não estabelece homologação em um TRT específico.
 
-O escopo inicial escolhido é um **piloto de 1º grau com PDFs locais**. Consulte o [diagnóstico detalhado](diagnostico-justica-trabalho.md) e o [plano de implementação](../plan/feature-justica-trabalho-1.md), elaborados em 05/11/2026. As etapas do plano ainda não foram implementadas.
+O escopo inicial escolhido é um **piloto de 1º grau com PDFs locais**. Consulte o [diagnóstico detalhado](diagnostico-justica-trabalho.md) e o [plano de implementação](../plan/feature-justica-trabalho-1.md), elaborados em 05/11/2026. A [fase 1](fase-1-perfis.md) implementa a base de perfis e instalação; o fluxo jurídico permanece pendente.
 
 ## Evidências na base atual
 

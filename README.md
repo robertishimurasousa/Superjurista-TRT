@@ -11,7 +11,11 @@ Este repositório deriva do [superjurista-dev, de George Marmelstein](https://gi
 > [!IMPORTANT]
 > Os resultados são materiais de apoio sujeitos à revisão humana. A aprovação dos verificadores confirma os critérios implementados nos scripts; não comprova a correção jurídica da minuta nem a compatibilidade com um TRT.
 
-## O que está incluído
+## Estado do piloto trabalhista
+
+A fase 1 implementa o perfil `jt-1g-local`: instalação seletiva e não destrutiva, contrato validado e importação upstream para revisão. **Ainda não há ingestão de PDFs nem agentes ou fluxo de sentença trabalhista.** Consulte a [entrega da fase 1](docs/fase-1-perfis.md) e o [plano](plan/feature-justica-trabalho-1.md).
+
+## Componentes herdados disponíveis no repositório
 
 | Recurso | Conteúdo |
 | --- | --- |
@@ -20,13 +24,13 @@ Este repositório deriva do [superjurista-dev, de George Marmelstein](https://gi
 | Agentes especializados | 52 agentes em 7 categorias |
 | Skills de domínio | 7 skills, incluindo PJe, PDF/OCR e análise probatória |
 | Pesquisa via MCP | 5 servidores: BNP/CNJ, CJF, TCU, TJSC e TNU |
-| Verificação e consolidação | 9 scripts Python para validar etapas, conferir citações, reunir artefatos e ingerir dados de kanban |
+| Verificação e consolidação | 10 scripts Python, incluindo validação de perfil, etapas, citações e consolidação de artefatos |
 
 O projeto é executado dentro do Claude Code. Não há aplicação web, banco de dados próprio ou servidor HTTP central a iniciar.
 
 ## Início rápido
 
-Requisitos: Git, Claude Code instalado e autenticado, Python **3.10 ou superior** para as integrações MCP. PDF/OCR e PJe exigem dependências adicionais descritas no [guia de instalação](docs/instalacao.md).
+Requisitos da base local: Git e Python **3.9 ou superior**. Claude Code é necessário para carregar o plugin. O legado com MCP exige Python 3.10 ou superior e dependências próprias.
 
 Clone este repositório e abra o Claude Code em uma pasta separada para os processos:
 
@@ -45,11 +49,20 @@ Dentro do Claude Code, execute o instalador:
 
 O identificador técnico continua sendo `superjurista-dev`, conforme o [manifesto do plugin](.claude-plugin/plugin.json). Por isso, ele aparece no prefixo dos comandos, mesmo que o nome do repositório seja SuperJurista TRT. O carregamento local por `--plugin-dir` é documentado pelo [Claude Code](https://code.claude.com/docs/en/plugins/create).
 
-O instalador copia os componentes para `.claude/`, cria `scripts/` e `data/` e registra os cinco servidores em `.mcp.json`. **A instalação das bibliotecas Python é uma etapa separada.** Siga o [guia completo](docs/instalacao.md) antes de executar os fluxos.
+O padrão agora é o perfil `jt-1g-local`: sete arquivos de infraestrutura e `data/casos/`, sem MCPs ou comandos judiciais herdados. A instalação federal exige a opção explícita `--legado-federal`, em outra pasta.
 
-## Exemplo de uso
+Também é possível instalar a base sem Claude Code, a partir do repositório:
 
-Após preparar as dependências e integrações, use um processo de teste autorizado, com texto revisado:
+```bash
+python3 scripts/instalar_perfil.py --perfil jt-1g-local --destino ../superjurista-trt-trabalho --dry-run
+python3 scripts/instalar_perfil.py --perfil jt-1g-local --destino ../superjurista-trt-trabalho
+```
+
+Confira conflitos e componentes preexistentes no resumo. Consulte o [guia da fase 1](docs/fase-1-perfis.md).
+
+## Exemplo do legado federal
+
+Os comandos abaixo pertencem ao legado federal e **não são instalados no perfil local trabalhista**. Após instalar explicitamente o legado e preparar suas integrações, use apenas um processo de teste autorizado:
 
 ```text
 /relatar-processo data/sentenca/NUMERO-CNJ/processo.txt
@@ -77,7 +90,7 @@ Superjurista-TRT/
 ├── scaffold/           # Componentes copiados para o projeto de trabalho
 ├── spec/               # Especificações, modelos e referências do framework
 ├── docs/               # Guias deste repositório em português
-└── sync-scaffold.ps1   # Sincronização a partir do ambiente original
+└── sync-scaffold.ps1   # Prepara importação upstream para revisão
 ```
 
 ## Guias

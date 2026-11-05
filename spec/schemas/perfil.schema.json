@@ -1,0 +1,102 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Perfil local do SuperJurista TRT",
+  "description": "Estrutura do perfil. Existência, links simbólicos, destinos permitidos e colisões são conferidos adicionalmente por perfil.py.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "id",
+    "versao",
+    "estado",
+    "segmento",
+    "instancia",
+    "entrada",
+    "fontes",
+    "comandos",
+    "agentes",
+    "mcps",
+    "arquivos",
+    "diretorios"
+  ],
+  "properties": {
+    "id": {
+      "const": "jt-1g-local"
+    },
+    "versao": {
+      "const": 1,
+      "type": "integer"
+    },
+    "segmento": {
+      "const": 5,
+      "type": "integer"
+    },
+    "instancia": {
+      "const": 1,
+      "type": "integer"
+    },
+    "entrada": {
+      "const": "pdf-local"
+    },
+    "fontes": {
+      "const": "locais-conferidas"
+    },
+    "estado": {
+      "enum": [
+        "base-em-desenvolvimento",
+        "piloto"
+      ]
+    },
+    "comandos": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "pattern": "^(?!/)(?!.*(?:^|/)\\.{1,2}(?:/|$))(?!.*//)(?!.*[\\\\:])(?!.*\\/$).+$"
+      }
+    },
+    "agentes": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "pattern": "^(?!/)(?!.*(?:^|/)\\.{1,2}(?:/|$))(?!.*//)(?!.*[\\\\:])(?!.*\\/$).+$"
+      }
+    },
+    "mcps": {
+      "const": []
+    },
+    "diretorios": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "const": "data/casos"
+      }
+    },
+    "arquivos": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": [
+          "origem",
+          "destino"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "origem": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "^(?!/)(?!.*(?:^|/)\\.{1,2}(?:/|$))(?!.*//)(?!.*[\\\\:])(?!.*\\/$).+$"
+          },
+          "destino": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "^(?!/)(?!.*(?:^|/)\\.{1,2}(?:/|$))(?!.*//)(?!.*[\\\\:])(?!.*\\/$).+$"
+          }
+        }
+      }
+    }
+  }
+}

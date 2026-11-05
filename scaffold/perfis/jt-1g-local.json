@@ -1,0 +1,45 @@
+{
+  "id": "jt-1g-local",
+  "versao": 1,
+  "estado": "base-em-desenvolvimento",
+  "segmento": 5,
+  "instancia": 1,
+  "entrada": "pdf-local",
+  "fontes": "locais-conferidas",
+  "comandos": [],
+  "agentes": [],
+  "mcps": [],
+  "arquivos": [
+    {
+      "origem": "scaffold/perfis/jt-1g-local.json",
+      "destino": ".claude/perfis/jt-1g-local.json"
+    },
+    {
+      "origem": "spec/schemas/perfil.schema.json",
+      "destino": ".claude/perfis/perfil.schema.json"
+    },
+    {
+      "origem": "scaffold/scripts/perfil.py",
+      "destino": "scripts/perfil.py"
+    },
+    {
+      "origem": "scaffold/perfis/jt-1g-local/README.md",
+      "destino": "README.md"
+    },
+    {
+      "origem": "scaffold/perfis/jt-1g-local/CLAUDE.md",
+      "destino": "CLAUDE.md"
+    },
+    {
+      "origem": "scaffold/project-gitignore",
+      "destino": ".gitignore"
+    },
+    {
+      "origem": "scaffold/requirements-jt.txt",
+      "destino": "requirements.txt"
+    }
+  ],
+  "diretorios": [
+    "data/casos"
+  ]
+}

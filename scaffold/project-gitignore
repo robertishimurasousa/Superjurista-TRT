@@ -27,3 +27,19 @@ __pycache__/
 *.pyc
 .DS_Store
 Thumbs.db
+
+# Casos e dados locais (inclui minutas Markdown e documentos extraídos)
+data/
+.venv/
+venv/
+.env
+.env.*
+!.env.example
+*.har
+*cookies*.json
+pje_session*
+sessao*.json
+*credentials*
+
+# PDFs sintéticos de testes podem ser versionados
+!tests/fixtures/**/*.pdf

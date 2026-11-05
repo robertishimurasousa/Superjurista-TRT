@@ -1,4 +1,6 @@
-# SuperJurista TRT — projeto de trabalho
+# SuperJurista — projeto federal legado
+
+Este é o modelo de README da instalação explícita `--legado-federal`; não é o perfil trabalhista local da fase 1.
 
 Este projeto recebe agentes, comandos, skills e integrações do [SuperJurista TRT](https://github.com/robertishimurasousa/Superjurista-TRT), derivado do SuperJurista de George Marmelstein. Ele oferece apoio à leitura de processos, pesquisa de jurisprudência, análise de provas e elaboração de minutas dentro do Claude Code.
 

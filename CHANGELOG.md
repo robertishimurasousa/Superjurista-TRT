@@ -2,6 +2,14 @@
 
 ## Alterações do SuperJurista TRT — não publicadas
 
+### Implementação — fase 1
+
+- Perfil `jt-1g-local` com manifesto, JSON Schema e validação de componentes/caminhos.
+- Instalador seletivo com simulação, preservação de conflitos e reinstalação idempotente; legado federal passa a ser opção explícita.
+- Importação upstream para área temporária com comparação por hash, sem substituição do scaffold versionado.
+- Exclusões de dados/sessões e testes locais de instalação/importação.
+- Nesta fase, o perfil ainda não contém agentes, ingestão de PDFs ou fluxo de sentença.
+
 ### Documentação
 
 - README em português com identidade do repositório, instalação local e inventário dos componentes.

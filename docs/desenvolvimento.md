@@ -15,11 +15,11 @@ Leia os [modelos em spec](../spec/templates/) e o [padrão soberano](../skills/c
 
 ## Origem do scaffold
 
-O [sync-scaffold.ps1](../sync-scaffold.ps1) define o scaffold como uma cópia gerada a partir do ambiente de desenvolvimento original. Os diretórios `agents`, `commands`, `skills`, `scripts` e `mcp-servers` dentro de `scaffold/` são removidos e recriados pelo script.
+Neste derivado, **o conteúdo versionado de `scaffold/` é a fonte da distribuição**. Ajustes trabalhistas são mantidos diretamente no repositório, com revisão e testes. Essa política substitui a regeneração destrutiva a partir do computador do autor original.
 
-Esse script contém caminhos fixos do ambiente Windows original e usa `robocopy`. Não é um instalador portátil. Antes de utilizá-lo neste derivado, é necessário definir as fontes corretas e revisar os efeitos de substituição. Não execute a sincronização apenas para atualizar a documentação.
+O [sync-scaffold.ps1](../sync-scaffold.ps1) passa a ser uma entrada PowerShell para o importador portátil [importar_scaffold.py](../scripts/importar_scaffold.py). A importação exige os diretórios de origem explicitamente configurados, prepara uma cópia filtrada em diretório temporário e gera um relatório comparativo. Ela não aplica mudanças ao repositório nem remove seus componentes.
 
-Os arquivos `scaffold/project-claude.md`, `scaffold/project-readme.md` e `scaffold/project-gitignore` são preservados pelo sincronizador. Alterações nas áreas geradas precisam de uma estratégia de manutenção para não serem perdidas na próxima sincronização.
+Não há mais cópia automática dos geradores globais para a raiz do plugin. Mudanças upstream nessas ferramentas devem ser revisadas separadamente. Consulte [instalação por perfil e importação](fase-1-perfis.md) para os comandos.
 
 ## Verificações locais
 
@@ -55,7 +55,7 @@ Com Claude Code disponível, confira também o manifesto:
 claude plugin validate .
 ```
 
-O comando de validação é descrito na [documentação oficial](https://code.claude.com/docs/en/plugins/create). Ele não executa os fluxos judiciais. Não há uma suíte de testes automatizada ou configuração de integração contínua distribuída neste estado do repositório.
+O comando de validação é descrito na [documentação oficial](https://code.claude.com/docs/en/plugins/create). Ele não executa os fluxos judiciais. A suíte da fase 1 pode ser executada com `python -m unittest discover -s tests -v`, após instalar `requirements-dev.txt`. Ainda não há configuração de integração contínua.
 
 ## O que validar por tipo de alteração
 

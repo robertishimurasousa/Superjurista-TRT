@@ -1,0 +1,2 @@
+# Fase 1: Python >= 3.9; somente biblioteca padrão, sem pacotes de execução.
+# PDF/OCR e fontes externas serão acrescentados conforme as próximas fases.

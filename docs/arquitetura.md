@@ -61,4 +61,4 @@ O manifesto informa a versão **1.3.0 do plugin**. O fluxo principal de sentenç
 
 Há documentos e comandos herdados com convenções anteriores, inclusive validação por leitura de marcadores e caminhos de outro ambiente. Para manutenção, confronte a documentação conceitual com o comando e o verificador efetivamente utilizados. O [README de especificações](../spec/README.md) contém uma nota sobre essa transição.
 
-Não há suíte de testes nem fluxo de integração contínua versionado neste estado do repositório. Consulte [desenvolvimento](desenvolvimento.md) para as verificações locais e os limites de cada uma.
+A fase 1 acrescenta testes automatizados em `tests/test_instalacao_jt.py` para perfis, instalação e importação. Ainda não há fluxo de integração contínua versionado. Consulte [desenvolvimento](desenvolvimento.md) para as verificações locais e os limites de cada uma.

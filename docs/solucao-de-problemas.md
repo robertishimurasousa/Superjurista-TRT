@@ -5,7 +5,7 @@
 | Sintoma | O que verificar |
 | --- | --- |
 | O instalador não aparece | Inicie com `claude --plugin-dir CAMINHO-DO-REPOSITORIO` e procure `/superjurista-dev:instalar-superjurista` |
-| Os fluxos judiciais não aparecem | Confira a cópia para `.claude/commands/` no projeto de trabalho e reinicie a sessão |
+| Os fluxos judiciais não aparecem | No perfil `jt-1g-local`, a fase 1 ainda não instala fluxos. No legado explícito, confira `.claude/commands/` e reinicie a sessão |
 | `python` não é encontrado | Ative o ambiente virtual e confira o executável configurado em `.mcp.json` |
 | `ModuleNotFoundError` | Instale as dependências com o mesmo Python que executa o script ou MCP |
 | Falha ao instalar `mcp` | Confira Python 3.10 ou superior e os requisitos da versão resolvida pelo `pip` |
@@ -20,7 +20,8 @@
 | Etapa aparece como inválida | Confira prefixo, arquivo, tamanho, marcadores e seções exigidos pelo verificador |
 | Análise retorna código 3 | O contrato sinaliza `ESCALAR`; o fluxo deve executar o trabalho adicional previsto |
 | Minuta de TRT falha na assinatura | Há contratos herdados que exigem `juiz federal`; adapte agente e verificador em conjunto |
-| Alterações desaparecem após sincronizar | `sync-scaffold.ps1` recria áreas geradas; consulte [desenvolvimento](desenvolvimento.md) |
+| Alterações desapareceram após uma sincronização antiga | O sincronizador anterior recriava áreas geradas. A versão atual só prepara candidato temporário; confira a versão executada e o histórico Git |
+| Instalação por perfil aponta conflito | Revise ou mescle o arquivo indicado e repita a simulação; nenhuma sobrescrita automática é feita |
 
 ## Diagnóstico mínimo
 
