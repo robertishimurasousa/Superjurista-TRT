@@ -1,0 +1,357 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "triagem — análise trabalhista provisória",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": 1
+    },
+    "numero_cnj": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "\\S"
+    },
+    "pedidos_sha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "escopo": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "competencia": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "estado": {
+              "enum": [
+                "confirmado",
+                "incerto",
+                "fora-escopo"
+              ]
+            },
+            "justificativa": {
+              "$ref": "#/$defs/dado"
+            }
+          },
+          "required": [
+            "estado",
+            "justificativa"
+          ]
+        },
+        "rito": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "estado": {
+              "enum": [
+                "confirmado",
+                "incerto",
+                "fora-escopo"
+              ]
+            },
+            "justificativa": {
+              "$ref": "#/$defs/dado"
+            }
+          },
+          "required": [
+            "estado",
+            "justificativa"
+          ]
+        },
+        "fase": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "estado": {
+              "enum": [
+                "confirmado",
+                "incerto",
+                "fora-escopo"
+              ]
+            },
+            "justificativa": {
+              "$ref": "#/$defs/dado"
+            }
+          },
+          "required": [
+            "estado",
+            "justificativa"
+          ]
+        },
+        "demanda_individual": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "estado": {
+              "enum": [
+                "confirmado",
+                "incerto",
+                "fora-escopo"
+              ]
+            },
+            "justificativa": {
+              "$ref": "#/$defs/dado"
+            }
+          },
+          "required": [
+            "estado",
+            "justificativa"
+          ]
+        },
+        "empregadores_privados": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "estado": {
+              "enum": [
+                "confirmado",
+                "incerto",
+                "fora-escopo"
+              ]
+            },
+            "justificativa": {
+              "$ref": "#/$defs/dado"
+            }
+          },
+          "required": [
+            "estado",
+            "justificativa"
+          ]
+        }
+      },
+      "required": [
+        "competencia",
+        "rito",
+        "fase",
+        "demanda_individual",
+        "empregadores_privados"
+      ]
+    },
+    "questoes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "pedido_id": {
+            "type": "string",
+            "pattern": "^PED-[0-9]{3,}$"
+          },
+          "estado": {
+            "enum": [
+              "apta",
+              "bloqueada"
+            ]
+          },
+          "motivos": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1,
+              "pattern": "\\S"
+            },
+            "minItems": 0
+          },
+          "provas_necessarias": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "descricao": {
+                  "type": "string",
+                  "minLength": 1,
+                  "pattern": "\\S"
+                },
+                "decisiva": {
+                  "type": "boolean"
+                },
+                "estado": {
+                  "enum": [
+                    "disponivel",
+                    "ausente",
+                    "incerta"
+                  ]
+                },
+                "referencias": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/$defs/referencia"
+                  },
+                  "minItems": 0
+                }
+              },
+              "required": [
+                "descricao",
+                "decisiva",
+                "estado",
+                "referencias"
+              ]
+            },
+            "minItems": 0
+          },
+          "fontes_necessarias": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1,
+              "pattern": "\\S"
+            },
+            "minItems": 1
+          }
+        },
+        "required": [
+          "pedido_id",
+          "estado",
+          "motivos",
+          "provas_necessarias",
+          "fontes_necessarias"
+        ]
+      },
+      "minItems": 0
+    },
+    "estado": {
+      "enum": [
+        "apta",
+        "bloqueada"
+      ]
+    },
+    "pendencias": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "pattern": "\\S"
+      },
+      "minItems": 0
+    }
+  },
+  "required": [
+    "schema_version",
+    "numero_cnj",
+    "pedidos_sha256",
+    "escopo",
+    "questoes",
+    "estado",
+    "pendencias"
+  ],
+  "$defs": {
+    "referencia": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "documento_id": {
+          "type": "string",
+          "pattern": "^DOC-[a-f0-9]{64}$"
+        },
+        "pagina": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 5000
+        },
+        "trecho": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S"
+        }
+      },
+      "required": [
+        "documento_id",
+        "pagina",
+        "trecho"
+      ]
+    },
+    "dado": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "estado": {
+          "enum": [
+            "informado",
+            "nao-informado"
+          ]
+        },
+        "valor": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1,
+              "pattern": "\\S"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "referencias": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/referencia"
+          },
+          "minItems": 0
+        },
+        "motivo": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1,
+              "pattern": "\\S"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "estado",
+        "valor",
+        "referencias",
+        "motivo"
+      ],
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "estado": {
+                "const": "informado"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "valor": {
+                "type": "string",
+                "minLength": 1,
+                "pattern": "\\S"
+              },
+              "referencias": {
+                "minItems": 1
+              },
+              "motivo": {
+                "type": "null"
+              }
+            }
+          },
+          "else": {
+            "properties": {
+              "valor": {
+                "type": "null"
+              },
+              "referencias": {
+                "maxItems": 0
+              },
+              "motivo": {
+                "type": "string",
+                "minLength": 1,
+                "pattern": "\\S"
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

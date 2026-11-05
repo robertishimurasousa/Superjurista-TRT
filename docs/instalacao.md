@@ -4,7 +4,7 @@
 
 ## Perfil trabalhista local — padrão
 
-O perfil instala a base, os scripts de ingestão e o agente de classificação documental. Use Python 3.11+ para a ingestão e uma pasta separada. Ainda não há fluxo de sentença ou MCPs no perfil. Na raiz do repositório:
+O perfil instala a base, os scripts de ingestão/verificação e os agentes de classificação, relato, triagem e análise provisória. Use Python 3.11+ para a ingestão e uma pasta separada. Ainda não há fluxo de sentença ou MCPs no perfil. Na raiz do repositório:
 
 ```bash
 python3 scripts/instalar_perfil.py --perfil jt-1g-local --destino ../superjurista-trt-trabalho --dry-run

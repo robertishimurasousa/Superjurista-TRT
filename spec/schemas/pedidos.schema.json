@@ -1,0 +1,842 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "pedidos — análise trabalhista provisória",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": 1
+    },
+    "numero_cnj": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "\\S"
+    },
+    "documentos_sha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "partes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^PAR-[0-9]{3,}$"
+          },
+          "polo": {
+            "enum": [
+              "reclamante",
+              "reclamado"
+            ]
+          },
+          "nome": {
+            "$ref": "#/$defs/dado"
+          },
+          "natureza": {
+            "$ref": "#/$defs/natureza"
+          }
+        },
+        "required": [
+          "id",
+          "polo",
+          "nome",
+          "natureza"
+        ]
+      },
+      "minItems": 0
+    },
+    "contratos": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^CON-[0-9]{3,}$"
+          },
+          "reclamante_id": {
+            "type": "string",
+            "pattern": "^PAR-[0-9]{3,}$"
+          },
+          "reclamadas_ids": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^PAR-[0-9]{3,}$"
+            },
+            "minItems": 1,
+            "uniqueItems": true
+          },
+          "periodo": {
+            "$ref": "#/$defs/periodo"
+          },
+          "funcao": {
+            "$ref": "#/$defs/dado"
+          },
+          "salario": {
+            "$ref": "#/$defs/dinheiro"
+          },
+          "categoria": {
+            "$ref": "#/$defs/dado"
+          },
+          "territorio": {
+            "$ref": "#/$defs/dado"
+          }
+        },
+        "required": [
+          "id",
+          "reclamante_id",
+          "reclamadas_ids",
+          "periodo",
+          "funcao",
+          "salario",
+          "categoria",
+          "territorio"
+        ]
+      },
+      "minItems": 0
+    },
+    "pedidos": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^PED-[0-9]{3,}$"
+          },
+          "natureza": {
+            "enum": [
+              "principal",
+              "acessorio"
+            ]
+          },
+          "principal_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "pattern": "^PED-[0-9]{3,}$"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "tema": {
+            "enum": [
+              "vinculo",
+              "jornada",
+              "verbas-salariais",
+              "verbas-rescisorias",
+              "outro"
+            ]
+          },
+          "descricao": {
+            "$ref": "#/$defs/dado"
+          },
+          "reclamante_id": {
+            "type": "string",
+            "pattern": "^PAR-[0-9]{3,}$"
+          },
+          "reclamadas_ids": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^PAR-[0-9]{3,}$"
+            },
+            "minItems": 1,
+            "uniqueItems": true
+          },
+          "contratos_ids": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^CON-[0-9]{3,}$"
+            },
+            "minItems": 1,
+            "uniqueItems": true
+          },
+          "periodo": {
+            "$ref": "#/$defs/periodo"
+          },
+          "valor": {
+            "$ref": "#/$defs/dinheiro"
+          },
+          "fatos": {
+            "type": "array",
+            "items": {
+              "$ref": "#/$defs/dado"
+            },
+            "minItems": 1
+          },
+          "defesas": {
+            "type": "array",
+            "items": {
+              "$ref": "#/$defs/defesa"
+            },
+            "minItems": 0
+          },
+          "norma_coletiva": {
+            "$ref": "#/$defs/norma_coletiva"
+          }
+        },
+        "required": [
+          "id",
+          "natureza",
+          "principal_id",
+          "tema",
+          "descricao",
+          "reclamante_id",
+          "reclamadas_ids",
+          "contratos_ids",
+          "periodo",
+          "valor",
+          "fatos",
+          "defesas",
+          "norma_coletiva"
+        ]
+      },
+      "minItems": 0
+    },
+    "atos_audiencia": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^ATO-[0-9]{3,}$"
+          },
+          "tipo": {
+            "$ref": "#/$defs/dado"
+          },
+          "data": {
+            "$ref": "#/$defs/data"
+          },
+          "descricao": {
+            "$ref": "#/$defs/dado"
+          }
+        },
+        "required": [
+          "id",
+          "tipo",
+          "data",
+          "descricao"
+        ]
+      },
+      "minItems": 0
+    },
+    "cobertura": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "documento_id": {
+            "type": "string",
+            "pattern": "^DOC-[a-f0-9]{64}$"
+          },
+          "pagina": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 5000
+          },
+          "estado": {
+            "enum": [
+              "revisada",
+              "pendente"
+            ]
+          },
+          "pedidos_ids": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^PED-[0-9]{3,}$"
+            },
+            "minItems": 0,
+            "uniqueItems": true
+          },
+          "observacao": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "\\S"
+          }
+        },
+        "required": [
+          "documento_id",
+          "pagina",
+          "estado",
+          "pedidos_ids",
+          "observacao"
+        ]
+      },
+      "minItems": 0
+    },
+    "conferencia_inventario": {
+      "$ref": "#/$defs/conferencia"
+    },
+    "pendencias": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "pattern": "\\S"
+      },
+      "minItems": 0
+    }
+  },
+  "required": [
+    "schema_version",
+    "numero_cnj",
+    "documentos_sha256",
+    "partes",
+    "contratos",
+    "pedidos",
+    "atos_audiencia",
+    "cobertura",
+    "conferencia_inventario",
+    "pendencias"
+  ],
+  "$defs": {
+    "referencia": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "documento_id": {
+          "type": "string",
+          "pattern": "^DOC-[a-f0-9]{64}$"
+        },
+        "pagina": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 5000
+        },
+        "trecho": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S"
+        }
+      },
+      "required": [
+        "documento_id",
+        "pagina",
+        "trecho"
+      ]
+    },
+    "dado": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "estado": {
+          "enum": [
+            "informado",
+            "nao-informado"
+          ]
+        },
+        "valor": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1,
+              "pattern": "\\S"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "referencias": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/referencia"
+          },
+          "minItems": 0
+        },
+        "motivo": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1,
+              "pattern": "\\S"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "estado",
+        "valor",
+        "referencias",
+        "motivo"
+      ],
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "estado": {
+                "const": "informado"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "valor": {
+                "type": "string",
+                "minLength": 1,
+                "pattern": "\\S"
+              },
+              "referencias": {
+                "minItems": 1
+              },
+              "motivo": {
+                "type": "null"
+              }
+            }
+          },
+          "else": {
+            "properties": {
+              "valor": {
+                "type": "null"
+              },
+              "referencias": {
+                "maxItems": 0
+              },
+              "motivo": {
+                "type": "string",
+                "minLength": 1,
+                "pattern": "\\S"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "data": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "estado": {
+          "enum": [
+            "informado",
+            "nao-informado"
+          ]
+        },
+        "valor": {
+          "anyOf": [
+            {
+              "type": "string",
+              "format": "date"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "referencias": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/referencia"
+          },
+          "minItems": 0
+        },
+        "motivo": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1,
+              "pattern": "\\S"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "estado",
+        "valor",
+        "referencias",
+        "motivo"
+      ],
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "estado": {
+                "const": "informado"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "valor": {
+                "type": "string",
+                "format": "date"
+              },
+              "referencias": {
+                "minItems": 1
+              },
+              "motivo": {
+                "type": "null"
+              }
+            }
+          },
+          "else": {
+            "properties": {
+              "valor": {
+                "type": "null"
+              },
+              "referencias": {
+                "maxItems": 0
+              },
+              "motivo": {
+                "type": "string",
+                "minLength": 1,
+                "pattern": "\\S"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "dinheiro": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "estado": {
+          "enum": [
+            "informado",
+            "nao-informado"
+          ]
+        },
+        "valor": {
+          "anyOf": [
+            {
+              "type": "string",
+              "pattern": "^[0-9]+\\.[0-9]{2}$"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "referencias": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/referencia"
+          },
+          "minItems": 0
+        },
+        "motivo": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1,
+              "pattern": "\\S"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "estado",
+        "valor",
+        "referencias",
+        "motivo"
+      ],
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "estado": {
+                "const": "informado"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "valor": {
+                "type": "string",
+                "pattern": "^[0-9]+\\.[0-9]{2}$"
+              },
+              "referencias": {
+                "minItems": 1
+              },
+              "motivo": {
+                "type": "null"
+              }
+            }
+          },
+          "else": {
+            "properties": {
+              "valor": {
+                "type": "null"
+              },
+              "referencias": {
+                "maxItems": 0
+              },
+              "motivo": {
+                "type": "string",
+                "minLength": 1,
+                "pattern": "\\S"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "natureza": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "estado": {
+          "enum": [
+            "informado",
+            "nao-informado"
+          ]
+        },
+        "valor": {
+          "anyOf": [
+            {
+              "enum": [
+                "pessoa-fisica",
+                "empregador-privado",
+                "ente-publico",
+                "desconhecida"
+              ]
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "referencias": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/referencia"
+          },
+          "minItems": 0
+        },
+        "motivo": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1,
+              "pattern": "\\S"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "estado",
+        "valor",
+        "referencias",
+        "motivo"
+      ],
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "estado": {
+                "const": "informado"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "valor": {
+                "enum": [
+                  "pessoa-fisica",
+                  "empregador-privado",
+                  "ente-publico",
+                  "desconhecida"
+                ]
+              },
+              "referencias": {
+                "minItems": 1
+              },
+              "motivo": {
+                "type": "null"
+              }
+            }
+          },
+          "else": {
+            "properties": {
+              "valor": {
+                "type": "null"
+              },
+              "referencias": {
+                "maxItems": 0
+              },
+              "motivo": {
+                "type": "string",
+                "minLength": 1,
+                "pattern": "\\S"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "defesa": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "reclamada_id": {
+          "type": "string",
+          "pattern": "^PAR-[0-9]{3,}$"
+        },
+        "alegacao": {
+          "$ref": "#/$defs/dado"
+        }
+      },
+      "required": [
+        "reclamada_id",
+        "alegacao"
+      ]
+    },
+    "periodo": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "inicio": {
+          "$ref": "#/$defs/data"
+        },
+        "fim": {
+          "$ref": "#/$defs/data"
+        }
+      },
+      "required": [
+        "inicio",
+        "fim"
+      ]
+    },
+    "norma_coletiva": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "necessaria": {
+          "type": "boolean"
+        },
+        "justificativa": {
+          "$ref": "#/$defs/dado"
+        },
+        "documento_id": {
+          "anyOf": [
+            {
+              "type": "string",
+              "pattern": "^DOC-[a-f0-9]{64}$"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "vigencia": {
+          "$ref": "#/$defs/periodo"
+        },
+        "categoria": {
+          "$ref": "#/$defs/dado"
+        },
+        "territorio": {
+          "$ref": "#/$defs/dado"
+        }
+      },
+      "required": [
+        "necessaria",
+        "justificativa",
+        "documento_id",
+        "vigencia",
+        "categoria",
+        "territorio"
+      ]
+    },
+    "conferencia": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "estado": {
+          "enum": [
+            "pendente",
+            "conferida"
+          ]
+        },
+        "responsavel": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1,
+              "pattern": "\\S"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "data": {
+          "anyOf": [
+            {
+              "type": "string",
+              "format": "date"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "estado",
+        "responsavel",
+        "data"
+      ],
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "estado": {
+                "const": "conferida"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "responsavel": {
+                "type": "string",
+                "minLength": 1,
+                "pattern": "\\S"
+              },
+              "data": {
+                "type": "string",
+                "format": "date"
+              }
+            }
+          },
+          "else": {
+            "properties": {
+              "responsavel": {
+                "type": "null"
+              },
+              "data": {
+                "type": "null"
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}
